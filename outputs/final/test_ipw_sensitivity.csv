@@ -1,0 +1,5 @@
+model,auc_unweighted,auc_ipw_weighted
+"basic (HGB, set A)",0.7351646970077949,0.7646217709012461
+"buzz (XGB, set B3)",0.7764018104098567,0.7517430001108196
+"reference: LR, set A",0.7589891878300227,0.7861146475572036
+"reference: XGB, set D (earlier headline)",0.7599949710837315,0.7292181631262984

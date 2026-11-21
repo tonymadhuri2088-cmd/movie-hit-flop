@@ -1,0 +1,19 @@
+case,movie,predicted_probability,actual,feature,value,shap
+confident correct Hit,With Love,0.8932860493659973,Hit,log_budget,5.658964842664435,1.6942914
+confident correct Hit,With Love,0.8932860493659973,Hit,buzz_per_budget,-1.1333888360339701,0.59609544
+confident correct Hit,With Love,0.8932860493659973,Hit,language_hi,0.0,0.45289487
+confident correct Hit,With Love,0.8932860493659973,Hit,year,2026.0,-0.34961677
+confident correct Hit,With Love,0.8932860493659973,Hit,genre_Comedy,1.0,0.1261267
+confident correct Hit,With Love,0.8932860493659973,Hit,l_pv_7_1,10.174773439176352,-0.03208381
+confident correct Flop,Mardaani 3,0.06631764769554138,Flop,year,2026.0,-0.49965534
+confident correct Flop,Mardaani 3,0.06631764769554138,Flop,buzz_per_budget,-1.9942794832131732,-0.4407199
+confident correct Flop,Mardaani 3,0.06631764769554138,Flop,language_hi,1.0,-0.3890882
+confident correct Flop,Mardaani 3,0.06631764769554138,Flop,log_budget,6.772908194971272,-0.3261538
+confident correct Flop,Mardaani 3,0.06631764769554138,Flop,runtime,131.0,-0.31104133
+confident correct Flop,Mardaani 3,0.06631764769554138,Flop,genre_Comedy,0.0,-0.10751319
+"confident miss (predicted Hit, was Flop)",Madras Matinee,0.7995204925537109,Flop,log_budget,5.658393979933066,1.7824447
+"confident miss (predicted Hit, was Flop)",Madras Matinee,0.7995204925537109,Flop,language_hi,0.0,0.41221014
+"confident miss (predicted Hit, was Flop)",Madras Matinee,0.7995204925537109,Flop,l_pv_30_8,6.07993319509559,0.39051512
+"confident miss (predicted Hit, was Flop)",Madras Matinee,0.7995204925537109,Flop,year,2025.0,-0.36010033
+"confident miss (predicted Hit, was Flop)",Madras Matinee,0.7995204925537109,Flop,buzz_per_budget,-2.419846092251738,-0.28916577
+"confident miss (predicted Hit, was Flop)",Madras Matinee,0.7995204925537109,Flop,runtime,135.0,-0.21811959

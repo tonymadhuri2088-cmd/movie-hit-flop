@@ -1,0 +1,17 @@
+,value
+n,854.0
+roi_median,1.5666666666666667
+roi_p5,0.13676964285714288
+roi_p95,9.210314583333322
+n_roi_below_0.05,14.0
+n_roi_above_50,1.0
+share_tmdb_both,0.8758782201405152
+hit_rate_tmdb_both,0.4411764705882353
+hit_rate_has_wikipedia_value,0.22641509433962265
+n_has_wikipedia_value,106.0
+hit_rate_roi_ge_1.5,0.522248243559719
+hit_rate_roi_ge_2.0,0.41451990632318503
+hit_rate_roi_ge_2.5,0.34192037470725994
+share_within_10pct_of_1.5,0.07845433255269321
+share_within_10pct_of_2.0,0.07494145199063232
+share_within_10pct_of_2.5,0.07142857142857142
