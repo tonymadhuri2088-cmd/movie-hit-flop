@@ -1,46 +1,90 @@
-# Indian Movie Hit / Flop: research-grade upgrade
+# Indian Movie Hit / Flop Prediction
 
-Predicts whether an Indian film earns at least 2x its budget (**Hit**, ROI >= 2.0) using only information known before release.
-This project extends the original notebook (`movie_hit_flop_neha_data.ipynb`, left unchanged). It reproduces the original cohort exactly
-(854 labelled films, 578 development before 2023-01-01, 276 frozen test) and then adds stricter validation, new features, tuning, ensembles, calibration, explanations and an app.
+![tests](https://github.com/tonymadhuri2088-cmd/movie-hit-flop/actions/workflows/ci.yml/badge.svg)
 
-## Headline results (honest version)
-| Question | Answer |
-|---|---|
-| Final test AUC (2023+, scored once) | basic HGB 0.735; Wikipedia-buzz XGBoost 0.776; plain logistic regression 0.759; no-skill 0.50 |
-| Is any model convincingly better than logistic regression? | **No.** All paired-bootstrap intervals include 0. |
-| Do the new features help (Wikipedia per-day rates, YouTube ratios, festivals, competition, cast/crew history)? | **No.** 0 of 48 development comparisons convincing; adding everything made XGBoost worse. |
-| Does Optuna tuning help? | **No.** It never beat the default settings (0 of 10). |
-| Do ensembles help? | **No.** None convincingly beat the best single model; stacking was the worst. |
-| Calibration | Fitting calibrators on earlier folds made probabilities worse, because the Hit rate drifts (47% before 2023, 30% after). Not used. Predictions run high: 0.34-0.40 predicted vs 0.30 observed. |
-| Weak spot | Hindi (237 dev films) validation AUC 0.56; Telugu 0.73, Tamil 0.80, Malayalam 0.69. |
-| Selection bias | Only 854 of 4,273 films have budget and revenue; they are predictable from public covariates (selection-model AUC 0.86), so they are not a random sample. |
+Can we tell, **before release**, whether an Indian film will earn at least twice its budget (**Hit** = revenue / budget >= 2)?
 
-## Layout
-- `hitflop/` package: `data` (cohort, split, folds), `history` (leak-free cast/crew/studio records), `features`, `models`, `validation`, `metrics`, `calibration`, `tuning` (nested Optuna), `ensembles`, `explain` (SHAP), `predict`, `artifacts`, `experiment_log`, and phase runners.
-- `tests/` 59 tests: cohort reproduction, leakage (perturb future labels and check earlier features do not move), validation folds, metrics, calibration, ensembles, tuning, featurizer-versus-pipeline equality, app end-to-end.
-- `experiments/experiment_log.jsonl` append-only record of every experiment (settings, results, notes), including the pre-registration of the final models before test scoring.
-- `notebooks/02_upgrade_experiments.ipynb` results and a worked nested-Optuna example.
-- `app/streamlit_app.py` the app (Predict, Model comparison, Research dashboard, About & limits).
-- `outputs/` all result tables and figures; `artifacts/` deployed models.
+This repo answers that with a strict, leak-free evaluation and reports the result honestly: **moderately yes (test AUC about 0.76), and fancier models and extra "buzz" features do not change that.**
 
-## Run
-```
+## Two parts
+
+| Part | What it is | Where |
+|---|---|---|
+| **A. Course notebook** | One notebook that compares **19 model families** (classic, ensembles, neural networks) end to end. Runs in Google Colab in about 30 minutes. | `notebooks/01_course_notebook_19_models.ipynb`, results in `docs/course_notebook_results/` |
+| **B. Research package** | The same question as a tested Python package: nested tuning, ensembles, calibration, SHAP, a frozen test set scored once, and a Streamlit app. | `hitflop/`, `tests/`, `app/`, `outputs/` |
+
+The two parts use different feature sets and validation set-ups, so their exact numbers differ slightly (for example HistGradientBoosting test AUC 0.761 in A and 0.735 in B). The conclusions agree.
+
+## Data and split
+- 854 films with both budget and revenue: **578 development (released before 2023-01-01)** and **276 frozen test (2023 onward)**. Seed 42.
+- Features known before release: budget, language, genre, release timing and festivals, Wikipedia page-view rates, YouTube trailer statistics, cast/crew/studio track records (only from films released at least 120 days earlier).
+- The test set is scored once. In Part B a lock file (`outputs/final/TEST_SCORED.lock`) refuses a second run.
+
+## Headline results (Part A, 19 models)
+Test AUC on the 276 frozen films. Chance is 0.50.
+
+| Model | Features | Validation AUC | Test AUC (95% CI) |
+|---|---|---|---|
+| XGBoost | base + Wikipedia + YouTube | 0.730 | 0.774 (0.714 to 0.833) |
+| HistGradientBoosting (chosen by cross-validation) | base + Wikipedia | 0.714 | 0.761 (0.696 to 0.830) |
+| Random forest | base + Wikipedia + YouTube | 0.706 | 0.756 (0.687 to 0.818) |
+| Logistic regression (simple baseline) | base | 0.690 | 0.759 (0.692 to 0.822) |
+| MLP / 1D-CNN / GRU (neural networks) | various | 0.61 to 0.68 | 0.71 / 0.74 / 0.75 |
+
+Full 19-row table: [`docs/MODEL_LEADERBOARD.md`](docs/MODEL_LEADERBOARD.md).
+
+What this means:
+1. **Hits can be ranked better than chance** (AUC about 0.76), but only moderately. At its chosen threshold the main model finds about 35% of Hits and 91% of Flops.
+2. **No model is convincingly better than logistic regression.** All paired-bootstrap intervals include 0 on the held-out period. The top six model families are statistically tied.
+3. **Neural networks are worse**, as expected for 578 training films.
+4. **Pre-release buzz (Wikipedia, YouTube) adds little.** In Part B, 0 of 48 feature comparisons were convincing, and Optuna tuning and ensembles did not help either.
+5. **The ceiling is the data, not the algorithm.** Budget and language dominate.
+
+More detail and caveats are in [`docs/WHAT_IS_DONE.md`](docs/WHAT_IS_DONE.md). Ideas for next steps are in [`docs/IMPROVEMENTS.md`](docs/IMPROVEMENTS.md).
+
+## Quick start
+```bash
+git clone https://github.com/tonymadhuri2088-cmd/movie-hit-flop.git
+cd movie-hit-flop
 pip install -r requirements.txt
-python -m pytest -q tests
-python -m hitflop.pipeline_phase1; python -m hitflop.phase3; python -m hitflop.phase45   # re-creates the dev-only results
-python -m hitflop.final            # scores the frozen test set ONCE (a lock file refuses a second run)
-python -m hitflop.artifacts; python -m hitflop.phase6
-streamlit run app/streamlit_app.py
+python -m pytest -q tests          # 59 tests: cohort, leakage, folds, metrics, calibration, app
+streamlit run app/streamlit_app.py # Predict / Model comparison / Research dashboard / About & limits
 ```
-Seeds are fixed (42). The Hit definition (ROI >= 2.0) is unchanged; 1.5 and 2.5 are sensitivity checks only (`outputs/phase3/3c_roi_thresholds.csv`).
+Run Part A: open `notebooks/01_course_notebook_19_models.ipynb` in Colab, upload `data/movies_full.csv` and `data/yt_features.csv`, then Runtime > Run all.
+
+Re-create Part B results:
+```bash
+python -m hitflop.pipeline_phase1; python -m hitflop.phase3; python -m hitflop.phase45
+python -m hitflop.final            # scores the frozen test set ONCE (lock file)
+python -m hitflop.artifacts; python -m hitflop.phase6
+```
+
+## Repository map
+```
+hitflop/        package: data, features, history (leak-free records), models, validation, metrics,
+                calibration, tuning (nested Optuna), ensembles, explain (SHAP), predict, final
+tests/          59 tests, including leakage tests that flip future labels and check earlier features do not move
+app/            Streamlit app
+notebooks/      01 = 19-model course notebook, 02 = upgrade experiments
+experiments/    append-only experiment log (every experiment, settings and result)
+outputs/        Part B tables and figures
+docs/           what is done, improvements, 19-model leaderboard and figures
+data/           labelled movies, Wikipedia infobox records, YouTube features
+```
 
 ## Method notes
-- Validation: expanding-window walk-forward (5 outer folds on development data), nested inner chronological split for tuning, one pooled set of 480 out-of-fold predictions.
-- Comparisons: paired bootstrap on identical films, Benjamini-Hochberg across the comparison family; "convincing" = interval above 0 and q < 0.05.
-- Track records only use films released at least 120 days earlier; proven against a brute-force reference and by label-flip perturbation tests.
-- Ensembles and calibrators for fold k are fitted only on out-of-fold predictions from folds before k.
-- The deployed app models are refit on all 854 labelled films; the reported test scores are from the pre-2023 fit.
+- **Validation:** expanding-window walk-forward (chronological), never random shuffling. Tuning uses a nested inner chronological split.
+- **Comparisons:** paired bootstrap on identical films with Benjamini-Hochberg correction. "Convincing" = interval above 0 and adjusted q < 0.05.
+- **Leakage controls:** track records use only earlier films; label-flip perturbation tests prove it. The Hit threshold (2.0) is fixed; 1.5 and 2.5 are sensitivity checks only.
+- **Calibration:** calibrators fitted on earlier folds made probabilities worse because the Hit rate drifts (47% before 2023, 30% after), so they are not used. Predictions run high.
 
 ## Limits
-Predictive, not causal (SHAP describes the model). Money is in US dollars as stored; gross vs net is undocumented. YouTube collection dates are missing, so YouTube features cannot be verified as pre-release. Holiday calendar: Pongal/Sankranti fixed at 14 January; regional festivals such as Onam are not included.
+- Predictive, not causal. SHAP explains the model, not the real world.
+- Only 854 of 4,273 films have budget and revenue, and those are not a random sample (selection-model AUC 0.86).
+- Money is in US dollars as stored; gross versus net is undocumented.
+- YouTube collection dates are missing, so YouTube features cannot be proven to be pre-release.
+- Hindi is the weakest language (validation AUC about 0.56).
+- Library versions matter: scikit-learn and the `holidays` package change results slightly (AUC within about 0.02, same conclusions).
+
+## Data note
+The data files were compiled from public sources (movie metadata, Wikipedia page views and infoboxes, YouTube trailer statistics). Check each source's terms before reusing or redistributing the data.

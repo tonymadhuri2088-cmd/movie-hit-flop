@@ -21,8 +21,8 @@ COMPETITION = ["n_open_pm7_all", "n_open_pm7_same_lang", "n_open_pm14_same_lang"
 RESEARCH_GROUPS = {"wiki_rate": WIKI_RATE, "yt_ratio": YT_RATIO, "calendar": CALENDAR, "competition": COMPETITION}
 ALL_RESEARCH = sum(RESEARCH_GROUPS.values(), [])
 
-# Festivals that move film release strategy. Library dates for Diwali/Holi/Eid/Dussehra were spot-checked in tests; Pongal/Sankranti is a fixed solar date.
-MAJOR = ("Diwali", "Holi", "Id-ul-Fitr", "Id-ul-Zuha", "Dussehra", "Christmas", "Independence Day", "Republic Day")
+# Festivals that move film release strategy. Library dates for Diwali/Holi/Eid/Dussehra were spot-checked in tests. Holiday NAMES differ between `holidays` versions (0.108 'Eid al-Fitr' vs 0.109 'Id-ul-Fitr'), so both spellings are matched; Pongal/Sankranti is a fixed solar date.
+MAJOR = ("Diwali", "Holi", "Id-ul-Fitr", "Id-ul-Zuha", "Eid al-Fitr", "Eid al-Adha", "Dussehra", "Christmas", "Independence Day", "Republic Day")
 
 
 def _calendar(years):
