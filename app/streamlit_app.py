@@ -38,9 +38,45 @@ def show_table(rel, caption=None, fmt=3):
 
 
 # ------------------------------------------------------------------ header
-st.title("🎬 Indian Movie Hit / Flop Predictor")
-st.caption("A research prototype. **Hit** means box-office revenue ≥ 2× budget. It uses only information available before release, "
-           "and it describes patterns in past films, not what will happen to yours.")
+REPO_URL = "https://github.com/tonymadhuri2088-cmd/movie-hit-flop"
+st.markdown("""
+<style>
+.block-container {padding-top: 2.2rem; max-width: 1200px;}
+.hero {background: linear-gradient(120deg, #312e81 0%, #4f46e5 55%, #0ea5e9 100%); color: #fff; border-radius: 18px;
+       padding: 28px 32px; margin-bottom: 18px; box-shadow: 0 6px 24px rgba(79,70,229,.25);}
+.hero h1 {margin: 0 0 6px 0; font-size: 2.1rem; color: #fff; padding: 0;}
+.hero p {margin: 0; font-size: 1.02rem; opacity: .93; line-height: 1.5;}
+.kpis {display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 18px;}
+.kpi {background: #f3f4fb; border: 1px solid #e3e5f5; border-radius: 14px; padding: 14px 16px;}
+.kpi b {display: block; font-size: 1.55rem; color: #312e81;}
+.kpi span {font-size: .82rem; color: #5b6075;}
+.verdict {border-radius: 14px; padding: 16px 20px; margin: 8px 0 14px 0; font-size: 1.05rem;}
+.verdict.hit {background: #e8f7ee; border: 1px solid #9bd6b0; color: #14532d;}
+.verdict.flop {background: #fdecec; border: 1px solid #f1a9a9; color: #7f1d1d;}
+.verdict b {font-size: 1.25rem;}
+.footer {margin-top: 36px; padding-top: 14px; border-top: 1px solid #e3e5f5; color: #6b7086; font-size: .85rem;}
+button[data-baseweb="tab"] {font-weight: 600;}
+@media (max-width: 800px) {.kpis {grid-template-columns: repeat(2, 1fr);} .hero h1 {font-size: 1.6rem;}}
+</style>
+<div class="hero">
+  <h1>🎬 Indian Movie Hit / Flop Predictor</h1>
+  <p>Will a film earn at least <b>2&times; its budget</b>? A research prototype that uses only information available <b>before release</b>:
+  language, budget, runtime, genres, release timing and (optionally) Wikipedia attention. It shows how the model reasons and where it is weak.</p>
+</div>
+<div class="kpis">
+  <div class="kpi"><b>854</b><span>labelled films (2015&ndash;2026)</span></div>
+  <div class="kpi"><b>19</b><span>model families compared</span></div>
+  <div class="kpi"><b>~0.76</b><span>test AUC (0.50 = chance)</span></div>
+  <div class="kpi"><b>Honest</b><span>top models are statistically tied</span></div>
+</div>
+""", unsafe_allow_html=True)
+with st.sidebar:
+    st.markdown("### About")
+    st.write("Predicts whether an Indian film will earn at least 2x its budget, using pre-release information only. "
+             "Built with leak-free chronological validation and a test set scored once.")
+    st.markdown(f"[Source code on GitHub]({REPO_URL})")
+    st.markdown("**How to use**\n1. Open **Predict** and enter the film's details.\n2. Press **Predict**.\n3. Read the chance, the verdict and the explanation bars.")
+    st.caption("A research prototype, not a financial tool. Do not use it to decide whether to invest in a film.")
 tab_pred, tab_cmp, tab_dash, tab_about = st.tabs(["Predict", "Model comparison", "Research dashboard", "About & limits"])
 
 # ------------------------------------------------------------------ predict
@@ -78,7 +114,9 @@ with tab_pred:
                 p = out["probability"]
                 st.metric("Model-estimated chance of a Hit", f"{p:.0%}")
                 st.progress(min(max(p, 0.0), 1.0))
-                st.markdown(f"**Verdict at the model's decision threshold ({a['threshold']:.2f}): {out['label']}**")
+                _cls = "hit" if str(out["label"]).lower().startswith("hit") else "flop"
+                _icon = "✅" if _cls == "hit" else "⚠️"
+                st.markdown(f"<div class='verdict {_cls}'>{_icon} Verdict at the model's decision threshold ({a['threshold']:.2f}): <b>{out['label']}</b></div>", unsafe_allow_html=True)
                 warn = []
                 if lang == "hi":
                     warn.append("Hindi films are where this model is weakest (validation AUC about 0.56, barely above chance).")
@@ -182,3 +220,7 @@ with tab_about:
     for m, label in (("basic", "Basic"), ("buzz", "Buzz-enhanced")):
         a = art[m]
         st.markdown(f"- **{label}:** {a['model']} on feature set {a['feature_set']}, trained on {a['trained_on']} films released {a['date_range'][0]} to {a['date_range'][1]}.")
+
+st.markdown(f"<div class='footer'>Indian Movie Hit / Flop Predictor &middot; research prototype &middot; "
+            f"<a href='{REPO_URL}' target='_blank'>source code</a> &middot; predictions describe patterns in past films, not what will happen to yours.</div>",
+            unsafe_allow_html=True)

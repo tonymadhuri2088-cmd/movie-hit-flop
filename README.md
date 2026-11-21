@@ -57,9 +57,13 @@ What this means:
 More detail and caveats are in [`docs/WHAT_IS_DONE.md`](docs/WHAT_IS_DONE.md). Ideas for next steps are in [`docs/IMPROVEMENTS.md`](docs/IMPROVEMENTS.md).
 
 ## App
+An interactive Streamlit app with a clean front end: a hero banner with key numbers, a **Predict** tab (film details in, chance of a Hit, a colour-coded verdict, per-input SHAP bars and honest warnings), a **Model comparison** tab, a **Research dashboard** (data quality, robustness, experiment log) and an **About & limits** tab.
+
 ![Predict page with SHAP explanation](docs/screenshots/app_predict.png)
 
 More screenshots: [model comparison](docs/screenshots/app_model_comparison.png), [research dashboard](docs/screenshots/app_dashboard.png).
+
+Run it locally with `streamlit run app/streamlit_app.py`, or with Docker (below).
 
 ## Quick start
 ```bash
