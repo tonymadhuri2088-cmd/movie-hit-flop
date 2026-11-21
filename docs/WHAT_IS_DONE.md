@@ -34,5 +34,5 @@ A plain status page: what was built, what it showed, and what was not done.
 - YouTube statistics have no collection dates, so they cannot be proven pre-release.
 - No causal claims: SHAP describes the model, not why films succeed.
 - The labelled films are not a random sample of all films.
-- Not deployed anywhere; the Streamlit app runs locally.
-- No licence file has been chosen yet.
+- Not deployed anywhere; the Streamlit app runs locally or in Docker.
+- Not tested on every operating system; the Dockerfile has not been build-tested yet.

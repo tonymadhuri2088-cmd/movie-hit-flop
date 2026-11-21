@@ -15,6 +15,20 @@ This repo answers that with a strict, leak-free evaluation and reports the resul
 
 The two parts use different feature sets and validation set-ups, so their exact numbers differ slightly (for example HistGradientBoosting test AUC 0.761 in A and 0.735 in B). The conclusions agree.
 
+## Tech stack
+| Area | Tools |
+|---|---|
+| Language | Python 3.11+ |
+| Data | pandas, NumPy, SciPy |
+| Classic models | scikit-learn (logistic regression, random forest, HistGradientBoosting, SVM, kNN, Naive Bayes, LDA, AdaBoost, Extra Trees), XGBoost, LightGBM, CatBoost |
+| Neural networks (Part A) | PyTorch (MLP, GRU, 1D-CNN) |
+| Tuning and explanation | Optuna (nested chronological tuning), SHAP, permutation importance |
+| Features | `holidays` package for festival and holiday calendars |
+| Statistics | paired bootstrap, Benjamini-Hochberg correction |
+| App | Streamlit |
+| Quality | pytest (59 tests), GitHub Actions CI, Docker |
+| Notebook | Google Colab / Jupyter, matplotlib, seaborn |
+
 ## Data and split
 - 854 films with both budget and revenue: **578 development (released before 2023-01-01)** and **276 frozen test (2023 onward)**. Seed 42.
 - Features known before release: budget, language, genre, release timing and festivals, Wikipedia page-view rates, YouTube trailer statistics, cast/crew/studio track records (only from films released at least 120 days earlier).
@@ -42,6 +56,11 @@ What this means:
 
 More detail and caveats are in [`docs/WHAT_IS_DONE.md`](docs/WHAT_IS_DONE.md). Ideas for next steps are in [`docs/IMPROVEMENTS.md`](docs/IMPROVEMENTS.md).
 
+## App
+![Predict page with SHAP explanation](docs/screenshots/app_predict.png)
+
+More screenshots: [model comparison](docs/screenshots/app_model_comparison.png), [research dashboard](docs/screenshots/app_dashboard.png).
+
 ## Quick start
 ```bash
 git clone https://github.com/tonymadhuri2088-cmd/movie-hit-flop.git
@@ -50,7 +69,13 @@ pip install -r requirements.txt
 python -m pytest -q tests          # 59 tests: cohort, leakage, folds, metrics, calibration, app
 streamlit run app/streamlit_app.py # Predict / Model comparison / Research dashboard / About & limits
 ```
-Run Part A: open `notebooks/01_course_notebook_19_models.ipynb` in Colab, upload `data/movies_full.csv` and `data/yt_features.csv`, then Runtime > Run all.
+Run Part A: open `notebooks/01_course_notebook_19_models.ipynb` in Google Colab and choose Runtime > Run all (about 30 minutes). The first cell downloads the two data files automatically; if that fails, Colab shows an upload button, so upload `data/movies_full.csv` and `data/yt_features.csv` from this repo. Locally, also run `pip install -r requirements-notebook.txt`.
+
+Run with Docker (the Dockerfile is written but has not been build-tested yet):
+```bash
+docker build -t movie-hit-flop .
+docker run -p 8501:8501 movie-hit-flop   # then open http://localhost:8501
+```
 
 Re-create Part B results:
 ```bash
@@ -68,7 +93,7 @@ app/            Streamlit app
 notebooks/      01 = 19-model course notebook, 02 = upgrade experiments
 experiments/    append-only experiment log (every experiment, settings and result)
 outputs/        Part B tables and figures
-docs/           what is done, improvements, 19-model leaderboard and figures
+docs/           what is done, improvements, 19-model leaderboard, figures, app screenshots
 data/           labelled movies, Wikipedia infobox records, YouTube features
 ```
 
@@ -88,3 +113,6 @@ data/           labelled movies, Wikipedia infobox records, YouTube features
 
 ## Data note
 The data files were compiled from public sources (movie metadata, Wikipedia page views and infoboxes, YouTube trailer statistics). Check each source's terms before reusing or redistributing the data.
+
+## Licence
+MIT. See [LICENSE](LICENSE).

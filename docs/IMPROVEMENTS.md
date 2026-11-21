@@ -17,9 +17,9 @@ Ordered by how likely each is to help, based on what the experiments showed. The
 - Report **uncertainty** in the app (conformal prediction intervals) instead of a single probability.
 
 ## 4. Engineering polish
-- `Dockerfile` and a small FastAPI service for the model.
+- A small FastAPI service for the model (a Dockerfile for the app already exists).
 - Experiment tracking (MLflow) and data versioning (DVC).
-- A model card (intended use, data, limits) and a `LICENSE` and `CITATION.cff`.
+- A model card (intended use, data, limits) and a `CITATION.cff`.
 - Type hints, `ruff` or `black`, and `pre-commit`.
 - Deploy the Streamlit app (for example Streamlit Community Cloud) and link it in the README.
 
