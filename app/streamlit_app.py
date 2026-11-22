@@ -126,8 +126,7 @@ def ticket_html(title, meta, p, thr, label, model_label):
         f"<div class='thr' style='left:{thr * 100:.1f}%'><span>Hit line {thr * 100:.0f}%</span></div></div>"
         f"</div>"
         f"<div class='tk-perf'></div>"
-        f"<div class='tk-foot'>The model calls a Hit when the chance is at or above the Hit line. "
-        f"The line was set on past films, not chosen to flatter this one.</div>"
+        f"<div class='tk-foot'>A Hit is called when the chance reaches the Hit line. The line was set on past films, not to flatter this one.</div>"
         f"</div>")
 
 
@@ -135,80 +134,78 @@ def ticket_html(title, meta, p, thr, label, model_label):
 REPO_URL = "https://github.com/tonymadhuri2088-cmd/movie-hit-flop"
 st.markdown("""
 <style>
-@font-face {font-family: "Archivo VF"; src: url("/app/static/archivo-wdth.woff2") format("woff2");
-            font-weight: 100 900; font-stretch: 62% 125%; font-display: swap;}
+@font-face {font-family: "Archivo VF"; src: url("/app/static/archivo-wdth.woff2") format("woff2"); font-weight: 100 900; font-display: swap;}
+@font-face {font-family: "Barlow Cond"; src: url("/app/static/barlow-condensed-800.woff2") format("woff2"); font-weight: 800; font-display: swap;}
+@font-face {font-family: "Barlow Cond"; src: url("/app/static/barlow-condensed-700.woff2") format("woff2"); font-weight: 700; font-display: swap;}
 :root {--paper:#f3f5f2; --panel:#ffffff; --line:#d9dfd8; --ink:#14232b; --muted:#5a6a70; --gold:#f2b632;
-       --hit:#0f7b62; --flop:#c8412b; --hit-lit:#4fd1a5; --flop-lit:#ff7a59;}
+       --hit:#0f7b62; --flop:#c8412b; --hit-lit:#4fd1a5; --flop-lit:#ff7a59;
+       --head:"Barlow Cond","Arial Narrow","Roboto Condensed",sans-serif;}
 .stApp, .stApp p, .stApp label, .stApp li, .stApp td, .stApp th, .stApp button, .stApp input, .stApp textarea,
-.stApp h1, .stApp h2, .stApp h3, .stApp h4, .stApp a, .stApp caption {font-family: "Archivo VF", "Segoe UI", system-ui, sans-serif;}
+.stApp a {font-family: "Archivo VF", "Segoe UI", system-ui, sans-serif;}
+.stApp h1, .stApp h2, .stApp h3, .stApp h4 {font-family: var(--head);}
 .stApp [data-testid="stIconMaterial"], .stApp .material-symbols-rounded {font-family: "Material Symbols Rounded" !important;}
-.block-container {padding-top: 1.6rem; max-width: 1180px;}
-h2, h3 {font-variation-settings: "wdth" 80; font-weight: 800 !important; letter-spacing: -.01em;}
+.block-container {padding-top: 3.4rem !important; padding-bottom: 2rem !important; max-width: 1180px;}
+h2, h3 {font-weight: 800 !important; font-size: 1.75rem !important; line-height: 1.15 !important; letter-spacing: .005em; padding: .1rem 0 .3rem 0 !important; font-synthesis: none;}
 
-.top {display:flex; align-items:baseline; justify-content:space-between; gap:16px; flex-wrap:wrap;}
-.logo {font-family:"Archivo VF",sans-serif; font-variation-settings:"wdth" 70; font-weight:900; font-size:3.1rem; line-height:1;
-       color:var(--ink); letter-spacing:-.02em; word-spacing:.14em;}
+.top {display:flex; align-items:flex-start; justify-content:space-between; gap:16px; flex-wrap:wrap;}
+.logo {font-family:var(--head); font-weight:800; font-size:3rem; line-height:1.15; padding-top:.06em; color:var(--ink); letter-spacing:.005em; font-synthesis:none;}
 .logo i {font-style:normal; color:var(--flop);}
-.top a {color:var(--ink); font-weight:600; text-decoration:underline; text-underline-offset:3px; font-size:.95rem;}
-.lede {font-size:1.12rem; color:var(--muted); max-width: 62ch; margin: 14px 0 20px 0; line-height:1.5;}
-.facts {display:flex; flex-wrap:wrap; border-top:2px solid var(--ink); border-bottom:1px solid var(--line); margin-bottom:10px;}
-.facts div {flex:1 1 180px; padding:12px 18px 12px 0; font-size:.9rem; color:var(--muted); line-height:1.35;}
-.facts div + div {padding-left:18px; border-left:1px solid var(--line);}
-.facts b {display:block; font-family:"Archivo VF",sans-serif; font-variation-settings:"wdth" 75; font-weight:850; font-size:1.7rem; color:var(--ink);}
+.top a {color:var(--ink); font-weight:600; text-decoration:underline; text-underline-offset:3px; font-size:.92rem; margin-top:.9rem;}
+.lede {font-size:1.02rem; color:var(--muted); max-width: 70ch; margin: 2px 0 12px 0; line-height:1.45;}
+.facts {display:flex; flex-wrap:wrap; gap:6px 26px; border-top:2px solid var(--ink); border-bottom:1px solid var(--line); padding:9px 0; margin-bottom:6px; align-items:baseline;}
+.facts div {font-size:.88rem; color:var(--muted); line-height:1.3;}
+.facts b {font-family:var(--head); font-weight:800; font-size:1.35rem; color:var(--ink); margin-right:6px; font-synthesis:none;}
 
 [data-testid="stVerticalBlockBorderWrapper"] {background: var(--panel); border-color: var(--line) !important; border-radius: 14px;}
-div[data-testid="stButton"] {width:100% !important;}
-div[data-testid="stButton"] button {width:100% !important; font-weight:700; padding:.65rem 1rem; border-radius:10px;}
-button[data-baseweb="tab"] p {font-weight:650; font-size:1rem;}
+[data-testid="stVerticalBlockBorderWrapper"] [data-testid="stVerticalBlock"] {gap: .7rem;}
+div[data-testid="stButton"] button {font-weight:700; padding:.6rem 1rem; border-radius:10px;}
+button[data-baseweb="tab"] p {font-weight:650; font-size:.98rem;}
 
-.ticket {position:relative; background:var(--ink); color:#f3f5f2; border-radius:16px; margin: 4px 0 12px 0; box-shadow: 0 10px 30px rgba(20,35,43,.22);}
-.tk-top {display:flex; justify-content:space-between; gap:12px; background:var(--gold); color:var(--ink); font-weight:700; font-size:.85rem;
-         padding:9px 22px; border-radius:16px 16px 0 0;}
-.tk-main {position:relative; padding:20px 24px 24px 24px;}
-.tk-title {font-family:"Archivo VF",sans-serif; font-variation-settings:"wdth" 75; font-weight:850; font-size:1.9rem; line-height:1.1; padding-right:150px;
-           overflow-wrap:anywhere;}
-.tk-meta {color:#b9c6c9; font-size:.95rem; margin-top:6px; padding-right:150px; line-height:1.4;}
-.tk-num {margin-top:18px; line-height:.9; display:flex; align-items:baseline;}
-.tk-num .n {font-family:"Archivo VF",sans-serif; font-variation-settings:"wdth" 68; font-weight:900; font-size:6.6rem; font-variant-numeric: tabular-nums;}
-.tk-num .pc {font-family:"Archivo VF",sans-serif; font-variation-settings:"wdth" 68; font-weight:800; font-size:2.6rem; margin-left:4px; color:#b9c6c9;}
-.tk-lab {color:#d6dfe1; font-size:1rem; margin-top:4px;}
-.track {position:relative; height:12px; background:rgba(255,255,255,.16); border-radius:8px; margin:34px 4px 6px 0;}
+.ticket {position:relative; background:var(--ink); color:#f3f5f2; border-radius:16px; margin: 2px 0 10px 0; box-shadow: 0 10px 28px rgba(20,35,43,.2);}
+.tk-top {display:flex; justify-content:space-between; gap:12px; background:var(--gold); color:var(--ink); font-weight:700; font-size:.82rem; padding:8px 22px; border-radius:16px 16px 0 0;}
+.tk-main {position:relative; padding:16px 22px 14px 22px;}
+.tk-title {font-family:var(--head); font-weight:800; font-size:1.9rem; line-height:1.1; padding-right:130px; overflow-wrap:anywhere; font-synthesis:none;}
+.tk-meta {color:#b9c6c9; font-size:.9rem; margin-top:4px; padding-right:130px; line-height:1.35;}
+.tk-num {margin-top:10px; line-height:.95; display:flex; align-items:baseline;}
+.tk-num .n {font-family:var(--head); font-weight:800; font-size:5.4rem; line-height:.95; font-variant-numeric: tabular-nums; font-synthesis:none;}
+.tk-num .pc {font-family:var(--head); font-weight:700; font-size:2.2rem; margin-left:4px; color:#b9c6c9;}
+.tk-lab {color:#d6dfe1; font-size:.95rem; margin-top:2px;}
+.track {position:relative; height:11px; background:rgba(255,255,255,.16); border-radius:8px; margin:30px 4px 4px 0;}
 .fill {height:100%; border-radius:8px; background:#f3f5f2;}
-.thr {position:absolute; top:-9px; bottom:-9px; width:3px; background:var(--gold); border-radius:2px; transform:translateX(-1px);}
-.thr span {position:absolute; bottom:calc(100% + 4px); left:50%; transform:translateX(-50%); white-space:nowrap; font-size:.78rem; font-weight:700; color:var(--gold);}
-.stamp {position:absolute; top:18px; right:22px; transform:rotate(-7deg); border:4px solid; border-radius:8px; padding:2px 14px;
-        font-family:"Archivo VF",sans-serif; font-variation-settings:"wdth" 70; font-weight:900; font-size:2.4rem; letter-spacing:.03em; opacity:.97;}
+.thr {position:absolute; top:-8px; bottom:-8px; width:3px; background:var(--gold); border-radius:2px; transform:translateX(-1px);}
+.thr span {position:absolute; bottom:calc(100% + 3px); left:50%; transform:translateX(-50%); white-space:nowrap; font-size:.75rem; font-weight:700; color:var(--gold);}
+.stamp {position:absolute; top:14px; right:20px; transform:rotate(-7deg); border:3px solid; border-radius:8px; padding:0 12px; font-family:var(--head); font-weight:800; font-size:2.1rem; line-height:1.25; letter-spacing:.04em; font-synthesis:none;}
 .ticket.hit .stamp {color:var(--hit-lit); border-color:var(--hit-lit);}
 .ticket.flop .stamp {color:var(--flop-lit); border-color:var(--flop-lit);}
 .tk-perf {position:relative; border-top:2px dashed rgba(255,255,255,.28); margin:0 18px;}
-.tk-perf::before, .tk-perf::after {content:""; position:absolute; top:-13px; width:24px; height:24px; border-radius:50%; background:var(--paper);}
-.tk-perf::before {left:-30px;} .tk-perf::after {right:-30px;}
-.tk-foot {padding:14px 24px 18px 24px; color:#aebcbf; font-size:.85rem; line-height:1.45;}
+.tk-perf::before, .tk-perf::after {content:""; position:absolute; top:-12px; width:22px; height:22px; border-radius:50%; background:var(--paper);}
+.tk-perf::before {left:-29px;} .tk-perf::after {right:-29px;}
+.tk-foot {padding:10px 22px 14px 22px; color:#aebcbf; font-size:.8rem; line-height:1.4;}
 
-.ghost {border:2px dashed #aeb9b4; border-radius:16px; padding:26px 26px 22px 26px; color:var(--muted); background:rgba(255,255,255,.5);}
-.ghost .g-title {font-family:"Archivo VF",sans-serif; font-variation-settings:"wdth" 75; font-weight:850; font-size:1.7rem; color:var(--ink); margin-bottom:6px;}
-.ghost p {margin:0 0 8px 0; line-height:1.5; font-size:1rem;}
-.ghost ul {margin:6px 0 10px 18px; padding:0; line-height:1.6;}
-.ghost .small {font-size:.88rem;}
+.ghost {border:2px dashed #aeb9b4; border-radius:16px; padding:22px 24px 18px 24px; color:var(--muted); background:rgba(255,255,255,.5);}
+.ghost .g-title {font-family:var(--head); font-weight:800; font-size:1.8rem; line-height:1.15; color:var(--ink); margin-bottom:6px; font-synthesis:none;}
+.ghost p {margin:0 0 8px 0; line-height:1.5; font-size:.98rem;}
+.ghost ul {margin:4px 0 10px 18px; padding:0; line-height:1.55;}
+.ghost .small {font-size:.85rem;}
 
 .note {background:#fff7e0; border-left:4px solid var(--gold); border-radius:6px; padding:12px 16px; margin:8px 0 14px 0; line-height:1.5; color:var(--ink);}
 .footer a {color:var(--ink); font-weight:600;}
-.footer {margin-top:36px; padding-top:14px; border-top:1px solid var(--line); color:#5a6a70; font-size:.85rem;}
+.footer {margin-top:30px; padding-top:12px; border-top:1px solid var(--line); color:#5a6a70; font-size:.85rem;}
 @media (max-width: 800px) {
-  .logo {font-size:2.4rem;} .tk-num .n {font-size:5rem;} .tk-title {padding-right:0; padding-top:46px;} .tk-meta {padding-right:0;}
-  .stamp {font-size:1.8rem; top:12px;} .facts div + div {border-left:0; padding-left:0;}
+  .logo {font-size:2.5rem;} .tk-num .n {font-size:4.6rem;} .tk-title {padding-right:0; padding-top:46px;} .tk-meta {padding-right:0;}
+  .stamp {font-size:1.7rem; top:10px;} .facts {gap:4px 18px;}
 }
 @media (prefers-reduced-motion: reduce) {* {transition: none !important; animation: none !important;}}
 </style>
 """, unsafe_allow_html=True)
 st.markdown(f"""
 <div class="top"><div class="logo">Hit or <i>Flop</i></div><a href="{REPO_URL}" target="_blank">Source code on GitHub</a></div>
-<p class="lede">Will an Indian film earn at least twice its budget? Enter what is known before release and see the model's estimate, and the reasons behind it.</p>
+<p class="lede">Will an Indian film earn at least twice its budget? Enter what is known before release to see the model's estimate and the reasons behind it.</p>
 <div class="facts">
   <div><b>854</b>labelled films, 2015 to 2026</div>
-  <div><b>19</b>model families compared fairly</div>
-  <div><b>~0.76</b>test AUC; 0.50 would be guessing</div>
-  <div><b>No clear winner</b>the top models are statistically tied</div>
+  <div><b>19</b>models compared fairly</div>
+  <div><b>~0.76</b>test AUC (0.50 is guessing)</div>
+  <div><b>No clear winner</b>top models are statistically tied</div>
 </div>
 """, unsafe_allow_html=True)
 tab_pred, tab_cmp, tab_lb, tab_dash, tab_about = st.tabs(["Predict", "Model comparison", "19-model leaderboard", "Research dashboard", "About & limits"])
@@ -220,7 +217,7 @@ with tab_pred:
     with c1:
         with st.container(border=True):
             st.subheader("Film details")
-            st.selectbox("Quick example (fills the form; invented films, not real titles)", ["Choose an example..."] + list(EXAMPLES), key="example", on_change=apply_example)
+            st.selectbox("Quick example (invented films, not real titles)", ["Choose an example..."] + list(EXAMPLES), key="example", on_change=apply_example)
             name = st.text_input("Film title (optional)", "", key="title", placeholder="For example: My new film")
             lang = st.selectbox("Language", list(LANG_NAMES), format_func=lambda k: LANG_NAMES[k], key="lang")
             rdate = st.date_input("Release date", value=pd.Timestamp("2027-01-15").date(), key="rdate")

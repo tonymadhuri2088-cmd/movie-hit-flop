@@ -150,4 +150,4 @@ data/           labelled movies, Wikipedia infobox records, YouTube features
 The data files were compiled from public sources (movie metadata, Wikipedia page views and infoboxes, YouTube trailer statistics). Check each source's terms before reusing or redistributing the data.
 
 ## Licence
-MIT. See [LICENSE](LICENSE). The app bundles the Archivo variable font (SIL Open Font License; see `app/static/ARCHIVO-OFL-LICENSE.txt`).
+MIT. See [LICENSE](LICENSE). The app bundles the Archivo and Barlow Condensed fonts (SIL Open Font License; see `app/static/ARCHIVO-OFL-LICENSE.txt` and `app/static/BARLOW-OFL-LICENSE.txt`).
