@@ -19,13 +19,14 @@ A plain status page: what was built, what it showed, and what was not done.
 | Frozen test | Scored once; lock file refuses a second scoring | `outputs/final/TEST_SCORED.lock` |
 | Robustness | ROI thresholds 1.5 and 2.5, missing-buzz subset, language and year shifts, complete-case analysis, learning curve, YouTube timing check | `outputs/`, notebook |
 | App | Streamlit app with Predict, Model comparison, Research dashboard and About & limits | `app/streamlit_app.py` |
+| App polish | Quick example films, colour-coded verdict, threshold gauge, CSV download, model-comparison and 19-model leaderboard charts | `app/streamlit_app.py` |
 | Tests and CI | 59 tests pass locally; GitHub Actions runs them on every push | `tests/`, `.github/workflows/ci.yml` |
 | Course notebook | One notebook, all 19 models, run end to end in Colab: "All checks passed", total runtime 1881 s | `notebooks/01_course_notebook_19_models.ipynb` |
 
 ## What it showed
 1. Hit/Flop can be predicted **moderately** before release: test AUC about 0.76 (95% CI roughly 0.70 to 0.83) versus 0.50 for no skill.
 2. **No model is convincingly better than logistic regression.** The top six families are tied on the test period.
-3. **Extra buzz features, tuning, ensembles and neural networks did not help** (the neural networks were clearly worse).
+3. **Extra buzz features, tuning, ensembles and neural networks did not help** (the neural networks were lower on validation and no better on test).
 4. Probabilities run too high on the 2023+ films (Hit rate fell from 47% to 30%), so use the model for **ranking**, not for exact probabilities.
 5. Hindi films are the weak spot.
 
@@ -34,5 +35,5 @@ A plain status page: what was built, what it showed, and what was not done.
 - YouTube statistics have no collection dates, so they cannot be proven pre-release.
 - No causal claims: SHAP describes the model, not why films succeed.
 - The labelled films are not a random sample of all films.
-- Not deployed anywhere; the Streamlit app runs locally or in Docker.
+- The live app is on the free Streamlit Community Cloud tier, which sleeps when idle.
 - Not tested on every operating system; the Dockerfile has not been build-tested yet.

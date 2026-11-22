@@ -4,6 +4,7 @@ import sys
 from pathlib import Path
 
 import numpy as np
+import altair as alt
 import pandas as pd
 import streamlit as st
 
@@ -34,7 +35,48 @@ def show_table(rel, caption=None, fmt=3):
     if caption:
         st.caption(caption)
     df = df.rename(columns={"Unnamed: 0": "item"})
-    st.dataframe(df.round(fmt), use_container_width=True, hide_index=True)
+    st.dataframe(df.round(fmt), width="stretch", hide_index=True)
+
+
+EXAMPLES = {
+    "Big-budget Telugu action": {"lang": "te", "budget": 25.0, "runtime": 165, "genres": ["Action", "Drama"]},
+    "Mid-budget Tamil thriller": {"lang": "ta", "budget": 8.0, "runtime": 135, "genres": ["Thriller", "Crime"]},
+    "Low-budget Malayalam drama": {"lang": "ml", "budget": 2.0, "runtime": 125, "genres": ["Drama"]},
+    "Hindi family comedy": {"lang": "hi", "budget": 10.0, "runtime": 140, "genres": ["Comedy", "Family"]},
+}
+
+
+def apply_example():
+    ex = EXAMPLES.get(st.session_state.get("example"))
+    if ex:
+        st.session_state["lang"] = ex["lang"]
+        st.session_state["budget"] = ex["budget"]
+        st.session_state["runtime"] = ex["runtime"]
+        st.session_state["genres"] = ex["genres"]
+
+
+def gauge(p, thr):
+    """Horizontal 0-100% bar with the model's decision threshold (red tick) and the film's estimated chance (filled)."""
+    sc = alt.Scale(domain=[0, 1], nice=False)
+    bar = alt.Chart(pd.DataFrame({"x0": [0.0], "x1": [1.0]})).mark_bar(height=22, cornerRadius=11, color="#e6e8f5").encode(
+        x=alt.X("x0:Q", scale=sc, axis=alt.Axis(format="%", title=None, tickCount=5)), x2="x1:Q")
+    fill = alt.Chart(pd.DataFrame({"x0": [0.0], "x1": [float(p)]})).mark_bar(height=22, cornerRadius=11, color="#4f46e5").encode(
+        x=alt.X("x0:Q", scale=sc, axis=None), x2="x1:Q")
+    tdf = pd.DataFrame({"t": [float(thr)], "label": [f"threshold {thr:.2f}"]})
+    tick = alt.Chart(tdf).mark_tick(color="#ef4444", thickness=3, size=34).encode(x=alt.X("t:Q", scale=sc, axis=None))
+    lab = alt.Chart(tdf).mark_text(dy=-26, color="#ef4444", fontSize=12).encode(x=alt.X("t:Q", scale=sc, axis=None), text="label:N")
+    return (bar + fill + tick + lab).properties(height=60, padding={"top": 22, "left": 5, "right": 14, "bottom": 5}).configure_view(strokeWidth=0)
+
+
+def auc_chart(df, name_col, auc_col, lo_col, hi_col, height=None):
+    d = df[[name_col, auc_col, lo_col, hi_col]].copy()
+    d.columns = ["model", "auc", "lo", "hi"]
+    order = d.sort_values("auc", ascending=False)["model"].tolist()
+    y = alt.Y("model:N", sort=order, title=None, axis=alt.Axis(labelLimit=280))
+    rule = alt.Chart(d).mark_rule(color="#6b7086", strokeWidth=2).encode(y=y, x=alt.X("lo:Q", scale=alt.Scale(domain=[0.5, 0.9]), title="Test AUC (dot) with 95% interval; 0.5 = chance"), x2="hi:Q")
+    dot = alt.Chart(d).mark_circle(size=90, color="#4f46e5").encode(y=y, x="auc:Q", tooltip=["model", alt.Tooltip("auc:Q", format=".3f"), alt.Tooltip("lo:Q", format=".3f"), alt.Tooltip("hi:Q", format=".3f")])
+    chance = alt.Chart(pd.DataFrame({"x": [0.5]})).mark_rule(color="#ef4444", strokeDash=[4, 4]).encode(x=alt.X("x:Q", scale=alt.Scale(domain=[0.5, 0.9])))
+    return (chance + rule + dot).properties(height=height or max(140, 28 * len(d)))
 
 
 # ------------------------------------------------------------------ header
@@ -77,7 +119,7 @@ with st.sidebar:
     st.markdown(f"[Source code on GitHub]({REPO_URL})")
     st.markdown("**How to use**\n1. Open **Predict** and enter the film's details.\n2. Press **Predict**.\n3. Read the chance, the verdict and the explanation bars.")
     st.caption("A research prototype, not a financial tool. Do not use it to decide whether to invest in a film.")
-tab_pred, tab_cmp, tab_dash, tab_about = st.tabs(["Predict", "Model comparison", "Research dashboard", "About & limits"])
+tab_pred, tab_cmp, tab_lb, tab_dash, tab_about = st.tabs(["Predict", "Model comparison", "19-model leaderboard", "Research dashboard", "About & limits"])
 
 # ------------------------------------------------------------------ predict
 with tab_pred:
@@ -85,6 +127,7 @@ with tab_pred:
     c1, c2 = st.columns([1, 1.2], gap="large")
     with c1:
         st.subheader("Film details")
+        st.selectbox("Quick example (fills the form; invented films, not real titles)", ["Choose an example..."] + list(EXAMPLES), key="example", on_change=apply_example)
         mode_label = st.radio("Model", ["Basic: no promotion data", "Buzz-enhanced: add Wikipedia page views"], key="mode",
                               help="Buzz-enhanced adds Wikipedia page views from the 90 days before release. Its test score was higher but not statistically convincing.")
         mode = "basic" if mode_label.startswith("Basic") else "buzz"
@@ -113,7 +156,7 @@ with tab_pred:
                 a = art[mode]
                 p = out["probability"]
                 st.metric("Model-estimated chance of a Hit", f"{p:.0%}")
-                st.progress(min(max(p, 0.0), 1.0))
+                st.altair_chart(gauge(p, a["threshold"]), width="stretch")
                 _cls = "hit" if str(out["label"]).lower().startswith("hit") else "flop"
                 _icon = "✅" if _cls == "hit" else "⚠️"
                 st.markdown(f"<div class='verdict {_cls}'>{_icon} Verdict at the model's decision threshold ({a['threshold']:.2f}): <b>{out['label']}</b></div>", unsafe_allow_html=True)
@@ -135,16 +178,23 @@ with tab_pred:
                 le = X.local_explanation(vals[0], Z[0], names, top=8)
                 le["effect"] = np.where(le.shap > 0, "pushes towards Hit", "pushes towards Flop")
                 st.bar_chart(le.set_index("feature")["shap"], horizontal=True)
-                st.dataframe(le[["feature", "value", "shap", "effect"]].round(3), use_container_width=True, hide_index=True)
+                st.dataframe(le[["feature", "value", "shap", "effect"]].round(3), width="stretch", hide_index=True)
                 st.caption("These bars show how the **model** used each input for this film. They are predictive associations, **not causes**: "
                            "a low budget raising the chance of a Hit reflects that ROI is a ratio and cheaper films clear 2× more easily, not that cutting your budget would make a film succeed. The `year` bar mostly reflects that the Hit rate fell over time.")
+                _rep = pd.DataFrame([{"film": movie["name"], "language": LANG_NAMES[lang], "release_date": str(rdate), "budget_usd_millions": budget_m,
+                                      "runtime_min": runtime, "genres": "; ".join(genres), "model": mode, "chance_of_hit": round(p, 4), "verdict": out["label"]}])
+                st.download_button("Download this prediction (CSV)", _rep.to_csv(index=False).encode("utf-8"), file_name="hit_flop_prediction.csv", mime="text/csv")
         else:
-            st.info("Enter the film's details and press **Predict**.")
+            st.info("Enter the film's details (or pick a quick example) and press **Predict**.")
 
 # ------------------------------------------------------------------ comparison
 with tab_cmp:
     st.subheader("Final test results (2023 onwards, scored once)")
     st.caption("The test set was frozen before any modelling and scored a single time with pre-declared models. Nothing was selected on it.")
+    _tr = read_csv("final/test_results.csv")
+    if _tr is not None:
+        st.altair_chart(auc_chart(_tr, "model", "auc", "auc_ci_low", "auc_ci_high", height=170), width="stretch")
+        st.caption("The three real models\u2019 intervals overlap heavily, so they cannot be told apart on the 276 test films. The dummy baseline (always predict the development Hit rate) sits at chance, 0.50.")
     show_table("final/test_results.csv")
     st.subheader("Is any model convincingly better?")
     show_table("final/test_comparisons.csv", "Paired bootstrap of the AUC difference; q is Benjamini-Hochberg adjusted. An interval that includes 0 means the gain could be luck.")
@@ -153,10 +203,35 @@ with tab_cmp:
     st.subheader("Development-period comparison of feature sets (out-of-fold)")
     df = read_csv("phase3/3a_feature_sets_by_model.csv")
     if df is not None:
-        st.dataframe(df.pivot(index="set", columns="model", values="auc").round(3), use_container_width=True)
+        st.dataframe(df.pivot(index="set", columns="model", values="auc").round(3), width="stretch")
     st.subheader("Ensembles and tuning")
     show_table("phase45/5_ensembles.csv")
     show_table("phase45/4_tuned_vs_default.csv")
+
+# ------------------------------------------------------------------ leaderboard
+with tab_lb:
+    st.subheader("19 model families, one fair comparison")
+    st.caption("Course notebook results. The table is ranked by validation AUC (chronological cross-validation on the 578 pre-2023 films); the chart is ordered by test AUC. "
+               "Test AUC is on the 276 frozen 2023+ films, with a 95% bootstrap interval. A model is never chosen by its test score.")
+    _lbp = ROOT / "docs" / "course_notebook_results" / "all_models_leaderboard.csv"
+    if _lbp.exists():
+        lb = pd.read_csv(_lbp)
+        lb["label"] = lb["model"] + " (" + lb["feature group"].str.split(":").str[0] + ")"
+        k1, k2, k3 = st.columns(3)
+        vb = lb.sort_values("validation AUC", ascending=False).iloc[0]
+        k1.metric("Models compared", len(lb))
+        k2.metric("Test AUC of the validation-best model", f"{vb['test AUC']:.3f}", help=f"{vb['model']}, chosen on validation only; its 95% interval is {vb['ci_low']:.3f} to {vb['ci_high']:.3f}. We never pick a model by its test score.")
+        k3.metric("Test AUC range, all 19", f"{lb['test AUC'].min():.2f} to {lb['test AUC'].max():.2f}")
+        st.altair_chart(auc_chart(lb, "label", "test AUC", "ci_low", "ci_high"), width="stretch")
+        st.info("**Reading this chart:** the top models all overlap, so none is convincingly better than a simple logistic regression. "
+                "The neural networks are lower on validation and no better on test, as expected with only 578 training films.")
+        show = lb.drop(columns=["label"]).rename(columns={"ci_low": "test CI low", "ci_high": "test CI high"})
+        st.dataframe(show.round(3), width="stretch", hide_index=True)
+        _img = ROOT / "docs" / "course_notebook_results" / "08c_all_models_leaderboard.png"
+        if _img.exists():
+            st.image(str(_img), caption="Leaderboard figure from the course notebook")
+    else:
+        st.info("The 19-model leaderboard file is not available in this copy of the project.")
 
 # ------------------------------------------------------------------ dashboard
 with tab_dash:
@@ -181,7 +256,7 @@ with tab_dash:
     st.caption("Changing the Hit threshold (ROI ≥ 1.5, 2.0, 2.5)")
     t = read_csv("phase3/3c_roi_thresholds.csv")
     if t is not None:
-        st.dataframe(t.round(3), use_container_width=True, hide_index=True)
+        st.dataframe(t.round(3), width="stretch", hide_index=True)
     st.caption("Identical-movie comparison of feature sets (only films that have both Wikipedia and YouTube data)")
     show_table("phase3/3b_common_cohort.csv")
     st.subheader("What the model relies on (SHAP, predictive not causal)")
@@ -197,7 +272,7 @@ with tab_dash:
     lp = C.LOG_PATH
     if lp.exists():
         rows = [json.loads(l) for l in lp.read_text(encoding="utf-8").splitlines() if l.strip()]
-        st.dataframe(pd.DataFrame([{"time": r["time_utc"], "phase": r["phase"], "experiment": r["name"], "notes": r["notes"]} for r in rows]), use_container_width=True, hide_index=True)
+        st.dataframe(pd.DataFrame([{"time": r["time_utc"], "phase": r["phase"], "experiment": r["name"], "notes": r["notes"]} for r in rows]), width="stretch", hide_index=True)
 
 # ------------------------------------------------------------------ about
 with tab_about:

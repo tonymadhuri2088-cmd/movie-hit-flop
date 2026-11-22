@@ -14,7 +14,7 @@ def _run():
 def test_app_loads_without_exception():
     at = _run()
     assert not at.exception
-    assert [t.label for t in at.tabs] == ["Predict", "Model comparison", "Research dashboard", "About & limits"]
+    assert [t.label for t in at.tabs] == ["Predict", "Model comparison", "19-model leaderboard", "Research dashboard", "About & limits"]
 
 
 def test_basic_prediction_end_to_end():
@@ -47,3 +47,19 @@ def test_hindi_gets_a_weakness_warning():
     at.selectbox(key="lang").set_value("hi").run()
     at.button(key="go").click().run()
     assert any("Hindi" in w.value for w in at.warning)
+
+
+def test_quick_example_fills_the_form_and_predicts():
+    at = _run()
+    at.selectbox(key="example").set_value("Low-budget Malayalam drama").run()
+    assert at.selectbox(key="lang").value == "ml"
+    assert at.number_input(key="budget").value == 2.0
+    at.button(key="go").click().run()
+    assert not at.exception
+    assert any("chance of a Hit" in m.label for m in at.metric)
+
+
+def test_leaderboard_tab_shows_19_models():
+    at = _run()
+    assert not at.exception
+    assert any(m.label == "Models compared" and m.value == "19" for m in at.metric)
