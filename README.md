@@ -23,7 +23,7 @@ A leak-free, chronologically validated machine-learning study of 854 films, with
 - **Honest evaluation.** Hit = revenue / budget >= 2. Every split is chronological (never shuffled): 578 development films before 2023, and **276 frozen test films from 2023 onward, scored once**.
 - **19 model families** (logistic regression to gradient boosting, stacking and neural networks) compared with paired bootstrap and Benjamini-Hochberg correction.
 - **Leak-free features.** Cast, crew and studio track records use only earlier films. Tests flip future labels and prove earlier features do not move.
-- **A real, tested product.** 59 automated tests, GitHub Actions CI, a Streamlit app with per-prediction SHAP explanations, and a Dockerfile.
+- **A real, tested product.** 63 automated tests, GitHub Actions CI, a Streamlit app with per-prediction SHAP explanations, and a Dockerfile.
 
 ## Results
 Test AUC on the 276 frozen 2023+ films (0.50 = chance), with 95% bootstrap intervals:
@@ -79,7 +79,7 @@ The two parts use different feature sets and validation set-ups, so exact number
 | Features | `holidays` package for festival and holiday calendars |
 | Statistics | paired bootstrap, Benjamini-Hochberg correction |
 | App | Streamlit, Altair |
-| Quality | pytest (59 tests), GitHub Actions CI, Docker |
+| Quality | pytest (63 tests), GitHub Actions CI, Docker |
 | Notebook | Google Colab / Jupyter, matplotlib, seaborn |
 
 ## Data and split
@@ -100,7 +100,7 @@ Five tabs: **Predict** (film details in; chance of a Hit, a colour-coded verdict
 git clone https://github.com/tonymadhuri2088-cmd/movie-hit-flop.git
 cd movie-hit-flop
 pip install -r requirements.txt
-python -m pytest -q tests          # 59 tests: cohort, leakage, folds, metrics, calibration, app
+python -m pytest -q tests          # 63 tests: cohort, leakage, folds, metrics, calibration, app
 streamlit run app/streamlit_app.py
 ```
 **Part A (notebook):** open `notebooks/01_course_notebook_19_models.ipynb` in Google Colab and choose Runtime > Run all (about 30 minutes). The first cell downloads the two data files automatically; if that fails, Colab shows an upload button, so upload `data/movies_full.csv` and `data/yt_features.csv` from this repo. Locally, also run `pip install -r requirements-notebook.txt`.
@@ -122,7 +122,7 @@ python -m hitflop.artifacts; python -m hitflop.phase6
 ```
 hitflop/        package: data, features, history (leak-free records), models, validation, metrics,
                 calibration, tuning (nested Optuna), ensembles, explain (SHAP), predict, final
-tests/          59 tests, including leakage tests that flip future labels and check earlier features do not move
+tests/          63 tests, including leakage tests that flip future labels and check earlier features do not move
 app/            Streamlit app (.streamlit/ holds the theme)
 notebooks/      01 = 19-model course notebook, 02 = upgrade experiments
 experiments/    append-only experiment log (every experiment, settings and result)

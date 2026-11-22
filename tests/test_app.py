@@ -49,6 +49,23 @@ def test_hindi_gets_a_weakness_warning():
     assert any("Hindi" in w.value for w in at.warning)
 
 
+def test_no_genre_gets_a_warning():
+    at = _run()
+    at.multiselect(key="genres").set_value([]).run()
+    at.button(key="go").click().run()
+    assert not at.exception
+    assert any("No genre" in w.value for w in at.warning)
+
+
+def test_far_future_date_gets_a_warning():
+    import datetime
+    at = _run()
+    at.date_input(key="rdate").set_value(datetime.date(2034, 1, 15)).run()
+    at.button(key="go").click().run()
+    assert not at.exception
+    assert any("more than 2 years" in w.value for w in at.warning)
+
+
 def test_quick_example_fills_the_form_and_predicts():
     at = _run()
     at.selectbox(key="example").set_value("Low-budget Malayalam drama").run()

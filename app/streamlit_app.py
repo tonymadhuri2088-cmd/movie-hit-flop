@@ -167,6 +167,10 @@ with tab_pred:
                     warn.append("This budget is outside the range where most training films sit, so treat the estimate with extra caution.")
                 if pd.Timestamp(rdate) < pd.Timestamp.today():
                     warn.append("The release date is in the past; a prediction should be made before release.")
+                if pd.Timestamp(rdate) > pd.Timestamp.today() + pd.DateOffset(years=2):
+                    warn.append("The release date is more than 2 years away. The model only saw films from 2015 to 2026, so the year effect is extrapolated and the estimate is unreliable.")
+                if not genres:
+                    warn.append("No genre is selected. Training films all had genres, so this estimate is unreliable; pick at least one genre.")
                 for w_ in warn:
                     st.warning(w_)
                 st.caption(f"On the frozen 2023+ test films this model scored AUC {a['test_auc']:.2f} (95% CI {a['test_auc_ci'][0]:.2f}–{a['test_auc_ci'][1]:.2f}). "
