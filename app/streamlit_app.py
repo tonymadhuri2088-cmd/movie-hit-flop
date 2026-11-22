@@ -1,4 +1,5 @@
 """Indian movie Hit/Flop research app. Predictive model, pre-release information only. Run:  streamlit run app/streamlit_app.py"""
+import html
 import json
 import sys
 from pathlib import Path
@@ -12,9 +13,11 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 from hitflop import artifacts as A, config as C, explain as X, predict as P  # noqa: E402
 
-st.set_page_config(page_title="Indian Movie Hit/Flop Predictor", page_icon="🎬", layout="wide")
+
+st.set_page_config(page_title="Indian Movie Hit/Flop Predictor", page_icon="🎬", layout="wide", initial_sidebar_state="collapsed")
 LANG_NAMES = {"hi": "Hindi", "ta": "Tamil", "te": "Telugu", "ml": "Malayalam", "kn": "Kannada"}
 GENRES = ["Action", "Adventure", "Animation", "Comedy", "Crime", "Drama", "Family", "Fantasy", "History", "Horror", "Music", "Mystery", "Romance", "Science Fiction", "Thriller", "War"]
+INK, HIT, FLOP, MUTED = "#14232b", "#0f7b62", "#c8412b", "#7b8a8f"
 
 
 @st.cache_resource(show_spinner="Loading models...")
@@ -55,98 +58,190 @@ def apply_example():
         st.session_state["genres"] = ex["genres"]
 
 
-def gauge(p, thr):
-    """Horizontal 0-100% bar with the model's decision threshold (red tick) and the film's estimated chance (filled)."""
-    sc = alt.Scale(domain=[0, 1], nice=False)
-    bar = alt.Chart(pd.DataFrame({"x0": [0.0], "x1": [1.0]})).mark_bar(height=22, cornerRadius=11, color="#e6e8f5").encode(
-        x=alt.X("x0:Q", scale=sc, axis=alt.Axis(format="%", title=None, tickCount=5)), x2="x1:Q")
-    fill = alt.Chart(pd.DataFrame({"x0": [0.0], "x1": [float(p)]})).mark_bar(height=22, cornerRadius=11, color="#4f46e5").encode(
-        x=alt.X("x0:Q", scale=sc, axis=None), x2="x1:Q")
-    tdf = pd.DataFrame({"t": [float(thr)], "label": [f"threshold {thr:.2f}"]})
-    tick = alt.Chart(tdf).mark_tick(color="#ef4444", thickness=3, size=34).encode(x=alt.X("t:Q", scale=sc, axis=None))
-    lab = alt.Chart(tdf).mark_text(dy=-26, color="#ef4444", fontSize=12).encode(x=alt.X("t:Q", scale=sc, axis=None), text="label:N")
-    return (bar + fill + tick + lab).properties(height=60, padding={"top": 22, "left": 5, "right": 14, "bottom": 5}).configure_view(strokeWidth=0)
+def describe(feature, value):
+    """Turn a model feature name and value into words a person can read."""
+    if feature.startswith("genre_"):
+        return f"Genre: {feature[6:]}", "yes" if value >= 0.5 else "no"
+    if feature.startswith("language_"):
+        return f"Language: {LANG_NAMES.get(feature[9:], feature[9:])}", "yes" if value >= 0.5 else "no"
+    if feature.startswith("season_"):
+        return f"Released in {feature[7:]}", "yes" if value >= 0.5 else "no"
+    if feature == "log_budget":
+        return "Budget", f"${10 ** value / 1e6:.1f}M"
+    if feature == "runtime":
+        return "Runtime", f"{value:.0f} min"
+    if feature == "year":
+        return "Release year", f"{value:.0f}"
+    if feature in ("month_sin", "month_cos"):
+        return "Release month", "seasonal pattern"
+    if feature.startswith("l_pv_"):
+        return "Wikipedia views", "log scale"
+    return feature.replace("_", " ").capitalize(), f"{value:.2f}"
+
+
+def explain_chart(le):
+    """Bars that push towards Hit (green) or Flop (red), labelled in plain words."""
+    d = le.copy()
+    parts = [describe(f, v) for f, v in zip(d["feature"], d["value"])]
+    d["label"] = [f"{n} ({t})" for n, t in parts]
+    d["direction"] = np.where(d["shap"] > 0, "Towards Hit", "Towards Flop")
+    d["strength"] = d["shap"].abs()
+    order = d.sort_values("strength", ascending=False)["label"].tolist()
+    grid_col = alt.condition("datum.value === 0", alt.value(INK), alt.value("#e3e8e2"))
+    grid_w = alt.condition("datum.value === 0", alt.value(2), alt.value(1))
+    return alt.Chart(d).mark_bar(cornerRadius=3, height=18).encode(
+        y=alt.Y("label:N", sort=order, title=None, axis=alt.Axis(labelLimit=260, labelFontSize=13, labelColor=INK, labelOverlap=False, ticks=False, domain=False)),
+        x=alt.X("shap:Q", title="Pushes towards Flop (left) or towards Hit (right)",
+                axis=alt.Axis(grid=True, gridColor=grid_col, gridWidth=grid_w, domain=False)),
+        color=alt.Color("direction:N", scale=alt.Scale(domain=["Towards Hit", "Towards Flop"], range=[HIT, FLOP]), legend=alt.Legend(orient="top", title=None, labelFontSize=13, symbolType="square")),
+        tooltip=[alt.Tooltip("label:N", title="Input"), alt.Tooltip("shap:Q", title="Push", format="+.3f"), alt.Tooltip("direction:N", title="Direction")],
+    ).properties(height=alt.Step(34)).configure_view(strokeWidth=0)
 
 
 def auc_chart(df, name_col, auc_col, lo_col, hi_col, height=None):
     d = df[[name_col, auc_col, lo_col, hi_col]].copy()
     d.columns = ["model", "auc", "lo", "hi"]
     order = d.sort_values("auc", ascending=False)["model"].tolist()
-    y = alt.Y("model:N", sort=order, title=None, axis=alt.Axis(labelLimit=280))
-    rule = alt.Chart(d).mark_rule(color="#6b7086", strokeWidth=2).encode(y=y, x=alt.X("lo:Q", scale=alt.Scale(domain=[0.5, 0.9]), title="Test AUC (dot) with 95% interval; 0.5 = chance"), x2="hi:Q")
-    dot = alt.Chart(d).mark_circle(size=90, color="#4f46e5").encode(y=y, x="auc:Q", tooltip=["model", alt.Tooltip("auc:Q", format=".3f"), alt.Tooltip("lo:Q", format=".3f"), alt.Tooltip("hi:Q", format=".3f")])
-    chance = alt.Chart(pd.DataFrame({"x": [0.5]})).mark_rule(color="#ef4444", strokeDash=[4, 4]).encode(x=alt.X("x:Q", scale=alt.Scale(domain=[0.5, 0.9])))
-    return (chance + rule + dot).properties(height=height or max(140, 28 * len(d)))
+    y = alt.Y("model:N", sort=order, title=None, axis=alt.Axis(labelLimit=280, labelFontSize=12, labelColor=INK, ticks=False, domain=False))
+    xs = alt.Scale(domain=[0.5, 0.9])
+    rule = alt.Chart(d).mark_rule(color="#98a5a8", strokeWidth=3).encode(y=y, x=alt.X("lo:Q", scale=xs, title="Test AUC (dot) with 95% interval; 0.5 = chance", axis=alt.Axis(tickCount=8, grid=True, gridColor="#e3e8e2", domain=False)), x2="hi:Q")
+    dot = alt.Chart(d).mark_circle(size=110, color=INK).encode(y=y, x="auc:Q", tooltip=["model", alt.Tooltip("auc:Q", format=".3f"), alt.Tooltip("lo:Q", format=".3f"), alt.Tooltip("hi:Q", format=".3f")])
+    chance = alt.Chart(pd.DataFrame({"x": [0.5]})).mark_rule(color=FLOP, strokeDash=[4, 4]).encode(x=alt.X("x:Q", scale=xs))
+    return (chance + rule + dot).properties(height=height or max(140, 28 * len(d))).configure_view(strokeWidth=0)
 
 
-# ------------------------------------------------------------------ header
+def ticket_html(title, meta, p, thr, label, model_label):
+    """The result, drawn as a cinema ticket. All user text is escaped."""
+    cls = "hit" if str(label).lower().startswith("hit") else "flop"
+    return (
+        f"<div class='ticket {cls}'>"
+        f"<div class='tk-top'><span>Box-office estimate</span><span>{html.escape(model_label)}</span></div>"
+        f"<div class='tk-main'>"
+        f"<div class='stamp'>{html.escape(str(label).upper())}</div>"
+        f"<div class='tk-title'>{html.escape(title)}</div>"
+        f"<div class='tk-meta'>{html.escape(meta)}</div>"
+        f"<div class='tk-num'><span class='n'>{p * 100:.0f}</span><span class='pc'>%</span></div>"
+        f"<div class='tk-lab'>chance of earning at least 2&times; its budget</div>"
+        f"<div class='track'><div class='fill' style='width:{p * 100:.1f}%'></div>"
+        f"<div class='thr' style='left:{thr * 100:.1f}%'><span>Hit line {thr * 100:.0f}%</span></div></div>"
+        f"</div>"
+        f"<div class='tk-perf'></div>"
+        f"<div class='tk-foot'>The model calls a Hit when the chance is at or above the Hit line. "
+        f"The line was set on past films, not chosen to flatter this one.</div>"
+        f"</div>")
+
+
+# ------------------------------------------------------------------ look and feel
 REPO_URL = "https://github.com/tonymadhuri2088-cmd/movie-hit-flop"
 st.markdown("""
 <style>
-.block-container {padding-top: 2.2rem; max-width: 1200px;}
-.hero {background: linear-gradient(120deg, #312e81 0%, #4f46e5 55%, #0ea5e9 100%); color: #fff; border-radius: 18px;
-       padding: 28px 32px; margin-bottom: 18px; box-shadow: 0 6px 24px rgba(79,70,229,.25);}
-.hero h1 {margin: 0 0 6px 0; font-size: 2.1rem; color: #fff; padding: 0;}
-.hero p {margin: 0; font-size: 1.02rem; opacity: .93; line-height: 1.5;}
-.kpis {display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 18px;}
-.kpi {background: #f3f4fb; border: 1px solid #e3e5f5; border-radius: 14px; padding: 14px 16px;}
-.kpi b {display: block; font-size: 1.55rem; color: #312e81;}
-.kpi span {font-size: .82rem; color: #5b6075;}
-.verdict {border-radius: 14px; padding: 16px 20px; margin: 8px 0 14px 0; font-size: 1.05rem;}
-.verdict.hit {background: #e8f7ee; border: 1px solid #9bd6b0; color: #14532d;}
-.verdict.flop {background: #fdecec; border: 1px solid #f1a9a9; color: #7f1d1d;}
-.verdict b {font-size: 1.25rem;}
-.footer {margin-top: 36px; padding-top: 14px; border-top: 1px solid #e3e5f5; color: #6b7086; font-size: .85rem;}
-button[data-baseweb="tab"] {font-weight: 600;}
-@media (max-width: 800px) {.kpis {grid-template-columns: repeat(2, 1fr);} .hero h1 {font-size: 1.6rem;}}
+@font-face {font-family: "Archivo VF"; src: url("/app/static/archivo-wdth.woff2") format("woff2");
+            font-weight: 100 900; font-stretch: 62% 125%; font-display: swap;}
+:root {--paper:#f3f5f2; --panel:#ffffff; --line:#d9dfd8; --ink:#14232b; --muted:#5a6a70; --gold:#f2b632;
+       --hit:#0f7b62; --flop:#c8412b; --hit-lit:#4fd1a5; --flop-lit:#ff7a59;}
+.stApp, .stApp p, .stApp label, .stApp li, .stApp td, .stApp th, .stApp button, .stApp input, .stApp textarea,
+.stApp h1, .stApp h2, .stApp h3, .stApp h4, .stApp a, .stApp caption {font-family: "Archivo VF", "Segoe UI", system-ui, sans-serif;}
+.stApp [data-testid="stIconMaterial"], .stApp .material-symbols-rounded {font-family: "Material Symbols Rounded" !important;}
+.block-container {padding-top: 1.6rem; max-width: 1180px;}
+h2, h3 {font-variation-settings: "wdth" 80; font-weight: 800 !important; letter-spacing: -.01em;}
+
+.top {display:flex; align-items:baseline; justify-content:space-between; gap:16px; flex-wrap:wrap;}
+.logo {font-family:"Archivo VF",sans-serif; font-variation-settings:"wdth" 70; font-weight:900; font-size:3.1rem; line-height:1;
+       color:var(--ink); letter-spacing:-.02em; word-spacing:.14em;}
+.logo i {font-style:normal; color:var(--flop);}
+.top a {color:var(--ink); font-weight:600; text-decoration:underline; text-underline-offset:3px; font-size:.95rem;}
+.lede {font-size:1.12rem; color:var(--muted); max-width: 62ch; margin: 14px 0 20px 0; line-height:1.5;}
+.facts {display:flex; flex-wrap:wrap; border-top:2px solid var(--ink); border-bottom:1px solid var(--line); margin-bottom:10px;}
+.facts div {flex:1 1 180px; padding:12px 18px 12px 0; font-size:.9rem; color:var(--muted); line-height:1.35;}
+.facts div + div {padding-left:18px; border-left:1px solid var(--line);}
+.facts b {display:block; font-family:"Archivo VF",sans-serif; font-variation-settings:"wdth" 75; font-weight:850; font-size:1.7rem; color:var(--ink);}
+
+[data-testid="stVerticalBlockBorderWrapper"] {background: var(--panel); border-color: var(--line) !important; border-radius: 14px;}
+div[data-testid="stButton"] {width:100% !important;}
+div[data-testid="stButton"] button {width:100% !important; font-weight:700; padding:.65rem 1rem; border-radius:10px;}
+button[data-baseweb="tab"] p {font-weight:650; font-size:1rem;}
+
+.ticket {position:relative; background:var(--ink); color:#f3f5f2; border-radius:16px; margin: 4px 0 12px 0; box-shadow: 0 10px 30px rgba(20,35,43,.22);}
+.tk-top {display:flex; justify-content:space-between; gap:12px; background:var(--gold); color:var(--ink); font-weight:700; font-size:.85rem;
+         padding:9px 22px; border-radius:16px 16px 0 0;}
+.tk-main {position:relative; padding:20px 24px 24px 24px;}
+.tk-title {font-family:"Archivo VF",sans-serif; font-variation-settings:"wdth" 75; font-weight:850; font-size:1.9rem; line-height:1.1; padding-right:150px;
+           overflow-wrap:anywhere;}
+.tk-meta {color:#b9c6c9; font-size:.95rem; margin-top:6px; padding-right:150px; line-height:1.4;}
+.tk-num {margin-top:18px; line-height:.9; display:flex; align-items:baseline;}
+.tk-num .n {font-family:"Archivo VF",sans-serif; font-variation-settings:"wdth" 68; font-weight:900; font-size:6.6rem; font-variant-numeric: tabular-nums;}
+.tk-num .pc {font-family:"Archivo VF",sans-serif; font-variation-settings:"wdth" 68; font-weight:800; font-size:2.6rem; margin-left:4px; color:#b9c6c9;}
+.tk-lab {color:#d6dfe1; font-size:1rem; margin-top:4px;}
+.track {position:relative; height:12px; background:rgba(255,255,255,.16); border-radius:8px; margin:34px 4px 6px 0;}
+.fill {height:100%; border-radius:8px; background:#f3f5f2;}
+.thr {position:absolute; top:-9px; bottom:-9px; width:3px; background:var(--gold); border-radius:2px; transform:translateX(-1px);}
+.thr span {position:absolute; bottom:calc(100% + 4px); left:50%; transform:translateX(-50%); white-space:nowrap; font-size:.78rem; font-weight:700; color:var(--gold);}
+.stamp {position:absolute; top:18px; right:22px; transform:rotate(-7deg); border:4px solid; border-radius:8px; padding:2px 14px;
+        font-family:"Archivo VF",sans-serif; font-variation-settings:"wdth" 70; font-weight:900; font-size:2.4rem; letter-spacing:.03em; opacity:.97;}
+.ticket.hit .stamp {color:var(--hit-lit); border-color:var(--hit-lit);}
+.ticket.flop .stamp {color:var(--flop-lit); border-color:var(--flop-lit);}
+.tk-perf {position:relative; border-top:2px dashed rgba(255,255,255,.28); margin:0 18px;}
+.tk-perf::before, .tk-perf::after {content:""; position:absolute; top:-13px; width:24px; height:24px; border-radius:50%; background:var(--paper);}
+.tk-perf::before {left:-30px;} .tk-perf::after {right:-30px;}
+.tk-foot {padding:14px 24px 18px 24px; color:#aebcbf; font-size:.85rem; line-height:1.45;}
+
+.ghost {border:2px dashed #aeb9b4; border-radius:16px; padding:26px 26px 22px 26px; color:var(--muted); background:rgba(255,255,255,.5);}
+.ghost .g-title {font-family:"Archivo VF",sans-serif; font-variation-settings:"wdth" 75; font-weight:850; font-size:1.7rem; color:var(--ink); margin-bottom:6px;}
+.ghost p {margin:0 0 8px 0; line-height:1.5; font-size:1rem;}
+.ghost ul {margin:6px 0 10px 18px; padding:0; line-height:1.6;}
+.ghost .small {font-size:.88rem;}
+
+.note {background:#fff7e0; border-left:4px solid var(--gold); border-radius:6px; padding:12px 16px; margin:8px 0 14px 0; line-height:1.5; color:var(--ink);}
+.footer a {color:var(--ink); font-weight:600;}
+.footer {margin-top:36px; padding-top:14px; border-top:1px solid var(--line); color:#5a6a70; font-size:.85rem;}
+@media (max-width: 800px) {
+  .logo {font-size:2.4rem;} .tk-num .n {font-size:5rem;} .tk-title {padding-right:0; padding-top:46px;} .tk-meta {padding-right:0;}
+  .stamp {font-size:1.8rem; top:12px;} .facts div + div {border-left:0; padding-left:0;}
+}
+@media (prefers-reduced-motion: reduce) {* {transition: none !important; animation: none !important;}}
 </style>
-<div class="hero">
-  <h1>🎬 Indian Movie Hit / Flop Predictor</h1>
-  <p>Will a film earn at least <b>2&times; its budget</b>? A research prototype that uses only information available <b>before release</b>:
-  language, budget, runtime, genres, release timing and (optionally) Wikipedia attention. It shows how the model reasons and where it is weak.</p>
-</div>
-<div class="kpis">
-  <div class="kpi"><b>854</b><span>labelled films (2015&ndash;2026)</span></div>
-  <div class="kpi"><b>19</b><span>model families compared</span></div>
-  <div class="kpi"><b>~0.76</b><span>test AUC (0.50 = chance)</span></div>
-  <div class="kpi"><b>Honest</b><span>top models are statistically tied</span></div>
+""", unsafe_allow_html=True)
+st.markdown(f"""
+<div class="top"><div class="logo">Hit or <i>Flop</i></div><a href="{REPO_URL}" target="_blank">Source code on GitHub</a></div>
+<p class="lede">Will an Indian film earn at least twice its budget? Enter what is known before release and see the model's estimate, and the reasons behind it.</p>
+<div class="facts">
+  <div><b>854</b>labelled films, 2015 to 2026</div>
+  <div><b>19</b>model families compared fairly</div>
+  <div><b>~0.76</b>test AUC; 0.50 would be guessing</div>
+  <div><b>No clear winner</b>the top models are statistically tied</div>
 </div>
 """, unsafe_allow_html=True)
-with st.sidebar:
-    st.markdown("### About")
-    st.write("Predicts whether an Indian film will earn at least 2x its budget, using pre-release information only. "
-             "Built with leak-free chronological validation and a test set scored once.")
-    st.markdown(f"[Source code on GitHub]({REPO_URL})")
-    st.markdown("**How to use**\n1. Open **Predict** and enter the film's details.\n2. Press **Predict**.\n3. Read the chance, the verdict and the explanation bars.")
-    st.caption("A research prototype, not a financial tool. Do not use it to decide whether to invest in a film.")
 tab_pred, tab_cmp, tab_lb, tab_dash, tab_about = st.tabs(["Predict", "Model comparison", "19-model leaderboard", "Research dashboard", "About & limits"])
 
 # ------------------------------------------------------------------ predict
 with tab_pred:
     art = get_artifact()
-    c1, c2 = st.columns([1, 1.2], gap="large")
+    c1, c2 = st.columns([1, 1.15], gap="large")
     with c1:
-        st.subheader("Film details")
-        st.selectbox("Quick example (fills the form; invented films, not real titles)", ["Choose an example..."] + list(EXAMPLES), key="example", on_change=apply_example)
-        mode_label = st.radio("Model", ["Basic: no promotion data", "Buzz-enhanced: add Wikipedia page views"], key="mode",
-                              help="Buzz-enhanced adds Wikipedia page views from the 90 days before release. Its test score was higher but not statistically convincing.")
-        mode = "basic" if mode_label.startswith("Basic") else "buzz"
-        name = st.text_input("Film title (optional)", "", key="title")
-        lang = st.selectbox("Language", list(LANG_NAMES), format_func=lambda k: LANG_NAMES[k], key="lang")
-        rdate = st.date_input("Release date", value=pd.Timestamp("2027-01-15").date(), key="rdate")
-        budget_m = st.number_input("Budget (US dollars, millions)", min_value=0.0, value=8.0, step=0.5, key="budget",
-                                   help="The training data stores budgets in US dollars. Convert rupees yourself at the rate you trust.")
-        runtime = st.number_input("Runtime (minutes)", min_value=0, max_value=400, value=140, key="runtime")
-        genres = st.multiselect("Genres", GENRES, default=["Action"], key="genres")
-        movie = {"name": name or "new film", "language": lang, "release_date": str(rdate), "budget": budget_m * 1e6, "runtime": runtime, "genres": genres}
-        if mode == "buzz":
-            st.markdown("**Wikipedia page views of the film's article, before release**")
-            movie["pv_90_31"] = st.number_input("Days −90 to −31 (total views)", min_value=0, value=20000, key="pv1")
-            movie["pv_30_8"] = st.number_input("Days −30 to −8 (total views)", min_value=0, value=30000, key="pv2")
-            movie["pv_7_1"] = st.number_input("Days −7 to −1 (total views)", min_value=0, value=25000, key="pv3")
-        go = st.button("Predict", type="primary", key="go")
+        with st.container(border=True):
+            st.subheader("Film details")
+            st.selectbox("Quick example (fills the form; invented films, not real titles)", ["Choose an example..."] + list(EXAMPLES), key="example", on_change=apply_example)
+            name = st.text_input("Film title (optional)", "", key="title", placeholder="For example: My new film")
+            lang = st.selectbox("Language", list(LANG_NAMES), format_func=lambda k: LANG_NAMES[k], key="lang")
+            rdate = st.date_input("Release date", value=pd.Timestamp("2027-01-15").date(), key="rdate")
+            b1, b2 = st.columns(2)
+            with b1:
+                budget_m = st.number_input("Budget (US$ millions)", min_value=0.0, value=8.0, step=0.5, key="budget",
+                                           help="The training data stores budgets in US dollars. Convert rupees yourself at the rate you trust.")
+            with b2:
+                runtime = st.number_input("Runtime (minutes)", min_value=0, max_value=400, value=140, key="runtime")
+            genres = st.multiselect("Genres", GENRES, default=["Action"], key="genres")
+            mode_label = st.radio("Model", ["Basic: no promotion data", "Buzz-enhanced: add Wikipedia page views"], key="mode",
+                                  help="Buzz-enhanced adds Wikipedia page views from the 90 days before release. Its test score was higher but not statistically convincing.")
+            mode = "basic" if mode_label.startswith("Basic") else "buzz"
+            movie = {"name": name or "new film", "language": lang, "release_date": str(rdate), "budget": budget_m * 1e6, "runtime": runtime, "genres": genres}
+            if mode == "buzz":
+                st.markdown("**Wikipedia page views of the film's article, before release**")
+                movie["pv_90_31"] = st.number_input("Days −90 to −31 (total views)", min_value=0, value=20000, key="pv1")
+                movie["pv_30_8"] = st.number_input("Days −30 to −8 (total views)", min_value=0, value=30000, key="pv2")
+                movie["pv_7_1"] = st.number_input("Days −7 to −1 (total views)", min_value=0, value=25000, key="pv3")
+            go = st.button("Predict", type="primary", key="go", width="stretch")
     with c2:
-        st.subheader("Prediction")
         if go:
             try:
                 out = P.predict(art, movie, mode)
@@ -155,11 +250,8 @@ with tab_pred:
             else:
                 a = art[mode]
                 p = out["probability"]
-                st.metric("Model-estimated chance of a Hit", f"{p:.0%}")
-                st.altair_chart(gauge(p, a["threshold"]), width="stretch")
-                _cls = "hit" if str(out["label"]).lower().startswith("hit") else "flop"
-                _icon = "✅" if _cls == "hit" else "⚠️"
-                st.markdown(f"<div class='verdict {_cls}'>{_icon} Verdict at the model's decision threshold ({a['threshold']:.2f}): <b>{out['label']}</b></div>", unsafe_allow_html=True)
+                meta = f"{LANG_NAMES[lang]}, ${budget_m:g}M budget, {runtime} min, {', '.join(genres) or 'no genre chosen'}"
+                st.markdown(ticket_html(movie["name"], meta, p, a["threshold"], out["label"], "Basic model" if mode == "basic" else "Buzz-enhanced model"), unsafe_allow_html=True)
                 warn = []
                 if lang == "hi":
                     warn.append("Hindi films are where this model is weakest (validation AUC about 0.56, barely above chance).")
@@ -173,23 +265,31 @@ with tab_pred:
                     warn.append("No genre is selected. Training films all had genres, so this estimate is unreliable; pick at least one genre.")
                 for w_ in warn:
                     st.warning(w_)
-                st.caption(f"On the frozen 2023+ test films this model scored AUC {a['test_auc']:.2f} (95% CI {a['test_auc_ci'][0]:.2f}–{a['test_auc_ci'][1]:.2f}). "
+                st.caption(f"On the frozen 2023+ test films this model scored AUC {a['test_auc']:.2f} (95% CI {a['test_auc_ci'][0]:.2f} to {a['test_auc_ci'][1]:.2f}). "
                            f"It predicted an average Hit chance of {a['test_mean_predicted']:.0%} where the observed Hit rate was {a['test_observed_hit_rate']:.0%}, "
                            "so probabilities tend to run high for recent films.")
-                st.markdown("#### Why the model says this")
+                st.subheader("Why the model says this")
                 f = out["features"]
                 vals, Z, names = X.shap_values(a["pipeline"], a["shap_background"], f[a["columns"]])
                 le = X.local_explanation(vals[0], Z[0], names, top=8)
                 le["effect"] = np.where(le.shap > 0, "pushes towards Hit", "pushes towards Flop")
-                st.bar_chart(le.set_index("feature")["shap"], horizontal=True)
-                st.dataframe(le[["feature", "value", "shap", "effect"]].round(3), width="stretch", hide_index=True)
+                st.altair_chart(explain_chart(le), width="stretch")
+                with st.expander("Show the numbers"):
+                    _t = le[["feature", "value", "shap", "effect"]].round(3).rename(columns={"feature": "model input", "shap": "push"})
+                    st.dataframe(_t, width="stretch", hide_index=True)
                 st.caption("These bars show how the **model** used each input for this film. They are predictive associations, **not causes**: "
-                           "a low budget raising the chance of a Hit reflects that ROI is a ratio and cheaper films clear 2× more easily, not that cutting your budget would make a film succeed. The `year` bar mostly reflects that the Hit rate fell over time.")
+                           "a low budget raising the chance of a Hit reflects that ROI is a ratio and cheaper films clear 2× more easily, not that cutting your budget would make a film succeed. The release-year bar mostly reflects that the Hit rate fell over time.")
                 _rep = pd.DataFrame([{"film": movie["name"], "language": LANG_NAMES[lang], "release_date": str(rdate), "budget_usd_millions": budget_m,
                                       "runtime_min": runtime, "genres": "; ".join(genres), "model": mode, "chance_of_hit": round(p, 4), "verdict": out["label"]}])
                 st.download_button("Download this prediction (CSV)", _rep.to_csv(index=False).encode("utf-8"), file_name="hit_flop_prediction.csv", mime="text/csv")
         else:
-            st.info("Enter the film's details (or pick a quick example) and press **Predict**.")
+            st.markdown("""
+<div class="ghost">
+  <div class="g-title">Your estimate appears here</div>
+  <p>Pick a quick example or fill in the film's details, then press <b>Predict</b>. You get:</p>
+  <ul><li>the chance of earning at least twice the budget</li><li>a Hit or Flop verdict</li><li>the inputs that pushed the answer each way</li></ul>
+  <p class="small">A research prototype built on 854 past films. It is not a financial tool; do not use it to decide whether to invest in a film.</p>
+</div>""", unsafe_allow_html=True)
 
 # ------------------------------------------------------------------ comparison
 with tab_cmp:
@@ -227,8 +327,8 @@ with tab_lb:
         k2.metric("Test AUC of the validation-best model", f"{vb['test AUC']:.3f}", help=f"{vb['model']}, chosen on validation only; its 95% interval is {vb['ci_low']:.3f} to {vb['ci_high']:.3f}. We never pick a model by its test score.")
         k3.metric("Test AUC range, all 19", f"{lb['test AUC'].min():.2f} to {lb['test AUC'].max():.2f}")
         st.altair_chart(auc_chart(lb, "label", "test AUC", "ci_low", "ci_high"), width="stretch")
-        st.info("**Reading this chart:** the top models all overlap, so none is convincingly better than a simple logistic regression. "
-                "The neural networks are lower on validation and no better on test, as expected with only 578 training films.")
+        st.markdown("<div class='note'><b>Reading this chart:</b> the top models all overlap, so none is convincingly better than a simple logistic regression. "
+                    "The neural networks are lower on validation and no better on test, as expected with only 578 training films.</div>", unsafe_allow_html=True)
         show = lb.drop(columns=["label"]).rename(columns={"ci_low": "test CI low", "ci_high": "test CI high"})
         st.dataframe(show.round(3), width="stretch", hide_index=True)
         _img = ROOT / "docs" / "course_notebook_results" / "08c_all_models_leaderboard.png"

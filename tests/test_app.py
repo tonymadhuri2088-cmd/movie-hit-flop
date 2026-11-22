@@ -1,3 +1,5 @@
+import re
+
 import pytest
 from streamlit.testing.v1 import AppTest
 
@@ -11,6 +13,14 @@ def _run():
     return at
 
 
+def _ticket(at):
+    """The result ticket is HTML; return its text, or None if no prediction is shown."""
+    for m in at.markdown:
+        if "class='ticket" in m.value:
+            return m.value
+    return None
+
+
 def test_app_loads_without_exception():
     at = _run()
     assert not at.exception
@@ -21,9 +31,11 @@ def test_basic_prediction_end_to_end():
     at = _run()
     at.button(key="go").click().run()
     assert not at.exception
-    assert any("chance of a Hit" in m.label for m in at.metric)
-    p = float([m for m in at.metric if "chance of a Hit" in m.label][0].value.strip("%")) / 100
+    t = _ticket(at)
+    assert t is not None
+    p = float(re.search(r"<span class='n'>(\d+)</span>", t).group(1)) / 100
     assert 0 <= p <= 1
+    assert "FLOP" in t or "HIT" in t
 
 
 def test_buzz_prediction_end_to_end():
@@ -31,7 +43,7 @@ def test_buzz_prediction_end_to_end():
     at.radio(key="mode").set_value("Buzz-enhanced: add Wikipedia page views").run()
     at.button(key="go").click().run()
     assert not at.exception
-    assert any("chance of a Hit" in m.label for m in at.metric)
+    assert _ticket(at) is not None
 
 
 def test_invalid_budget_shows_readable_error_not_a_crash():
@@ -73,7 +85,7 @@ def test_quick_example_fills_the_form_and_predicts():
     assert at.number_input(key="budget").value == 2.0
     at.button(key="go").click().run()
     assert not at.exception
-    assert any("chance of a Hit" in m.label for m in at.metric)
+    assert _ticket(at) is not None
 
 
 def test_leaderboard_tab_shows_19_models():
