@@ -1,0 +1,79 @@
+model,configuration,role,groups,n_groups,auc,auc_lo,auc_hi,brier,beats_chance
+LR,all,reference,budget+runtime+release_year+release_timing+language+genres+buzz_wikipedia+cast_crew_studio_history+festival_calendar+competing_releases,10,0.6083025573130793,0.5576950585206347,0.6549967785690655,0.26180736061688464,True
+LR,base,reference,budget+runtime+release_year+release_timing+language+genres,6,0.6858407079646017,0.6371798204920948,0.7316585590622638,0.2232462175031928,True
+LR,minus budget,leave-one-out,runtime+release_year+release_timing+language+genres+buzz_wikipedia+cast_crew_studio_history+festival_calendar+competing_releases,9,0.5841404780154693,0.5325021112963388,0.6301000230493319,0.2703137615913,True
+LR,only budget,alone,budget,1,0.6200351891854227,0.5655394235201497,0.6700160755437092,0.2376584382700465,True
+LR,minus runtime,leave-one-out,budget+release_year+release_timing+language+genres+buzz_wikipedia+cast_crew_studio_history+festival_calendar+competing_releases,9,0.6001846561215246,0.5506817216670564,0.6466218097044139,0.2629408363093335,True
+LR,only runtime,alone,runtime,1,0.5537070587415511,0.5006339577871488,0.6040752641042431,0.24814305419694485,True
+LR,minus release_year,leave-one-out,budget+runtime+release_timing+language+genres+buzz_wikipedia+cast_crew_studio_history+festival_calendar+competing_releases,9,0.6083722388683716,0.5578081716559419,0.6543414294005926,0.2630914597202648,True
+LR,only release_year,alone,release_year,1,0.533290363040903,0.4813037896000783,0.5841203148976438,0.2499177814909113,False
+LR,minus release_timing,leave-one-out,budget+runtime+release_year+language+genres+buzz_wikipedia+cast_crew_studio_history+festival_calendar+competing_releases,9,0.6189812556616263,0.5700430217370293,0.6643531954122657,0.247561978014679,True
+LR,only release_timing,alone,release_timing,1,0.4944080551877918,0.439811250087102,0.5442572283159118,0.2539524960452554,False
+LR,minus language,leave-one-out,budget+runtime+release_year+release_timing+genres+buzz_wikipedia+cast_crew_studio_history+festival_calendar+competing_releases,9,0.6144867953452721,0.5639832744299162,0.6608982419283503,0.2596851923524321,True
+LR,only language,alone,language,1,0.605924674238729,0.5556598603872376,0.6540847192320455,0.23884288941658718,True
+LR,minus genres,leave-one-out,budget+runtime+release_year+release_timing+language+buzz_wikipedia+cast_crew_studio_history+festival_calendar+competing_releases,9,0.6090864748101178,0.5590753623523791,0.6564787278138252,0.2574932788595854,True
+LR,only genres,alone,genres,1,0.5514859591666086,0.4969244777877003,0.6047778313118579,0.24636536439493154,False
+LR,minus buzz_wikipedia,leave-one-out,budget+runtime+release_year+release_timing+language+genres+cast_crew_studio_history+festival_calendar+competing_releases,9,0.6308096996724967,0.5816379739769487,0.6764593076673598,0.24769613234932225,True
+LR,only buzz_wikipedia,alone,buzz_wikipedia,1,0.5494651940631314,0.4977219474289701,0.6002712253456737,0.24793794915443282,False
+LR,minus cast_crew_studio_history,leave-one-out,budget+runtime+release_year+release_timing+language+genres+buzz_wikipedia+festival_calendar+competing_releases,9,0.667026688035677,0.6179624795891975,0.7128954740557775,0.23056637945443528,True
+LR,only cast_crew_studio_history,alone,cast_crew_studio_history,1,0.5482718974287506,0.4944407850858413,0.5977639265690986,0.27298812391924865,False
+LR,minus festival_calendar,leave-one-out,budget+runtime+release_year+release_timing+language+genres+buzz_wikipedia+cast_crew_studio_history+competing_releases,9,0.6144345341788029,0.5638113289760349,0.6614927293445425,0.25767949824935293,True
+LR,only festival_calendar,alone,festival_calendar,1,0.5229252316911713,0.475231257052773,0.5770485403487501,0.2505371129707425,False
+LR,minus competing_releases,leave-one-out,budget+runtime+release_year+release_timing+language+genres+buzz_wikipedia+cast_crew_studio_history+festival_calendar,9,0.5967702599122012,0.5464377401207762,0.644108115393061,0.27159405631458094,True
+LR,only competing_releases,alone,competing_releases,1,0.5682617936032333,0.5161023010037001,0.6193770114800567,0.24632952888586335,True
+LR,base plus buzz_wikipedia,add-one,budget+runtime+release_year+release_timing+language+genres+buzz_wikipedia,7,0.6620792976099227,0.6112985049811143,0.710234823345414,0.23024731029857437,True
+LR,base plus cast_crew_studio_history,add-one,budget+runtime+release_year+release_timing+language+genres+cast_crew_studio_history,7,0.6342937774371123,0.5838260774841337,0.6788726333907056,0.241983063482553,True
+LR,base plus festival_calendar,add-one,budget+runtime+release_year+release_timing+language+genres+festival_calendar,7,0.678367361159501,0.6294320234869016,0.7223957412456069,0.22713833255070923,True
+LR,base plus competing_releases,add-one,budget+runtime+release_year+release_timing+language+genres+competing_releases,7,0.6769040484983625,0.6290781444099379,0.7246538244242648,0.22757999103617438,True
+HGB,all,reference,budget+runtime+release_year+release_timing+language+genres+buzz_wikipedia+cast_crew_studio_history+festival_calendar+competing_releases,10,0.6644049195178037,0.6145773759229641,0.71163731332513,0.23015809704539175,True
+HGB,base,reference,budget+runtime+release_year+release_timing+language+genres,6,0.6894554386453906,0.6419684445332549,0.7353510589892686,0.22176790458430107,True
+HGB,minus budget,leave-one-out,runtime+release_year+release_timing+language+genres+buzz_wikipedia+cast_crew_studio_history+festival_calendar+competing_releases,9,0.6207581353215804,0.5688240793146025,0.6689831307729233,0.24827616615808862,True
+HGB,only budget,alone,budget,1,0.5799334541146959,0.5250734615396455,0.6320440573770492,0.24455937511898448,True
+HGB,minus runtime,leave-one-out,budget+release_year+release_timing+language+genres+buzz_wikipedia+cast_crew_studio_history+festival_calendar+competing_releases,9,0.6614782941955264,0.6127243254144042,0.7093621542017923,0.23281265853091165,True
+HGB,only runtime,alone,runtime,1,0.4988154135600307,0.44517597612354365,0.5519755626088866,0.2580818398615933,False
+HGB,minus release_year,leave-one-out,budget+runtime+release_timing+language+genres+buzz_wikipedia+cast_crew_studio_history+festival_calendar+competing_releases,9,0.663377116577242,0.6135770730262012,0.7107335747820381,0.23052055181515627,True
+HGB,only release_year,alone,release_year,1,0.5284300745592642,0.47787684132996633,0.5762043633449883,0.2473307407793373,False
+HGB,minus release_timing,leave-one-out,budget+runtime+release_year+language+genres+buzz_wikipedia+cast_crew_studio_history+festival_calendar+competing_releases,9,0.6803184447076859,0.6314137625670677,0.7266026646141095,0.22632247592535457,True
+HGB,only release_timing,alone,release_timing,1,0.4989286460873807,0.449877103519804,0.5490999623851758,0.2648999714680933,False
+HGB,minus language,leave-one-out,budget+runtime+release_year+release_timing+genres+buzz_wikipedia+cast_crew_studio_history+festival_calendar+competing_releases,9,0.6610863354470071,0.6099834388434978,0.7078269543940305,0.23919122608528057,True
+HGB,only language,alone,language,1,0.6079889903142638,0.5560924604274451,0.6566346271332617,0.2388979399506022,True
+HGB,minus genres,leave-one-out,budget+runtime+release_year+release_timing+language+buzz_wikipedia+cast_crew_studio_history+festival_calendar+competing_releases,9,0.6593007455926416,0.6089498096624444,0.7074039673913043,0.23238172325357975,True
+HGB,only genres,alone,genres,1,0.5565814228973591,0.5044341883030503,0.6084404733896733,0.2500383219999947,True
+HGB,minus buzz_wikipedia,leave-one-out,budget+runtime+release_year+release_timing+language+genres+cast_crew_studio_history+festival_calendar+competing_releases,9,0.647855550135879,0.6008832710410111,0.6946822415134577,0.23581259509428762,True
+HGB,only buzz_wikipedia,alone,buzz_wikipedia,1,0.5703870810396489,0.5219863376312703,0.6209698913368971,0.25615019647403425,True
+HGB,minus cast_crew_studio_history,leave-one-out,budget+runtime+release_year+release_timing+language+genres+buzz_wikipedia+festival_calendar+competing_releases,9,0.6911016653891715,0.6454714200630434,0.7395720210999434,0.22512718162403472,True
+HGB,only cast_crew_studio_history,alone,cast_crew_studio_history,1,0.5308776391889067,0.47764570046378024,0.5825486671187071,0.27457899330023516,False
+HGB,minus festival_calendar,leave-one-out,budget+runtime+release_year+release_timing+language+genres+buzz_wikipedia+cast_crew_studio_history+competing_releases,9,0.6805100689847398,0.6310099045555415,0.7262300981790945,0.2278656271768026,True
+HGB,only festival_calendar,alone,festival_calendar,1,0.4768831440317748,0.425648568986393,0.5278143625514052,0.2637364950188377,False
+HGB,minus competing_releases,leave-one-out,budget+runtime+release_year+release_timing+language+genres+buzz_wikipedia+cast_crew_studio_history+festival_calendar,9,0.6844906278308132,0.6359270703334309,0.731818744978582,0.22629632719005188,True
+HGB,only competing_releases,alone,competing_releases,1,0.5271670963695909,0.4764660277428014,0.5810702520578064,0.265622211261226,False
+HGB,base plus buzz_wikipedia,add-one,budget+runtime+release_year+release_timing+language+genres+buzz_wikipedia,7,0.6994895826074838,0.6511810375578535,0.7463619636458767,0.22152729762976295,True
+HGB,base plus cast_crew_studio_history,add-one,budget+runtime+release_year+release_timing+language+genres+cast_crew_studio_history,7,0.6660859870392307,0.6151664591365722,0.7122984946575204,0.2322260096174146,True
+HGB,base plus festival_calendar,add-one,budget+runtime+release_year+release_timing+language+genres+festival_calendar,7,0.6895773813671521,0.6405939846967129,0.7351368455394083,0.22498582741179624,True
+HGB,base plus competing_releases,add-one,budget+runtime+release_year+release_timing+language+genres+competing_releases,7,0.6723224862378928,0.6240932359220663,0.719166787893469,0.22628344726123573,True
+XGB,all,reference,budget+runtime+release_year+release_timing+language+genres+buzz_wikipedia+cast_crew_studio_history+festival_calendar+competing_releases,10,0.6575499965159223,0.6107918105744826,0.7053963370030902,0.23769763203295924,True
+XGB,base,reference,budget+runtime+release_year+release_timing+language+genres,6,0.6807016932617936,0.6306455973945428,0.7246463545452623,0.22457586759015957,True
+XGB,minus budget,leave-one-out,runtime+release_year+release_timing+language+genres+buzz_wikipedia+cast_crew_studio_history+festival_calendar+competing_releases,9,0.6563479896871298,0.6055981782479074,0.7031519152348196,0.23377570260606498,True
+XGB,only budget,alone,budget,1,0.5930074559264162,0.5402072500542769,0.6464625059711584,0.24730485341697175,True
+XGB,minus runtime,leave-one-out,budget+release_year+release_timing+language+genres+buzz_wikipedia+cast_crew_studio_history+festival_calendar+competing_releases,9,0.6661730889833462,0.6192813054402638,0.7129668839681308,0.22974243520946694,True
+XGB,only runtime,alone,runtime,1,0.5127778552017281,0.4608468388554553,0.5628346318692113,0.26088747876802487,False
+XGB,minus release_year,leave-one-out,budget+runtime+release_timing+language+genres+buzz_wikipedia+cast_crew_studio_history+festival_calendar+competing_releases,9,0.6680719113650617,0.620769850083095,0.7141850230964076,0.22975361072131223,True
+XGB,only release_year,alone,release_year,1,0.5284300745592642,0.47787684132996633,0.5762043633449883,0.24720242229614228,False
+XGB,minus release_timing,leave-one-out,budget+runtime+release_year+language+genres+buzz_wikipedia+cast_crew_studio_history+festival_calendar+competing_releases,9,0.6830534457529092,0.6351061058627397,0.7296055086952765,0.22512589017728907,True
+XGB,only release_timing,alone,release_timing,1,0.49080203470141454,0.44094095036571423,0.5420505206411379,0.2670491337448529,False
+XGB,minus language,leave-one-out,budget+runtime+release_year+release_timing+genres+buzz_wikipedia+cast_crew_studio_history+festival_calendar+competing_releases,9,0.6529510138666295,0.6038323170643466,0.7006530045015371,0.23707053526087943,True
+XGB,only language,alone,language,1,0.60881645878336,0.5559950093614386,0.657456220913213,0.23951700030108658,True
+XGB,minus genres,leave-one-out,budget+runtime+release_year+release_timing+language+buzz_wikipedia+cast_crew_studio_history+festival_calendar+competing_releases,9,0.6669918472580308,0.6183598668191684,0.7147453887480787,0.23020857355942065,True
+XGB,only genres,alone,genres,1,0.5393265277680998,0.48575882778298435,0.5911969377518338,0.2529969984123187,False
+XGB,minus buzz_wikipedia,leave-one-out,budget+runtime+release_year+release_timing+language+genres+cast_crew_studio_history+festival_calendar+competing_releases,9,0.65883910528883,0.6094505952238651,0.7068179046756323,0.23269163633119583,True
+XGB,only buzz_wikipedia,alone,buzz_wikipedia,1,0.5827120061319768,0.5313113752716259,0.6309775707401402,0.2550657321397708,True
+XGB,minus cast_crew_studio_history,leave-one-out,budget+runtime+release_year+release_timing+language+genres+buzz_wikipedia+festival_calendar+competing_releases,9,0.7077903978816807,0.6613722520134142,0.7532141957410992,0.21762727452001068,True
+XGB,only cast_crew_studio_history,alone,cast_crew_studio_history,1,0.5499442547557661,0.49879980970701865,0.5994993726050506,0.28102809372435716,False
+XGB,minus festival_calendar,leave-one-out,budget+runtime+release_year+release_timing+language+genres+buzz_wikipedia+cast_crew_studio_history+competing_releases,9,0.6779318514389241,0.6287313141940323,0.7243185079638116,0.2268236536671254,True
+XGB,only festival_calendar,alone,festival_calendar,1,0.46961884189255104,0.421284470291685,0.5198852293081271,0.27092311919836914,False
+XGB,minus competing_releases,leave-one-out,budget+runtime+release_year+release_timing+language+genres+buzz_wikipedia+cast_crew_studio_history+festival_calendar,9,0.6831057069193784,0.6356462112253779,0.72929438188547,0.22499468097592318,True
+XGB,only competing_releases,alone,competing_releases,1,0.5154344644972476,0.46582202277961837,0.5685725199959476,0.26813715962596013,False
+XGB,base plus buzz_wikipedia,add-one,budget+runtime+release_year+release_timing+language+genres+buzz_wikipedia,7,0.7175632360114278,0.6701850489144606,0.7622756040799566,0.21381995077995314,True
+XGB,base plus cast_crew_studio_history,add-one,budget+runtime+release_year+release_timing+language+genres+cast_crew_studio_history,7,0.6704585046338234,0.6232672657804562,0.7174899253318456,0.22943024131796041,True
+XGB,base plus festival_calendar,add-one,budget+runtime+release_year+release_timing+language+genres+festival_calendar,7,0.6903700090586022,0.6419217598337976,0.7368396840132715,0.2241843238428006,True
+XGB,base plus competing_releases,add-one,budget+runtime+release_year+release_timing+language+genres+competing_releases,7,0.6620618772210995,0.6124072166303703,0.7075385385936063,0.2312300767250835,True

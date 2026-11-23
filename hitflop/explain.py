@@ -60,5 +60,5 @@ def group_importance(imp, groups):
     """Sum mean |SHAP| per named group (prefix match on the transformed feature names)."""
     out = {}
     for g, prefixes in groups.items():
-        out[g] = float(imp[imp.feature.apply(lambda f: any(f == p or f.startswith(p) for p in prefixes))].mean_abs_shap.sum())
+        out[g] = float(imp[imp.feature.apply(lambda f: any(f == p or f.startswith(p) for p in prefixes))].mean_abs_shap.sum())  # noqa: B023 (called immediately)
     return pd.Series(out).sort_values(ascending=False)

@@ -16,7 +16,11 @@ import time
 import numpy as np
 import pandas as pd
 
-from . import config as C, evaluation as EV, imbalance as IM, metrics as M, protocol as P
+from . import config as C
+from . import evaluation as EV
+from . import imbalance as IM
+from . import metrics as M
+from . import protocol as P
 
 OUT = C.OUT_DIR / "upgrade" / "phase2"
 SETS = ["A", "B3"]
@@ -51,7 +55,7 @@ def run_natural(dev, y):
     oof = {}
     for (m, v), s in itertools.product(NATURAL, SETS):
         t = time.time()
-        oof[(m, s, v)] = _cached(path, (m, s, v), lambda: IM.walk_forward_variant(dev, y, m, s, v, tune=True)[0])
+        oof[(m, s, v)] = _cached(path, (m, s, v), lambda m=m, s=s, v=v: IM.walk_forward_variant(dev, y, m, s, v, tune=True)[0])
         print(f"  natural {name(m, s, v)}  {time.time() - t:.0f}s", flush=True)
     folds = IM.walk_forward_variant(dev, y, "LR", "A", "base", tune=False)[1]
     return oof, folds
@@ -143,8 +147,6 @@ def summarise_simulated(by_seed):
     All per-seed tests form one Benjamini-Hochberg family. Seeds share the same Flops, so they are not independent evidence; requiring every seed to agree is the conservative answer."""
     v = by_seed[by_seed.variant != "base"].copy()
     out = []
-    for metric, pc, lo, hi, q in (("auc", "auc_p", "auc_lo", "auc_hi", "auc_q"), ("balanced_accuracy_at_0.5", "ba_p", "ba_lo", "ba_hi", "ba_q")):
-        pass
     fam = pd.concat([v[["seed", "model", "set", "variant"]].assign(metric="auc", diff=v.auc_diff_vs_plain, ci_low=v.auc_lo, ci_high=v.auc_hi, p=v.auc_p),
                      v[["seed", "model", "set", "variant"]].assign(metric="balanced_accuracy_at_0.5", diff=v.ba_diff_vs_plain, ci_low=v.ba_lo, ci_high=v.ba_hi, p=v.ba_p)], ignore_index=True)
     fam = P.correct_family(fam)

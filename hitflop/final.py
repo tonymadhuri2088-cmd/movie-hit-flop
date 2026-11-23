@@ -2,7 +2,6 @@
 A lock file stops accidental re-scoring: the test set is scored exactly once.
 Procedure per spec: tune on ALL development data with the same inner chronological grid used in validation, predict the test movies,
 threshold = Youden point of the development out-of-fold predictions (never fitted on test), no calibration (it hurt under drift in validation)."""
-import json
 import os
 import pickle
 import time
@@ -10,7 +9,11 @@ import time
 import numpy as np
 import pandas as pd
 
-from . import config as C, metrics as M, models as MD, selection_bias as sb, validation as V
+from . import config as C
+from . import metrics as M
+from . import models as MD
+from . import selection_bias as sb
+from . import validation as V
 from .experiment_log import log_experiment
 from .world import build_world
 
@@ -32,7 +35,6 @@ def main():
     merged, lab, dev, test = build_world()
     ydev, ytest = dev.hit.values, test.hit.values
     p3 = pickle.load(open(C.OUT_DIR / "phase3" / "oof_3a.pkl", "rb"))
-    folds = p3["folds"]
     dev_ok = ~np.isnan(p3["oof"][("LR", "A")])
     pred, thr, fitted = {}, {}, {}
     for name, (mk, s) in SPECS.items():

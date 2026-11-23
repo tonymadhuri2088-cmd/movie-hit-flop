@@ -5,7 +5,8 @@ import pandas as pd
 import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from hitflop import config as C, data, history  # noqa: E402
+from hitflop import config as C  # noqa: E402
+from hitflop import data, history
 
 
 @pytest.fixture(scope="session")

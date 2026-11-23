@@ -1,7 +1,10 @@
 """One call that builds the complete modelling table (all features) for all labelled movies, plus the frozen dev/test split."""
 import pandas as pd
 
-from . import config as C, data, features as F, history as H
+from . import config as C
+from . import data
+from . import features as F
+from . import history as H
 
 
 def build_world(threshold=C.HIT_THRESHOLD):

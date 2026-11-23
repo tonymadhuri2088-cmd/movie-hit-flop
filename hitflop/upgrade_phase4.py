@@ -13,7 +13,13 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 
-from . import config as C, data, drift as D, metrics as M, protocol as P, recalibration as R, uncertainty as U
+from . import config as C
+from . import data
+from . import drift as D
+from . import metrics as M
+from . import protocol as P
+from . import recalibration as R
+from . import uncertainty as U
 from .upgrade_phase1 import dev_predictions
 
 OUT = C.OUT_DIR / "upgrade" / "phase4"

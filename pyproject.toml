@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hitflop"
+version = "2.0.0"
+description = "Pre-release Hit/Flop prediction for Indian films, with honest chronological evaluation."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+
+[tool.setuptools.packages.find]
+include = ["hitflop*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+filterwarnings = ["ignore::DeprecationWarning", "ignore::FutureWarning", "ignore::UserWarning"]
+
+[tool.coverage.run]
+source = ["hitflop"]
+omit = ["hitflop/upgrade_*.py"]       # experiment runners are exercised by their logged outputs, not unit tests
+
+[tool.coverage.report]
+show_missing = false
+skip_covered = true
+
+[tool.ruff]
+line-length = 200                     # the code keeps one idea per line on purpose; wrapping is not enforced
+target-version = "py311"
+extend-exclude = ["notebooks", "outputs", "artifacts"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+ignore = ["E741", "B008", "B905", "E731", "E501", "E702"]    # long lines and one-line statements are a deliberate style here
+
+[tool.ruff.lint.isort]
+known-first-party = ["hitflop"]

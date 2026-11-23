@@ -15,7 +15,10 @@ import time
 import numpy as np
 import pandas as pd
 
-from . import config as C, evaluation as EV, metrics as M, protocol as P
+from . import config as C
+from . import evaluation as EV
+from . import metrics as M
+from . import protocol as P
 
 OUT = C.OUT_DIR / "upgrade" / "phase1"
 LOCKED_TEST_PREDICTIONS = C.OUT_DIR / "final" / "test_predictions.pkl"
@@ -51,7 +54,7 @@ def main(part_a_path=None):
     t05.to_csv(OUT / "dev_metrics_threshold_0.5.csv", index=False)
 
     # ---- development, threshold from earlier blocks only ----
-    thr_rows, scored = {}, None
+    scored = None
     sub = {}
     for name, v in preds.items():
         thr, scored = P.expanding_threshold(y, v, folds)

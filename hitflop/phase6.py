@@ -1,12 +1,14 @@
 """Phase 6: SHAP global, dependence and per-movie explanations for both deployed models. Predictive attribution only; see explain.py."""
 import matplotlib
+
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-import numpy as np
 import pandas as pd
 import shap
 
-from . import artifacts as A, config as C, explain as X
+from . import artifacts as A
+from . import config as C
+from . import explain as X
 from .experiment_log import log_experiment
 
 OUT = C.OUT_DIR / "phase6"
@@ -17,7 +19,6 @@ GROUPS = {"budget": ["log_budget", "buzz_per_budget"], "language": ["language_"]
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
     art = A.load()
-    lab = art["ref_lab"].merge(art["ref_merged"].drop(columns=["release_date"]), on="tmdb_id", suffixes=("", "_m"))
     from .world import build_world
     _, labw, dev, test = build_world()
     summary = {}

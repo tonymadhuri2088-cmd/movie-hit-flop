@@ -1,9 +1,8 @@
 import re
+from pathlib import Path
 
-import pytest
 from streamlit.testing.v1 import AppTest
 
-from pathlib import Path
 APP = str(Path(__file__).resolve().parent.parent / "app" / "streamlit_app.py")
 
 
@@ -24,7 +23,10 @@ def _ticket(at):
 def test_app_loads_without_exception():
     at = _run()
     assert not at.exception
-    assert [t.label for t in at.tabs] == ["Predict", "Model comparison", "19-model leaderboard", "Research dashboard", "About & limits"]
+    labels = [t.label for t in at.tabs]
+    for top in ("Predict", "What-if", "Compare films", "Leaderboard", "Research lab", "About & limits"):
+        assert top in labels
+    assert labels.index("Predict") < labels.index("What-if") < labels.index("Compare films") < labels.index("Leaderboard") < labels.index("Research lab") < labels.index("About & limits")
 
 
 def test_basic_prediction_end_to_end():

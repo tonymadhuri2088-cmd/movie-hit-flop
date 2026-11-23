@@ -1,7 +1,9 @@
 import numpy as np
 import pytest
 
-from hitflop import features as F, history as H, tuning as T
+from hitflop import features as F
+from hitflop import history as H
+from hitflop import tuning as T
 
 
 @pytest.fixture(scope="module")

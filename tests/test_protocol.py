@@ -4,7 +4,9 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from hitflop import config as C, metrics as M, protocol as P
+from hitflop import config as C
+from hitflop import metrics as M
+from hitflop import protocol as P
 from hitflop.experiment_log import read_log
 
 

@@ -1,7 +1,8 @@
 import numpy as np
 import pytest
 
-from hitflop import ensembles as E, metrics as M
+from hitflop import ensembles as E
+from hitflop import metrics as M
 
 
 def _toy(seed=0, n=600):

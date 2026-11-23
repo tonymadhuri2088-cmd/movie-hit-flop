@@ -12,7 +12,6 @@ A monotone map cannot change the ranking of films inside one block, so ROC-AUC p
 import numpy as np
 import pandas as pd
 
-from . import config as C
 from . import metrics as M
 from .calibration import Iso, Platt
 

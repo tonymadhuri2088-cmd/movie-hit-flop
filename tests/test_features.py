@@ -68,7 +68,7 @@ def test_features_do_not_use_outcomes(world):
 
 def test_shapes_and_finite(rich):
     assert len(rich) == 854
-    for g, cols in F.RESEARCH_GROUPS.items():
+    for cols in F.RESEARCH_GROUPS.values():
         assert set(cols) <= set(rich.columns)
     assert np.isfinite(rich[F.CALENDAR + F.COMPETITION].values).all()
     w = rich[F.WIKI_RATE]

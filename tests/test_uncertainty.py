@@ -1,8 +1,8 @@
 import numpy as np
-import pandas as pd
 import pytest
 
-from hitflop import recalibration as R, uncertainty as U
+from hitflop import recalibration as R
+from hitflop import uncertainty as U
 
 
 # ---------------- recalibration ----------------

@@ -1,6 +1,5 @@
 """Append-only experiment log (JSON lines). Every experiment records what was run, with which settings, and what came out."""
 import json
-import subprocess
 import time
 from pathlib import Path
 

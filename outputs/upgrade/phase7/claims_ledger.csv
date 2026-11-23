@@ -1,0 +1,560 @@
+phase,experiment,what,metric,diff,ci_low,ci_high,q_bh,verdict
+1 Evaluation,"Models versus logistic regression, development folds","basic: HGB, set A",auc,0.0036147306807888,-0.0301156877120162,0.0381784062376106,0.847,no clear difference
+1 Evaluation,"Models versus logistic regression, development folds","buzz: XGB, set B3",auc,0.031722528046826,-0.0053530388692668,0.0691948824408897,0.1568,no clear difference
+1 Evaluation,"Models versus logistic regression, development folds","earlier headline: XGB, set D",auc,0.0227336074141175,-0.0164972424045184,0.0634057233924611,0.3165714285714286,no clear difference
+1 Evaluation,"Models versus logistic regression, development folds",no skill: earlier Hit rate,auc,-0.1841683506375862,-0.248105503354743,-0.1220142655495168,0.002,worse (supported)
+1 Evaluation,"Models versus logistic regression, development folds","basic: HGB, set A",pr_auc,0.0251555545127263,-0.0124688364342329,0.064408050194655,0.2373333333333333,no clear difference
+1 Evaluation,"Models versus logistic regression, development folds","buzz: XGB, set B3",pr_auc,0.0460200925571642,0.0072065551784637,0.0851975723262752,0.0586666666666666,no clear difference
+1 Evaluation,"Models versus logistic regression, development folds","earlier headline: XGB, set D",pr_auc,0.0369434647400396,-0.005945878844552,0.0818143310953076,0.1568,no clear difference
+1 Evaluation,"Models versus logistic regression, development folds",no skill: earlier Hit rate,pr_auc,-0.2002740837260109,-0.2562229382155372,-0.1444399451094714,0.002,worse (supported)
+2 Minority class,Imbalance methods versus the plain model,LR | A | class_weight,auc,0.0017246184934848,-0.0021917616381203,0.0056768875370267,0.965,no clear difference
+2 Minority class,Imbalance methods versus the plain model,LR | A | class_weight,balanced_accuracy_at_0.5,-0.0017246184934847,-0.0101626016260162,0.0066666666666666,0.965,no clear difference
+2 Minority class,Imbalance methods versus the plain model,LR | B3 | class_weight,auc,0.0021078670475924,-0.0016090059443718,0.0058739445858471,0.965,no clear difference
+2 Minority class,Imbalance methods versus the plain model,LR | B3 | class_weight,balanced_accuracy_at_0.5,0.0054003205351543,-0.0077222643350946,0.019815290352858,0.965,no clear difference
+2 Minority class,Imbalance methods versus the plain model,LR | A | smote,auc,-0.0028569437669848,-0.0127999128613507,0.0072689261562401,0.965,no clear difference
+2 Minority class,Imbalance methods versus the plain model,LR | A | smote,balanced_accuracy_at_0.5,-0.0017246184934847,-0.0138892881096101,0.0103139960574486,0.965,no clear difference
+2 Minority class,Imbalance methods versus the plain model,LR | B3 | smote,auc,0.0014458922723155,-0.0052679372422053,0.0082820308875145,0.965,no clear difference
+2 Minority class,Imbalance methods versus the plain model,LR | B3 | smote,balanced_accuracy_at_0.5,0.0012194272176155,-0.0151524674780488,0.0189396193652744,0.965,no clear difference
+2 Minority class,Imbalance methods versus the plain model,RF | A | class_weight,auc,0.0003135669988154,-0.0116369153261532,0.0122208284618953,0.965,no clear difference
+2 Minority class,Imbalance methods versus the plain model,RF | A | class_weight,balanced_accuracy_at_0.5,-0.011567138178524,-0.0318286477557881,0.0077336643401331,0.965,no clear difference
+2 Minority class,Imbalance methods versus the plain model,RF | B3 | class_weight,auc,-0.0002438854435231,-0.0100623748554026,0.0088728015683225,0.965,no clear difference
+2 Minority class,Imbalance methods versus the plain model,RF | B3 | class_weight,balanced_accuracy_at_0.5,-0.0093547487979931,-0.0308524266318651,0.0115171860167546,0.965,no clear difference
+2 Minority class,Imbalance methods versus the plain model,RF | A | balanced_rf,auc,-0.0034318165981463,-0.0165314860436168,0.0106423965434709,0.965,no clear difference
+2 Minority class,Imbalance methods versus the plain model,RF | A | balanced_rf,balanced_accuracy_at_0.5,-0.0071423594174622,-0.0292699428285298,0.015166388956249,0.965,no clear difference
+2 Minority class,Imbalance methods versus the plain model,RF | B3 | balanced_rf,auc,0.0123858964532087,-0.0026965466782954,0.0275468739456796,0.965,no clear difference
+2 Minority class,Imbalance methods versus the plain model,RF | B3 | balanced_rf,balanced_accuracy_at_0.5,0.0012194272176155,-0.0228269458258804,0.0248879805919834,0.965,no clear difference
+2 Minority class,Imbalance methods versus the plain model,RF | A | smote,auc,0.0016723573270155,-0.0074514650981735,0.0104362889714452,0.965,no clear difference
+2 Minority class,Imbalance methods versus the plain model,RF | A | smote,balanced_accuracy_at_0.5,0.0046686642045851,-0.0142679077783147,0.0239226792579025,0.965,no clear difference
+2 Minority class,Imbalance methods versus the plain model,RF | B3 | smote,auc,0.0016897777158385,-0.0092283594234923,0.0117214566144832,0.965,no clear difference
+2 Minority class,Imbalance methods versus the plain model,RF | B3 | smote,balanced_accuracy_at_0.5,-0.00911086335447,-0.0345996858620714,0.0167838044308632,0.965,no clear difference
+2 Minority class,Imbalance methods versus the plain model,HGB | A | class_weight,auc,-0.0048428680928158,-0.0138306118832435,0.0043423691442489,0.965,no clear difference
+2 Minority class,Imbalance methods versus the plain model,HGB | A | class_weight,balanced_accuracy_at_0.5,-0.0076301303045084,-0.024290314053353,0.0090401848070661,0.965,no clear difference
+2 Minority class,Imbalance methods versus the plain model,HGB | B3 | class_weight,auc,0.0035537593199079,-0.0056241629464285,0.0134822793346754,0.965,no clear difference
+2 Minority class,Imbalance methods versus the plain model,HGB | B3 | class_weight,balanced_accuracy_at_0.5,0.0095986342415161,-0.0084920427040168,0.0282374537227476,0.965,no clear difference
+2 Minority class,Imbalance methods versus the plain model,HGB | A | smote,auc,-0.0118981255661626,-0.0309897775375535,0.0064486822415315,0.965,no clear difference
+2 Minority class,Imbalance methods versus the plain model,HGB | A | smote,balanced_accuracy_at_0.5,-0.004442199149885,-0.0338765490293354,0.0231102806806815,0.965,no clear difference
+2 Minority class,Imbalance methods versus the plain model,HGB | B3 | smote,auc,-0.0025172461849348,-0.0187808748459286,0.0143838695469478,0.965,no clear difference
+2 Minority class,Imbalance methods versus the plain model,HGB | B3 | smote,balanced_accuracy_at_0.5,-0.0127865653961397,-0.036339765839446,0.0103116806940165,0.965,no clear difference
+2 Minority class,Imbalance methods versus the plain model,XGB | A | class_weight,auc,0.0005574524423385,-0.0039511207002595,0.0049848589618108,0.965,no clear difference
+2 Minority class,Imbalance methods versus the plain model,XGB | A | class_weight,balanced_accuracy_at_0.5,0.0024562748240541,-0.0101966306785583,0.0166666666666666,0.965,no clear difference
+2 Minority class,Imbalance methods versus the plain model,XGB | B3 | class_weight,auc,0.0001567834994077,-0.0078457419987923,0.0084620011865086,0.965,no clear difference
+2 Minority class,Imbalance methods versus the plain model,XGB | B3 | class_weight,balanced_accuracy_at_0.5,0.0024562748240541,-0.0127544006667776,0.0183634714216264,0.965,no clear difference
+2 Minority class,Imbalance methods versus the plain model,XGB | A | smote,auc,-0.0022036791861195,-0.0130075047540616,0.0089223632759571,0.965,no clear difference
+2 Minority class,Imbalance methods versus the plain model,XGB | A | smote,balanced_accuracy_at_0.5,0.006881053585116,-0.0124663568377922,0.027313805268943,0.965,no clear difference
+2 Minority class,Imbalance methods versus the plain model,XGB | B3 | smote,auc,-0.004233154484008,-0.0138755014800302,0.0061736977366046,0.965,no clear difference
+2 Minority class,Imbalance methods versus the plain model,XGB | B3 | smote,balanced_accuracy_at_0.5,-0.0041808933175387,-0.0248817673290564,0.0158204174047197,0.965,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,LR | set B3 | base,auc,-0.023761410354679,-0.0408551371020225,-0.0081623770978752,0.025,worse (supported)
+2 Minority class,Imbalance-method models versus logistic regression,LR | set A | class_weight,auc,0.0017246184934848,-0.0021917616381203,0.0056768875370267,0.5428571428571428,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,LR | set B3 | class_weight,auc,-0.0216535433070865,-0.0399591015100597,-0.0051034351177096,0.0666666666666666,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,LR | set A | smote,auc,-0.0028569437669848,-0.0127999128613507,0.0072689261562401,0.7551282051282051,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,LR | set B3 | smote,auc,-0.0223155180823635,-0.040837502763161,-0.0041843110909998,0.1,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,RF | set A | base,auc,-0.0002961466099923,-0.0310724689440993,0.0307436920936931,0.992,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,RF | set B3 | base,auc,0.0290920493345412,-0.008688150253566,0.0696654981701163,0.3391304347826087,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,RF | set A | class_weight,auc,1.7420388823130573e-05,-0.0330412764390109,0.0323862713257558,0.983673469387755,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,RF | set B3 | class_weight,auc,0.028848163891018,-0.0099442738777672,0.070635098304937,0.3391304347826087,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,RF | set A | balanced_rf,auc,-0.0037279632081387,-0.0357694890613253,0.0293519559144558,0.9033333333333332,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,RF | set B3 | balanced_rf,auc,0.0414779457877499,0.002782900820375,0.080498078972356,0.175,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,RF | set A | smote,auc,0.0013762107170232,-0.0313070764444289,0.0337805477639675,0.974468085106383,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,RF | set B3 | smote,auc,0.0307818270503797,-0.008004925019076,0.0706207398728555,0.3391304347826087,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,HGB | set A | base,auc,0.0036147306807888,-0.0301156877120162,0.0381784062376106,0.9206521739130435,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,HGB | set B3 | base,auc,0.0136488746428821,-0.0270020781858848,0.055054544085319,0.668918918918919,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,HGB | set A | class_weight,auc,-0.0012281374120269,-0.0366488419454928,0.0334855213415789,0.983673469387755,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,HGB | set B3 | class_weight,auc,0.01720263396279,-0.024036732381383,0.0600805281443538,0.5625,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,HGB | set A | smote,auc,-0.0082833948853737,-0.04084714163001,0.0263478966648726,0.76,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,HGB | set B3 | smote,auc,0.0111316284579472,-0.0292948647009358,0.0529712233241644,0.7473684210526316,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,XGB | set A | base,auc,-0.005139014702808,-0.0380523685372748,0.0275211478969097,0.8767441860465117,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,XGB | set B3 | base,auc,0.031722528046826,-0.0053530388692668,0.0691948824408897,0.3266666666666667,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,XGB | set A | class_weight,auc,-0.0045815622604695,-0.0379256141614328,0.0281489257807087,0.8977272727272727,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,XGB | set B3 | class_weight,auc,0.0318793115462338,-0.0038223786564807,0.0699626151062792,0.3214285714285714,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,XGB | set A | smote,auc,-0.0073426938889276,-0.0393652985794716,0.0253501311442772,0.7719512195121951,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,XGB | set B3 | smote,auc,0.0274893735628179,-0.008472030157092,0.0645097920901083,0.3391304347826087,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,LR | set B3 | base,pr_auc,-0.0349356855806674,-0.0630003548628267,-0.0076163440060731,0.0666666666666666,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,LR | set A | class_weight,pr_auc,0.002369491845408,-0.002019839373607,0.0066659927983418,0.417741935483871,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,LR | set B3 | class_weight,pr_auc,-0.035421739968784,-0.0649132523589853,-0.0058643142394329,0.1357142857142857,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,LR | set A | smote,pr_auc,-0.0098369303927176,-0.0277739083151029,0.0113328096156316,0.5428571428571428,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,LR | set B3 | smote,pr_auc,-0.0366681537774439,-0.0670480866457,-0.0048926395293811,0.1357142857142857,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,RF | set A | base,pr_auc,0.027081739176242,-0.0057904161613552,0.0601681173133607,0.3391304347826087,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,RF | set B3 | base,pr_auc,0.0332238819661213,-0.0095422948686677,0.0768202625562578,0.3391304347826087,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,RF | set A | class_weight,pr_auc,0.0278923637779194,-0.0092624826526725,0.0659263367230374,0.3391304347826087,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,RF | set B3 | class_weight,pr_auc,0.0308392893468302,-0.0136570587737916,0.0751203474065325,0.3391304347826087,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,RF | set A | balanced_rf,pr_auc,0.0157613050249714,-0.0193093841833503,0.0539145745361148,0.5428571428571428,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,RF | set B3 | balanced_rf,pr_auc,0.0496093727884233,0.0101094751817102,0.0888247254825763,0.1357142857142857,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,RF | set A | smote,pr_auc,0.0306441367252346,-0.0034527386099968,0.0643118356558328,0.2653846153846154,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,RF | set B3 | smote,pr_auc,0.0410019823235304,-0.0020108054378564,0.085399024419655,0.2541666666666666,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,HGB | set A | base,pr_auc,0.0251555545127263,-0.0124688364342329,0.064408050194655,0.3708333333333333,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,HGB | set B3 | base,pr_auc,0.0273743236629103,-0.0192820365020928,0.0733329707740753,0.4055555555555555,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,HGB | set A | class_weight,pr_auc,0.0217773893641629,-0.0182213719835976,0.061389848893655,0.417741935483871,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,HGB | set B3 | class_weight,pr_auc,0.0265400510072476,-0.0207072072271365,0.0751619180399843,0.417741935483871,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,HGB | set A | smote,pr_auc,0.0067286619571692,-0.033972314232024,0.0502003799165903,0.7976190476190477,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,HGB | set B3 | smote,pr_auc,0.0285684822769901,-0.0158059780230454,0.0753259902527224,0.402,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,XGB | set A | base,pr_auc,0.020607720103423,-0.0134230311157686,0.0547414356924367,0.4142857142857143,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,XGB | set B3 | base,pr_auc,0.0460200925571642,0.0072065551784637,0.0851975723262752,0.1374999999999999,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,XGB | set A | class_weight,pr_auc,0.0218674707596048,-0.0138888235779204,0.05791596704773,0.4055555555555555,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,XGB | set B3 | class_weight,pr_auc,0.0444801717292745,0.0041339946286896,0.0868075311127789,0.1611111111111111,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,XGB | set A | smote,pr_auc,0.0174039059995912,-0.0190748037201082,0.0540403006892108,0.5234375,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,XGB | set B3 | smote,pr_auc,0.041312616381253,0.0009687436428367,0.0825688613086246,0.1954545454545454,no clear difference
+2 Minority class,Threshold rules versus Youden,LR | set A | base | fixed 0.5,auc,0.0008741258741258,-0.0333349806440986,0.03406567315547,1.0,no clear difference
+2 Minority class,Threshold rules versus Youden,LR | set A | base | max_f1,auc,-0.1103583916083916,-0.1536155448807709,-0.0661888055623026,0.00375,worse (supported)
+2 Minority class,Threshold rules versus Youden,LR | set A | base | max_mcc,auc,-0.0017482517482517,-0.0164835164835164,0.0126887819329681,0.9975,no clear difference
+2 Minority class,Threshold rules versus Youden,LR | set A | base | prior_match,auc,-0.013548951048951,-0.0426467365601863,0.0147140385016645,0.7433333333333334,no clear difference
+2 Minority class,Threshold rules versus Youden,LR | set A | base | recall_60,auc,0.0139860139860139,-0.0171220625339266,0.042882215324491,0.7433333333333334,no clear difference
+2 Minority class,Threshold rules versus Youden,HGB | set A | base | fixed 0.5,auc,-0.0056818181818182,-0.0430275435771125,0.030675117111469,0.9975,no clear difference
+2 Minority class,Threshold rules versus Youden,HGB | set A | base | max_f1,auc,-0.0806381118881119,-0.1273858362226866,-0.0305215170134525,0.012,worse (supported)
+2 Minority class,Threshold rules versus Youden,HGB | set A | base | max_mcc,auc,0.0,0.0,0.0,1.0,no clear difference
+2 Minority class,Threshold rules versus Youden,HGB | set A | base | prior_match,auc,-0.0177010489510489,-0.0550840246041538,0.0207517460282853,0.7433333333333334,no clear difference
+2 Minority class,Threshold rules versus Youden,HGB | set A | base | recall_60,auc,-0.0024038461538462,-0.0357006877916973,0.0314411865887344,1.0,no clear difference
+2 Minority class,Threshold rules versus Youden,XGB | set B3 | base | fixed 0.5,auc,0.0179195804195805,-0.0189494697437752,0.0552621008974487,0.7433333333333334,no clear difference
+2 Minority class,Threshold rules versus Youden,XGB | set B3 | base | max_f1,auc,-0.0631555944055943,-0.1147497144937471,-0.0105913168413168,0.08,no clear difference
+2 Minority class,Threshold rules versus Youden,XGB | set B3 | base | max_mcc,auc,0.0,0.0,0.0,1.0,no clear difference
+2 Minority class,Threshold rules versus Youden,XGB | set B3 | base | prior_match,auc,0.0148601398601398,-0.0259182490030496,0.0536277608218045,0.7433333333333334,no clear difference
+2 Minority class,Threshold rules versus Youden,XGB | set B3 | base | recall_60,auc,0.0238199300699301,-0.0095414673498004,0.0576980891195123,0.6728571428571428,no clear difference
+2 Minority class,Threshold rules versus Youden,RF | set A | base | fixed 0.5,auc,-0.0050262237762237,-0.0456914050918319,0.0343925091530102,0.9975,no clear difference
+2 Minority class,Threshold rules versus Youden,RF | set A | base | max_f1,auc,-0.089597902097902,-0.1398185109232026,-0.0399682208007757,0.00375,worse (supported)
+2 Minority class,Threshold rules versus Youden,RF | set A | base | max_mcc,auc,0.0,0.0,0.0,1.0,no clear difference
+2 Minority class,Threshold rules versus Youden,RF | set A | base | prior_match,auc,-0.0148601398601398,-0.0550586800872215,0.0248884932753405,0.7433333333333334,no clear difference
+2 Minority class,Threshold rules versus Youden,RF | set A | base | recall_60,auc,-0.0021853146853146,-0.0423635293460456,0.0388972208149103,1.0,no clear difference
+2 Minority class,Threshold rules versus Youden,RF | set A | balanced_rf | fixed 0.5,auc,-0.0198863636363636,-0.0587362652192794,0.0196223498956889,0.7433333333333334,no clear difference
+2 Minority class,Threshold rules versus Youden,RF | set A | balanced_rf | max_f1,auc,-0.103583916083916,-0.1514805525013744,-0.0540791051171256,0.00375,worse (supported)
+2 Minority class,Threshold rules versus Youden,RF | set A | balanced_rf | max_mcc,auc,-0.002840909090909,-0.0089285714285713,0.0,0.9975,no clear difference
+2 Minority class,Threshold rules versus Youden,RF | set A | balanced_rf | prior_match,auc,-0.0166083916083915,-0.056210601062855,0.023736332736687,0.7433333333333334,no clear difference
+2 Minority class,Threshold rules versus Youden,RF | set A | balanced_rf | recall_60,auc,-0.0087412587412587,-0.0356812149046441,0.0184668303510214,0.8447368421052632,no clear difference
+2 Minority class,Threshold rules versus Youden,HGB | set A | class_weight | fixed 0.5,auc,-0.0229458041958042,-0.0621864602125942,0.0145085762431215,0.7433333333333334,no clear difference
+2 Minority class,Threshold rules versus Youden,HGB | set A | class_weight | max_f1,auc,-0.1190996503496503,-0.1658535636476812,-0.0699168507565591,0.00375,worse (supported)
+2 Minority class,Threshold rules versus Youden,HGB | set A | class_weight | max_mcc,auc,0.002840909090909,0.0,0.0089285714285713,0.9975,no clear difference
+2 Minority class,Threshold rules versus Youden,HGB | set A | class_weight | prior_match,auc,-0.0209790209790209,-0.0596525015560518,0.0167394992077504,0.7433333333333334,no clear difference
+2 Minority class,Threshold rules versus Youden,HGB | set A | class_weight | recall_60,auc,-0.0152972027972028,-0.0496088907936701,0.0171070399154367,0.7433333333333334,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",LR | A | class_weight | 42,auc,0.005090909090909,-0.0057081849303225,0.0146895366528194,0.6520754716981132,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",LR | B3 | class_weight | 42,auc,0.0006181818181818,-0.0102224081637402,0.0111971745242312,0.9301734104046244,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",LR | A | smote | 42,auc,-0.0335272727272727,-0.0650259559983563,-0.0043551184757052,0.18,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",LR | B3 | smote | 42,auc,-0.0218181818181817,-0.0494651924757894,0.0080498474935129,0.4780327868852459,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | A | class_weight | 42,auc,-0.0116727272727272,-0.0293111391594783,0.0051533870822665,0.4780327868852459,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | B3 | class_weight | 42,auc,-0.0027090909090909,-0.025797441846196,0.0190583498888239,0.9122981366459628,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | A | balanced_rf | 42,auc,0.0040363636363636,-0.0177916846702157,0.0252448573975044,0.7992,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | B3 | balanced_rf | 42,auc,-0.0124363636363636,-0.0393512456761776,0.0112018492970328,0.6148314606741573,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | A | smote | 42,auc,-0.0576181818181819,-0.0880279097880699,-0.0289479690217485,0.045,worse (supported)
+2 Minority class,"Simulated 30% minority, per seed",RF | B3 | smote | 42,auc,-0.0635090909090909,-0.1017580624350352,-0.0266281464940353,0.045,worse (supported)
+2 Minority class,"Simulated 30% minority, per seed",HGB | A | class_weight | 42,auc,0.0114363636363636,-0.0022598357640342,0.0255683490789817,0.4336363636363636,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",HGB | B3 | class_weight | 42,auc,0.0086181818181818,-0.0073502792297956,0.0247739574525274,0.5902325581395349,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",HGB | A | smote | 42,auc,-0.0026727272727272,-0.0332873788920589,0.0299420634556975,0.933103448275862,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",HGB | B3 | smote | 42,auc,0.0031272727272727,-0.0319516585781264,0.0390716573128803,0.9197560975609756,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",XGB | A | class_weight | 42,auc,-0.0250545454545454,-0.0498279923507864,-0.0032587470865758,0.18,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",XGB | B3 | class_weight | 42,auc,-0.0046545454545454,-0.0295458791614616,0.0198208709522707,0.7992,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",XGB | A | smote | 42,auc,-0.0367636363636364,-0.0628905913045067,-0.0123329327544496,0.0514285714285714,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",XGB | B3 | smote | 42,auc,-0.0384363636363637,-0.0737333084839364,-0.0072952141207226,0.18,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",LR | A | class_weight | 43,auc,-0.002608759553204,-0.0084619637216815,0.0037717059063659,0.6803669724770642,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",LR | B3 | class_weight | 43,auc,-0.0073853615520282,-0.017270651911713,0.0018435245028408,0.4376470588235294,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",LR | A | smote | 43,auc,-0.0559597295708407,-0.0891240664232507,-0.0252720849427583,0.045,worse (supported)
+2 Minority class,"Simulated 30% minority, per seed",LR | B3 | smote | 43,auc,-0.0535346854791299,-0.0877746385443208,-0.0200307357713985,0.0514285714285714,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | A | class_weight | 43,auc,-0.0138154027042916,-0.0341198231379646,0.0039478472780989,0.4780327868852459,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | B3 | class_weight | 43,auc,-0.014807466196355,-0.0331285273729967,0.0040768036045799,0.4780327868852459,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | A | balanced_rf | 43,auc,0.0094797178130511,-0.0162040630432769,0.0335004689060048,0.6961983471074381,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | B3 | balanced_rf | 43,auc,-0.0019290123456789,-0.0234243765024039,0.0192822734031884,0.9232941176470588,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | A | smote | 43,auc,-0.0275573192239859,-0.0598578163181356,0.0012080356828932,0.3188571428571428,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | B3 | smote | 43,auc,-0.0324074074074074,-0.0673543689320389,0.0024130404711,0.3784615384615384,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",HGB | A | class_weight | 43,auc,0.0076425631981187,-0.0061607268549026,0.02343187424574,0.6148314606741573,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",HGB | B3 | class_weight | 43,auc,0.0047031158142268,-0.0109243055555555,0.0194177655254974,0.7527272727272727,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",HGB | A | smote | 43,auc,-0.0252608759553204,-0.0621325411421309,0.0098618047440838,0.5206153846153847,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",HGB | B3 | smote | 43,auc,0.0157811581422693,-0.0151984051389896,0.0503295445293935,0.6520754716981132,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",XGB | A | class_weight | 43,auc,0.0014146090534979,-0.0172671920625957,0.0194188639322915,0.9490909090909092,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",XGB | B3 | class_weight | 43,auc,-0.0008267195767196,-0.0216387882722799,0.0213169418062448,0.9339428571428572,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",XGB | A | smote | 43,auc,-0.0116659318048206,-0.0481394262771035,0.0232324528813033,0.7281818181818183,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",XGB | B3 | smote | 43,auc,-0.0089101998824221,-0.0358955028420847,0.0162704638840227,0.7281818181818183,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",LR | A | class_weight | 44,auc,-0.0009503271318396,-0.0083767215433331,0.00629576451503,0.8943396226415096,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",LR | B3 | class_weight | 44,auc,-0.0032164918308417,-0.0125057605921515,0.0055815339552047,0.6961983471074381,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",LR | A | smote | 44,auc,-0.0351255528345334,-0.0673259835384731,-0.0020172038313587,0.232258064516129,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",LR | B3 | smote | 44,auc,-0.0384151467524397,-0.0742616609605397,-0.0053081960269326,0.18,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | A | class_weight | 44,auc,0.0159179794583135,0.0004446373192216,0.0333818682577502,0.24,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | B3 | class_weight | 44,auc,-0.0106911802331957,-0.0314105830229644,0.0088586632499897,0.63,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | A | balanced_rf | 44,auc,0.0143828356299572,-0.0055043822431511,0.0361636596507134,0.4780327868852459,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | B3 | balanced_rf | 44,auc,-0.0110384151467525,-0.0310594763636498,0.0096306068169726,0.6290109890109891,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | A | smote | 44,auc,0.0093205161007347,-0.0142409159834708,0.0337960600825814,0.6884210526315789,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | B3 | smote | 44,auc,-0.0354545122263241,-0.0645564031227812,-0.0042978178477476,0.18,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",HGB | A | class_weight | 44,auc,0.0054095544427793,-0.0115875840391889,0.0238172788316901,0.7281818181818183,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",HGB | B3 | class_weight | 44,auc,-0.0010234292189041,-0.0156905999996422,0.0151147702766913,0.9232941176470588,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",HGB | A | smote | 44,auc,-0.0174713988084359,-0.0510797524164663,0.0142625464970066,0.5902325581395349,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",HGB | B3 | smote | 44,auc,-0.0066888409664095,-0.0360679860602238,0.0213592068345988,0.7992,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",XGB | A | class_weight | 44,auc,-0.0056105851822069,-0.0302814830803245,0.0182600607596489,0.7527272727272727,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",XGB | B3 | class_weight | 44,auc,-0.0066157388793449,-0.034306944535482,0.01849633833945,0.7527272727272727,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",XGB | A | smote | 44,auc,-0.020980298987536,-0.047348203362477,0.0038592329453632,0.3857142857142857,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",XGB | B3 | smote | 44,auc,-0.0240505866442486,-0.0504908456236676,0.0033371808566765,0.3857142857142857,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",LR | A | class_weight | 45,auc,0.0132922503672386,0.0043375096446188,0.0227570227304586,0.08,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",LR | B3 | class_weight | 45,auc,0.0104259969187775,0.0005193325189396,0.0199871380583683,0.23625,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",LR | A | smote | 45,auc,-0.0340725878685822,-0.0643013613337424,-0.0080239082518253,0.15,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",LR | B3 | smote | 45,auc,-0.0442836157787251,-0.0778062203803654,-0.0144619829879275,0.08,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | A | class_weight | 45,auc,-0.0053383970477589,-0.0198486323759302,0.0104598522021155,0.7281818181818183,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | B3 | class_weight | 45,auc,0.002436315431192,-0.0190656485759291,0.0226418363990202,0.91125,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | A | balanced_rf | 45,auc,0.007613485722475,-0.0120072969008038,0.0297434089589163,0.6961983471074381,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | B3 | balanced_rf | 45,auc,0.0291820429221454,0.0034866444332471,0.0573423036962664,0.18,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | A | smote | 45,auc,-0.035649027265236,-0.0654187183069658,-0.0054928177370851,0.18,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | B3 | smote | 45,auc,-0.0252051162624055,-0.0644692824600261,0.0132096881699949,0.5294117647058824,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",HGB | A | class_weight | 45,auc,0.0085450180932249,-0.0069307906307828,0.0221047871296997,0.5878481012658228,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",HGB | B3 | class_weight | 45,auc,0.0084554476729604,-0.0041179923430697,0.0210225644127801,0.5206153846153847,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",HGB | A | smote | 45,auc,-0.002740854860091,-0.0390747949397191,0.0340484478776604,0.9251162790697676,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",HGB | B3 | smote | 45,auc,0.0025617140195621,-0.0359290150842945,0.0381789153439153,0.9232941176470588,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",XGB | A | class_weight | 45,auc,-0.0077747124789508,-0.0311341493118986,0.0156924138265431,0.7389473684210527,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",XGB | B3 | class_weight | 45,auc,-0.0032782773816774,-0.0244112973484848,0.0184877851963317,0.8943396226415096,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",XGB | A | smote | 45,auc,-0.0390706173193364,-0.0717600757760773,-0.0022309772420755,0.18,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",XGB | B3 | smote | 45,auc,-0.0182902798179928,-0.0541485434409152,0.014938738031651,0.616,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",LR | A | class_weight | 46,auc,0.0063598815746189,-0.0020781956819604,0.0149178028389791,0.4780327868852459,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",LR | B3 | class_weight | 46,auc,0.0045688804415365,-0.0045719717797068,0.0148010551868121,0.6520754716981132,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",LR | A | smote | 46,auc,-0.0371724112723418,-0.065130145733173,-0.007743238233497,0.1309090909090909,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",LR | B3 | smote | 46,auc,-0.0555941372126174,-0.0812683506757443,-0.0284184023887275,0.045,worse (supported)
+2 Minority class,"Simulated 30% minority, per seed",RF | A | class_weight | 46,auc,-0.0070178003582002,-0.0247991998947554,0.0110489062923173,0.6884210526315789,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | B3 | class_weight | 46,auc,-0.0176541540260973,-0.0405819683224374,0.0029777187434251,0.3857142857142857,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | A | balanced_rf | 46,auc,0.0184582769838078,-0.0037750550544462,0.0406861364871734,0.4186046511627907,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | B3 | balanced_rf | 46,auc,-0.0256405570379033,-0.0532296278076346,0.0014303909796948,0.3405405405405405,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | A | smote | 46,auc,-0.0317445813077963,-0.0599620554076431,-0.0026961241190359,0.1999999999999999,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | B3 | smote | 46,auc,-0.0517928286852589,-0.0930372010934499,-0.0100759652944711,0.1661538461538461,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",HGB | A | class_weight | 46,auc,-0.0039475127014876,-0.0186064245442315,0.0096273465454781,0.7466666666666667,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",HGB | B3 | class_weight | 46,auc,0.003764757483826,-0.013751903528587,0.0212200760065425,0.8205194805194804,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",HGB | A | smote | 46,auc,-0.0371358602288095,-0.0708076131687241,-0.0045506319811875,0.18,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",HGB | B3 | smote | 46,auc,-0.0232647392083044,-0.0588667570543513,0.0080169652855543,0.5206153846153847,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",XGB | A | class_weight | 46,auc,-0.0163748675024671,-0.0380051510995487,0.0045240626337183,0.4376470588235294,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",XGB | B3 | class_weight | 46,auc,0.0092839650572024,-0.0146341072870358,0.0337516992989055,0.7229268292682927,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",XGB | A | smote | 46,auc,-0.0510618078146131,-0.0843995521109207,-0.0214346977804047,0.0514285714285714,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",XGB | B3 | smote | 46,auc,-0.0217113198581819,-0.0553838988477768,0.0094968581852061,0.4935483870967742,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",LR | A | class_weight | 42,balanced_accuracy_at_0.5,-0.0403636363636363,-0.0877777905205364,0.0096930818921481,0.4376470588235294,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",LR | B3 | class_weight | 42,balanced_accuracy_at_0.5,-0.036,-0.0794584198881965,0.0074521169683084,0.4550943396226415,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",LR | A | smote | 42,balanced_accuracy_at_0.5,-0.038,-0.0806981274017735,0.0036302998105039,0.3505263157894736,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",LR | B3 | smote | 42,balanced_accuracy_at_0.5,-0.0261818181818181,-0.0703865748800402,0.0202365093206721,0.5902325581395349,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | A | class_weight | 42,balanced_accuracy_at_0.5,0.0078181818181817,-0.0247514539519288,0.0386379794433947,0.7527272727272727,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | B3 | class_weight | 42,balanced_accuracy_at_0.5,0.0067272727272728,-0.0276528993340074,0.0394698522463587,0.8205194805194804,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | A | balanced_rf | 42,balanced_accuracy_at_0.5,0.0099999999999998,-0.0296109922205172,0.0545404306068142,0.7795862068965518,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | B3 | balanced_rf | 42,balanced_accuracy_at_0.5,0.0161818181818181,-0.0319738442887388,0.0660070347519469,0.7281818181818183,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | A | smote | 42,balanced_accuracy_at_0.5,-0.0249090909090909,-0.0668020451770451,0.0188023680973208,0.5902325581395349,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | B3 | smote | 42,balanced_accuracy_at_0.5,-0.0205454545454545,-0.0679542813624085,0.0250730121182184,0.6520754716981132,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",HGB | A | class_weight | 42,balanced_accuracy_at_0.5,-0.0187272727272727,-0.0485046998794629,0.0119289513677811,0.5878481012658228,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",HGB | B3 | class_weight | 42,balanced_accuracy_at_0.5,0.0156363636363636,-0.0200779387527061,0.0560019520851818,0.6520754716981132,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",HGB | A | smote | 42,balanced_accuracy_at_0.5,-0.0187272727272727,-0.0576641654660042,0.0210258215423298,0.6520754716981132,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",HGB | B3 | smote | 42,balanced_accuracy_at_0.5,-0.0245454545454546,-0.0713748578243565,0.0261532468415056,0.6520754716981132,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",XGB | A | class_weight | 42,balanced_accuracy_at_0.5,-0.0232727272727273,-0.0607172852534566,0.0196096843184388,0.5902325581395349,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",XGB | B3 | class_weight | 42,balanced_accuracy_at_0.5,-0.0201818181818181,-0.0621418704777359,0.0214691394235949,0.6520754716981132,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",XGB | A | smote | 42,balanced_accuracy_at_0.5,-0.0238181818181818,-0.0631197185254185,0.0121874603748331,0.5878481012658228,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",XGB | B3 | smote | 42,balanced_accuracy_at_0.5,-0.02,-0.068334865694894,0.0230430946563056,0.6520754716981132,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",LR | A | class_weight | 43,balanced_accuracy_at_0.5,0.0205026455026455,-0.0303060365560365,0.0679553963568292,0.6884210526315789,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",LR | B3 | class_weight | 43,balanced_accuracy_at_0.5,0.017195767195767,-0.0278624697594142,0.0637262767751516,0.6961983471074381,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",LR | A | smote | 43,balanced_accuracy_at_0.5,-0.0191798941798941,-0.0654898837128212,0.0260759803230809,0.6520754716981132,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",LR | B3 | smote | 43,balanced_accuracy_at_0.5,-0.0158730158730159,-0.0653201605587658,0.0368814240926452,0.7281818181818183,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | A | class_weight | 43,balanced_accuracy_at_0.5,-0.0072751322751323,-0.0342892244746576,0.018596003798573,0.7527272727272727,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | B3 | class_weight | 43,balanced_accuracy_at_0.5,-0.0238095238095237,-0.0591972559601741,0.008771782411684,0.4780327868852459,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | A | balanced_rf | 43,balanced_accuracy_at_0.5,0.0257936507936507,-0.0176523187494895,0.0711167823685338,0.5878481012658228,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | B3 | balanced_rf | 43,balanced_accuracy_at_0.5,0.0145502645502646,-0.030383949004753,0.0593393351307077,0.7281818181818183,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | A | smote | 43,balanced_accuracy_at_0.5,0.0059523809523809,-0.0337700748643463,0.0444079317096833,0.8943396226415096,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | B3 | smote | 43,balanced_accuracy_at_0.5,-0.0033068783068782,-0.0459271083349102,0.0392181570208729,0.9232941176470588,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",HGB | A | class_weight | 43,balanced_accuracy_at_0.5,-0.0099206349206348,-0.036573337711048,0.0177345983219107,0.6961983471074381,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",HGB | B3 | class_weight | 43,balanced_accuracy_at_0.5,0.0132275132275132,-0.0227219630071946,0.047502649950656,0.6961983471074381,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",HGB | A | smote | 43,balanced_accuracy_at_0.5,-0.0244708994708994,-0.0661512556056221,0.0097099918056937,0.5294117647058824,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",HGB | B3 | smote | 43,balanced_accuracy_at_0.5,0.0317460317460317,-0.0195232151388983,0.0822090901822015,0.5425352112676056,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",XGB | A | class_weight | 43,balanced_accuracy_at_0.5,-0.0112433862433862,-0.0491631576685793,0.0242773718201788,0.7281818181818183,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",XGB | B3 | class_weight | 43,balanced_accuracy_at_0.5,0.0,-0.0382568403048014,0.0377395023159563,0.9620338983050848,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",XGB | A | smote | 43,balanced_accuracy_at_0.5,0.0039682539682539,-0.0363715338715338,0.0426339519062026,0.9251162790697676,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",XGB | B3 | smote | 43,balanced_accuracy_at_0.5,0.0185185185185186,-0.0252142596168902,0.0655713318730149,0.6875675675675675,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",LR | A | class_weight | 44,balanced_accuracy_at_0.5,0.0057202383128037,-0.0449846851334763,0.0574271312654586,0.9177777777777776,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",LR | B3 | class_weight | 44,balanced_accuracy_at_0.5,0.0340290215285645,-0.011882341344244,0.0849713685217347,0.4780327868852459,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",LR | A | smote | 44,balanced_accuracy_at_0.5,0.0116415073650352,-0.0331324964288584,0.0654805077482426,0.7795862068965518,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",LR | B3 | smote | 44,balanced_accuracy_at_0.5,0.0038561350926568,-0.0454939614548803,0.0544374259986912,0.9197560975609756,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | A | class_weight | 44,balanced_accuracy_at_0.5,0.0185313790708725,-0.0048645245390293,0.0432746761736921,0.4550943396226415,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | B3 | class_weight | 44,balanced_accuracy_at_0.5,-0.0391096165795533,-0.0731597040247391,-0.0108860881091186,0.108,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | A | balanced_rf | 44,balanced_accuracy_at_0.5,0.0220220037282063,-0.0184629629629629,0.0687837708591553,0.5878481012658228,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | B3 | balanced_rf | 44,balanced_accuracy_at_0.5,0.0054826565298439,-0.035828349076658,0.0486663144486663,0.8943396226415096,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | A | smote | 44,balanced_accuracy_at_0.5,0.0213640849446251,-0.017330053209104,0.0593804747337986,0.5902325581395349,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | B3 | smote | 44,balanced_accuracy_at_0.5,-0.0063416060528528,-0.040070880467895,0.0270049013902031,0.8076315789473685,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",HGB | A | class_weight | 44,balanced_accuracy_at_0.5,0.0028327058737527,-0.0281740913758985,0.0373867638620327,0.9232941176470588,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",HGB | B3 | class_weight | 44,balanced_accuracy_at_0.5,0.0146021418911509,-0.0197197700894642,0.0542393861594118,0.6961983471074381,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",HGB | A | smote | 44,balanced_accuracy_at_0.5,-0.0097225775795899,-0.0473892556791408,0.0305765394702818,0.7527272727272727,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",HGB | B3 | smote | 44,balanced_accuracy_at_0.5,-0.0194999817244782,-0.0557554933536091,0.0153702532851262,0.6148314606741573,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",XGB | A | class_weight | 44,balanced_accuracy_at_0.5,-0.0417778427574107,-0.0770878896654464,-0.0059434208465994,0.18,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",XGB | B3 | class_weight | 44,balanced_accuracy_at_0.5,0.010252567710808,-0.028883704226331,0.0532918942292643,0.7964383561643835,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",XGB | A | smote | 44,balanced_accuracy_at_0.5,-0.0222778610329325,-0.0548564782778795,0.0137135423202847,0.5297142857142857,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",XGB | B3 | smote | 44,balanced_accuracy_at_0.5,-0.0228809532512154,-0.0605687393537307,0.0170684118538033,0.57,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",LR | A | class_weight | 45,balanced_accuracy_at_0.5,-0.0161585038156999,-0.0641830528290252,0.0310730418832801,0.7281818181818183,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",LR | B3 | class_weight | 45,balanced_accuracy_at_0.5,-0.01323850811508,-0.0568001319380863,0.0365653303906316,0.7466666666666667,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",LR | A | smote | 45,balanced_accuracy_at_0.5,-0.0449643509727347,-0.088650822797958,-0.0018618831082461,0.2541176470588235,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",LR | B3 | smote | 45,balanced_accuracy_at_0.5,-0.0262262190534198,-0.0696383228840125,0.0144242866220368,0.5297142857142857,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | A | class_weight | 45,balanced_accuracy_at_0.5,-0.0333739385905198,-0.067587923825109,-0.0062757102322256,0.18,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | B3 | class_weight | 45,balanced_accuracy_at_0.5,-0.0300777471247895,-0.0609213951183558,0.0012035305872111,0.3405405405405405,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | A | balanced_rf | 45,balanced_accuracy_at_0.5,-0.0025975421876679,-0.0453720492709783,0.041309125481298,0.9232941176470588,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | B3 | balanced_rf | 45,balanced_accuracy_at_0.5,0.0138296728888251,-0.0317873302180514,0.0588543362639748,0.7527272727272727,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | A | smote | 45,balanced_accuracy_at_0.5,-0.0450539213929991,-0.0887009566964288,-0.0041652998099345,0.18,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | B3 | smote | 45,balanced_accuracy_at_0.5,-0.0314033893447027,-0.0696425832812996,0.007323476643332,0.4376470588235294,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",HGB | A | class_weight | 45,balanced_accuracy_at_0.5,-0.0183619361542044,-0.0484425453239118,0.0121153864494242,0.5902325581395349,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",HGB | B3 | class_weight | 45,balanced_accuracy_at_0.5,0.0074343448819461,-0.0234035818328862,0.0394264749621457,0.8058278145695364,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",HGB | A | smote | 45,balanced_accuracy_at_0.5,-0.0329081724051448,-0.0752924006689067,0.0177538336202211,0.5236363636363637,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",HGB | B3 | smote | 45,balanced_accuracy_at_0.5,-0.0316362724373903,-0.075289287278536,0.0118120281287061,0.4376470588235294,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",XGB | A | class_weight | 45,balanced_accuracy_at_0.5,-0.0161047615635412,-0.0509834642102084,0.0197405765605362,0.6520754716981132,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",XGB | B3 | class_weight | 45,balanced_accuracy_at_0.5,-0.0205295403246031,-0.0581007569762288,0.0148736445840704,0.5878481012658228,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",XGB | A | smote | 45,balanced_accuracy_at_0.5,-0.0192576403568486,-0.0619128691749148,0.0269197106364589,0.6520754716981132,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",XGB | B3 | smote | 45,balanced_accuracy_at_0.5,-0.0358281681057647,-0.0804974550009496,0.0084563454374968,0.4376470588235294,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",LR | A | class_weight | 46,balanced_accuracy_at_0.5,-0.0002558573047259,-0.0464699059578578,0.0496488524415754,0.9814525139664804,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",LR | B3 | class_weight | 46,balanced_accuracy_at_0.5,0.0282356811286962,-0.0192022295305387,0.0757055645622437,0.5878481012658228,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",LR | A | smote | 46,balanced_accuracy_at_0.5,-0.0457619065024306,-0.0893970922574883,-0.0031253891764235,0.228,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",LR | B3 | smote | 46,balanced_accuracy_at_0.5,-0.0015168683065901,-0.0387371315663621,0.0397175769669524,0.9626966292134832,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | A | class_weight | 46,balanced_accuracy_at_0.5,0.0093570671442669,-0.0111663437991154,0.0292290502540579,0.6628037383177571,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | B3 | class_weight | 46,balanced_accuracy_at_0.5,-0.0135787126722468,-0.0478942790269611,0.0145486089885961,0.6520754716981132,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | A | balanced_rf | 46,balanced_accuracy_at_0.5,0.0497276947256845,0.0099266992585958,0.0936052620694009,0.18,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | B3 | balanced_rf | 46,balanced_accuracy_at_0.5,-0.0144376621952556,-0.0607077568778352,0.0307362073112071,0.7229268292682927,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | A | smote | 46,balanced_accuracy_at_0.5,-0.0065243612705142,-0.0378671289775762,0.0269986454274316,0.7983673469387755,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",RF | B3 | smote | 46,balanced_accuracy_at_0.5,-0.0051354216162871,-0.0500396825396825,0.0357810508692266,0.8943396226415096,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",HGB | A | class_weight | 46,balanced_accuracy_at_0.5,-0.0005482656529843,-0.0292796102908122,0.0333391011047415,0.986,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",HGB | B3 | class_weight | 46,balanced_accuracy_at_0.5,0.0331335209620234,0.0022423914206247,0.0650797956783836,0.2234482758620689,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",HGB | A | smote | 46,balanced_accuracy_at_0.5,-0.0169048576336854,-0.054655870445344,0.0238371568202794,0.6803669724770642,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",HGB | B3 | smote | 46,balanced_accuracy_at_0.5,-0.0182937972879125,-0.0602219488320651,0.0214350973023969,0.6520754716981132,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",XGB | A | class_weight | 46,balanced_accuracy_at_0.5,0.0313790708724734,-0.0064841721736764,0.0712572080978143,0.4376470588235294,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",XGB | B3 | class_weight | 46,balanced_accuracy_at_0.5,0.0401330457984575,0.0045007664297769,0.0816326382097198,0.2234482758620689,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",XGB | A | smote | 46,balanced_accuracy_at_0.5,-0.0135238861069483,-0.0467136278895764,0.0194020379672869,0.6875675675675675,no clear difference
+2 Minority class,"Simulated 30% minority, per seed",XGB | B3 | smote | 46,balanced_accuracy_at_0.5,0.008991556708944,-0.0213120690055304,0.0402518383103885,0.7527272727272727,no clear difference
+3 Drift,Training windows versus expanding window,LR | A | rolling-150,auc,-0.0044944603163542,-0.0391884973279058,0.0286725015742107,0.9145945945945944,no clear difference
+3 Drift,Training windows versus expanding window,LR | A | rolling-150,"brier (negated, higher is better)",-0.0043398381034171,-0.0158463792081075,0.0070233199262792,0.6496551724137931,no clear difference
+3 Drift,Training windows versus expanding window,LR | A | rolling-250,auc,-0.0110619469026548,-0.0384065104668226,0.0147607924183981,0.6496551724137931,no clear difference
+3 Drift,Training windows versus expanding window,LR | A | rolling-250,"brier (negated, higher is better)",-0.0030803238670634,-0.0114511566240289,0.0052441130489214,0.6626666666666666,no clear difference
+3 Drift,Training windows versus expanding window,LR | A | decay-1y,auc,-0.008901818688593,-0.0304159105403604,0.0124574783186372,0.643076923076923,no clear difference
+3 Drift,Training windows versus expanding window,LR | A | decay-1y,"brier (negated, higher is better)",-0.0027445693574139,-0.0096616718481495,0.0039285384396524,0.643076923076923,no clear difference
+3 Drift,Training windows versus expanding window,LR | A | decay-2y,auc,-0.0015852553829001,-0.0130129466535762,0.0094483527307646,0.8976470588235294,no clear difference
+3 Drift,Training windows versus expanding window,LR | A | decay-2y,"brier (negated, higher is better)",-3.962929962778028e-05,-0.0033533391478056,0.0032737284890226,0.964,no clear difference
+3 Drift,Training windows versus expanding window,LR | A | decay-4y,auc,-0.0005226116646923,-0.0067072201392221,0.0056078531727287,0.9145945945945944,no clear difference
+3 Drift,Training windows versus expanding window,LR | A | decay-4y,"brier (negated, higher is better)",7.345644402056983e-05,-0.0018035170551892,0.0019152910281686,0.964,no clear difference
+3 Drift,Training windows versus expanding window,HGB | A | rolling-150,auc,-0.0525660232736394,-0.08534132237646,-0.0208244134642161,0.0028571428571428,worse (supported)
+3 Drift,Training windows versus expanding window,HGB | A | rolling-150,"brier (negated, higher is better)",-0.0274322648077618,-0.041210244880072,-0.0148598670754002,0.0028571428571428,worse (supported)
+3 Drift,Training windows versus expanding window,HGB | A | rolling-250,auc,-0.030607623162149,-0.0549494627649039,-0.0072119948196707,0.0175,worse (supported)
+3 Drift,Training windows versus expanding window,HGB | A | rolling-250,"brier (negated, higher is better)",-0.0141761365091959,-0.0230706670685776,-0.0057473196159845,0.0028571428571428,worse (supported)
+3 Drift,Training windows versus expanding window,HGB | A | decay-1y,auc,-0.0278813323113372,-0.0517774099459353,-0.0042464222432372,0.0423529411764705,worse (supported)
+3 Drift,Training windows versus expanding window,HGB | A | decay-1y,"brier (negated, higher is better)",-0.0116489047108205,-0.0193851427951158,-0.0037784467069257,0.0036363636363636,worse (supported)
+3 Drift,Training windows versus expanding window,HGB | A | decay-2y,auc,-0.0162967737439899,-0.0331828390266325,0.0003811059636544,0.1054545454545454,no clear difference
+3 Drift,Training windows versus expanding window,HGB | A | decay-2y,"brier (negated, higher is better)",-0.0054520600332982,-0.0108589177415307,-7.497501403156887e-05,0.0895238095238095,no clear difference
+3 Drift,Training windows versus expanding window,HGB | A | decay-4y,auc,-0.0011758762455578,-0.0128031931055324,0.0107685527504619,0.9145945945945944,no clear difference
+3 Drift,Training windows versus expanding window,HGB | A | decay-4y,"brier (negated, higher is better)",0.0001994861958016,-0.0033999125449045,0.0037209920340858,0.964,no clear difference
+3 Drift,Training windows versus expanding window,XGB | B3 | rolling-150,auc,-0.0688279562399832,-0.1004550171869544,-0.0372240003497578,0.0028571428571428,worse (supported)
+3 Drift,Training windows versus expanding window,XGB | B3 | rolling-150,"brier (negated, higher is better)",-0.0344873040875189,-0.0485212226668683,-0.0205111124408128,0.0028571428571428,worse (supported)
+3 Drift,Training windows versus expanding window,XGB | B3 | rolling-250,auc,-0.039265556407219,-0.0601363662311627,-0.0194951158462191,0.0036363636363636,worse (supported)
+3 Drift,Training windows versus expanding window,XGB | B3 | rolling-250,"brier (negated, higher is better)",-0.0197447381981461,-0.0282879731878186,-0.0117305104432749,0.0028571428571428,worse (supported)
+3 Drift,Training windows versus expanding window,XGB | B3 | decay-1y,auc,-0.0256602327363947,-0.0489668882611015,-0.0036695372239329,0.0533333333333333,no clear difference
+3 Drift,Training windows versus expanding window,XGB | B3 | decay-1y,"brier (negated, higher is better)",-0.0119748112985331,-0.0198673712669741,-0.0042810125970252,0.0057142857142857,worse (supported)
+3 Drift,Training windows versus expanding window,XGB | B3 | decay-2y,auc,-0.02529440457111,-0.0414661565775199,-0.0088719469120066,0.0036363636363636,worse (supported)
+3 Drift,Training windows versus expanding window,XGB | B3 | decay-2y,"brier (negated, higher is better)",-0.0124610504903293,-0.0193704130093458,-0.005540050206473,0.0028571428571428,worse (supported)
+3 Drift,Training windows versus expanding window,XGB | B3 | decay-4y,auc,-0.0021427078252387,-0.0112174937614266,0.0067633213812366,0.7637499999999999,no clear difference
+3 Drift,Training windows versus expanding window,XGB | B3 | decay-4y,"brier (negated, higher is better)",-0.0010906997077471,-0.0042002030598056,0.0020477719077893,0.6496551724137931,no clear difference
+3 Drift,Training windows versus expanding window,RF | B3 | rolling-150,auc,-0.051477248972197,-0.0858162358483157,-0.0193191337450381,0.008,worse (supported)
+3 Drift,Training windows versus expanding window,RF | B3 | rolling-150,"brier (negated, higher is better)",-0.0175092068900644,-0.027868824991239,-0.0073854440204847,0.0057142857142857,worse (supported)
+3 Drift,Training windows versus expanding window,RF | B3 | rolling-250,auc,-0.0241446589087869,-0.0419654989386726,-0.0080186180108616,0.0057142857142857,worse (supported)
+3 Drift,Training windows versus expanding window,RF | B3 | rolling-250,"brier (negated, higher is better)",-0.0083304169527306,-0.0136538063689881,-0.0032919328408521,0.0036363636363636,worse (supported)
+3 Drift,Training windows versus expanding window,RF | B3 | decay-1y,auc,-0.0257821754581563,-0.0510829712262659,-0.0006962314315255,0.086,no clear difference
+3 Drift,Training windows versus expanding window,RF | B3 | decay-1y,"brier (negated, higher is better)",-0.0085162668446406,-0.0164551965277027,-0.0007895427754716,0.0652631578947368,no clear difference
+3 Drift,Training windows versus expanding window,RF | B3 | decay-2y,auc,-0.008640512856247,-0.0255549546104678,0.0083109493831638,0.5116666666666666,no clear difference
+3 Drift,Training windows versus expanding window,RF | B3 | decay-2y,"brier (negated, higher is better)",-0.0027289723524048,-0.0080611426808434,0.0025701779146481,0.5116666666666666,no clear difference
+3 Drift,Training windows versus expanding window,RF | B3 | decay-4y,auc,-0.0032576127099157,-0.0210488852505427,0.013941395479819,0.8084848484848485,no clear difference
+3 Drift,Training windows versus expanding window,RF | B3 | decay-4y,"brier (negated, higher is better)",-0.0015002285283363,-0.0067032763182264,0.0041724796241728,0.6941935483870969,no clear difference
+3 Drift,Windowed models versus logistic regression,LR | set A | rolling-150,auc,-0.0044944603163542,-0.0391884973279058,0.0286725015742107,0.9053636363636364,no clear difference
+3 Drift,Windowed models versus logistic regression,LR | set A | rolling-250,auc,-0.0110619469026548,-0.0384065104668226,0.0147607924183981,0.8433333333333333,no clear difference
+3 Drift,Windowed models versus logistic regression,LR | set A | decay-1y,auc,-0.008901818688593,-0.0304159105403604,0.0124574783186372,0.8433333333333333,no clear difference
+3 Drift,Windowed models versus logistic regression,LR | set A | decay-2y,auc,-0.0015852553829001,-0.0130129466535762,0.0094483527307646,0.9053636363636364,no clear difference
+3 Drift,Windowed models versus logistic regression,LR | set A | decay-4y,auc,-0.0005226116646923,-0.0067072201392221,0.0056078531727287,0.9053636363636364,no clear difference
+3 Drift,Windowed models versus logistic regression,HGB | set A | expanding,auc,0.0036147306807888,-0.0301156877120162,0.0381784062376106,0.9053636363636364,no clear difference
+3 Drift,Windowed models versus logistic regression,HGB | set A | rolling-150,auc,-0.0489512925928505,-0.0889017390957088,-0.0065115365443449,0.575,no clear difference
+3 Drift,Windowed models versus logistic regression,HGB | set A | rolling-250,auc,-0.0269928924813601,-0.0655792781554705,0.0116157953755884,0.575,no clear difference
+3 Drift,Windowed models versus logistic regression,HGB | set A | decay-1y,auc,-0.0242666016305483,-0.0608977834177746,0.0148013203576587,0.6727500000000001,no clear difference
+3 Drift,Windowed models versus logistic regression,HGB | set A | decay-2y,auc,-0.012682043063201,-0.0492501125688831,0.0261152887683003,0.8810769230769231,no clear difference
+3 Drift,Windowed models versus logistic regression,HGB | set A | decay-4y,auc,0.002438854435231,-0.0328075928136903,0.0380332518268433,0.9240000000000002,no clear difference
+3 Drift,Windowed models versus logistic regression,XGB | set B3 | expanding,auc,0.031722528046826,-0.0053530388692668,0.0691948824408897,0.575,no clear difference
+3 Drift,Windowed models versus logistic regression,XGB | set B3 | rolling-150,auc,-0.0371054281931572,-0.0840142115091305,0.0109066302441434,0.575,no clear difference
+3 Drift,Windowed models versus logistic regression,XGB | set B3 | rolling-250,auc,-0.007543028360393,-0.0489739474246367,0.0320727583547154,0.9053636363636364,no clear difference
+3 Drift,Windowed models versus logistic regression,XGB | set B3 | decay-1y,auc,0.0060622953104313,-0.0340654122381822,0.0467407766490031,0.9053636363636364,no clear difference
+3 Drift,Windowed models versus logistic regression,XGB | set B3 | decay-2y,auc,0.0064281234757159,-0.0334747764234394,0.0458474212875938,0.9053636363636364,no clear difference
+3 Drift,Windowed models versus logistic regression,XGB | set B3 | decay-4y,auc,0.0295798202215873,-0.0072472122318931,0.0686988187891604,0.575,no clear difference
+3 Drift,Windowed models versus logistic regression,RF | set B3 | expanding,auc,0.0290920493345412,-0.008688150253566,0.0696654981701163,0.575,no clear difference
+3 Drift,Windowed models versus logistic regression,RF | set B3 | rolling-150,auc,-0.0223851996376558,-0.0686064330881404,0.0263632258960822,0.7774000000000001,no clear difference
+3 Drift,Windowed models versus logistic regression,RF | set B3 | rolling-250,auc,0.0049473904257543,-0.034803905946404,0.0454854626329732,0.9053636363636364,no clear difference
+3 Drift,Windowed models versus logistic regression,RF | set B3 | decay-1y,auc,0.0033098738763849,-0.0388164792782478,0.0458232095978725,0.9053636363636364,no clear difference
+3 Drift,Windowed models versus logistic regression,RF | set B3 | decay-2y,auc,0.0204515364782942,-0.0170079507467026,0.0616007141139232,0.7774000000000001,no clear difference
+3 Drift,Windowed models versus logistic regression,RF | set B3 | decay-4y,auc,0.0258344366246254,-0.0107527197276771,0.0637668917228219,0.575,no clear difference
+4 Calibration,Recalibration versus raw probabilities,"reference: LR, set A | platt_all","brier (negated, higher is better)",-0.0061764446218241,-0.0119584318585108,-0.0012286425077494,0.0577777777777777,no clear difference
+4 Calibration,Recalibration versus raw probabilities,"reference: LR, set A | platt_all","log-loss (negated, higher is better)",-0.0171078319505595,-0.0331909564384928,-0.0028963530925753,0.06,no clear difference
+4 Calibration,Recalibration versus raw probabilities,"reference: LR, set A | platt_recent","brier (negated, higher is better)",-0.0057345805706548,-0.0121865767213545,2.897416787997193e-05,0.1457142857142857,no clear difference
+4 Calibration,Recalibration versus raw probabilities,"reference: LR, set A | platt_recent","log-loss (negated, higher is better)",-0.0165139366948472,-0.034514171184632,-0.0007973108541626,0.1169230769230769,no clear difference
+4 Calibration,Recalibration versus raw probabilities,"reference: LR, set A | isotonic_all","brier (negated, higher is better)",-0.0145668190095221,-0.0250321453755499,-0.0050837255531145,0.0457142857142857,worse (supported)
+4 Calibration,Recalibration versus raw probabilities,"reference: LR, set A | isotonic_all","log-loss (negated, higher is better)",-0.1118666930374691,-0.1949320402733197,-0.0432068927089906,0.005,worse (supported)
+4 Calibration,Recalibration versus raw probabilities,"reference: LR, set A | shift_all","brier (negated, higher is better)",-0.0011096495967861,-0.0038599586239911,0.0016040489247558,0.8777777777777778,no clear difference
+4 Calibration,Recalibration versus raw probabilities,"reference: LR, set A | shift_all","log-loss (negated, higher is better)",-0.0021760647889732,-0.0081202259537086,0.0036879120711811,0.9410526315789474,no clear difference
+4 Calibration,Recalibration versus raw probabilities,"reference: LR, set A | shift_recent","brier (negated, higher is better)",0.0006382808021424,-0.002627660200292,0.0038077393111649,0.974054054054054,no clear difference
+4 Calibration,Recalibration versus raw probabilities,"reference: LR, set A | shift_recent","log-loss (negated, higher is better)",0.001524732530964,-0.0057509106310618,0.0085875330099353,0.974054054054054,no clear difference
+4 Calibration,Recalibration versus raw probabilities,"basic: HGB, set A | platt_all","brier (negated, higher is better)",-0.0010784366188604,-0.0066433782552026,0.0046106810379402,0.974054054054054,no clear difference
+4 Calibration,Recalibration versus raw probabilities,"basic: HGB, set A | platt_all","log-loss (negated, higher is better)",-4.632168096097011e-06,-0.0150563659697766,0.0159736855800318,0.983,no clear difference
+4 Calibration,Recalibration versus raw probabilities,"basic: HGB, set A | platt_recent","brier (negated, higher is better)",-0.0004302579018279,-0.0059616631849385,0.0054211908392499,0.974054054054054,no clear difference
+4 Calibration,Recalibration versus raw probabilities,"basic: HGB, set A | platt_recent","log-loss (negated, higher is better)",0.0013786802631253,-0.0141681420402707,0.0175505099483547,0.974054054054054,no clear difference
+4 Calibration,Recalibration versus raw probabilities,"basic: HGB, set A | isotonic_all","brier (negated, higher is better)",-0.0033037148569303,-0.0097118735379035,0.0027829095225127,0.78,no clear difference
+4 Calibration,Recalibration versus raw probabilities,"basic: HGB, set A | isotonic_all","log-loss (negated, higher is better)",-0.0576383047395122,-0.1110515774206973,-0.0115323435327532,0.0457142857142857,worse (supported)
+4 Calibration,Recalibration versus raw probabilities,"basic: HGB, set A | shift_all","brier (negated, higher is better)",-0.0005719478103639,-0.0020274429446444,0.0008024175418599,0.8777777777777778,no clear difference
+4 Calibration,Recalibration versus raw probabilities,"basic: HGB, set A | shift_all","log-loss (negated, higher is better)",-0.0006066231330905,-0.0038837739619755,0.0025536108191281,0.974054054054054,no clear difference
+4 Calibration,Recalibration versus raw probabilities,"basic: HGB, set A | shift_recent","brier (negated, higher is better)",0.0001730971404126,-0.0015731494626793,0.001824372523518,0.974054054054054,no clear difference
+4 Calibration,Recalibration versus raw probabilities,"basic: HGB, set A | shift_recent","log-loss (negated, higher is better)",0.0009851256207477,-0.0030325313542796,0.0047519243348271,0.974054054054054,no clear difference
+4 Calibration,Recalibration versus raw probabilities,"buzz: XGB, set B3 | platt_all","brier (negated, higher is better)",-0.0005850037088234,-0.0049146494746582,0.003835219572978,0.974054054054054,no clear difference
+4 Calibration,Recalibration versus raw probabilities,"buzz: XGB, set B3 | platt_all","log-loss (negated, higher is better)",-0.0018351065516635,-0.0132104599683152,0.0102233549791363,0.974054054054054,no clear difference
+4 Calibration,Recalibration versus raw probabilities,"buzz: XGB, set B3 | platt_recent","brier (negated, higher is better)",-0.0005584922387993,-0.0053847147495093,0.0042942427978932,0.974054054054054,no clear difference
+4 Calibration,Recalibration versus raw probabilities,"buzz: XGB, set B3 | platt_recent","log-loss (negated, higher is better)",-0.0019744781814848,-0.0144537387307741,0.0112973733720493,0.974054054054054,no clear difference
+4 Calibration,Recalibration versus raw probabilities,"buzz: XGB, set B3 | isotonic_all","brier (negated, higher is better)",-0.0136407647768945,-0.0216248509840228,-0.0058948358802922,0.005,worse (supported)
+4 Calibration,Recalibration versus raw probabilities,"buzz: XGB, set B3 | isotonic_all","log-loss (negated, higher is better)",-0.1291033767905841,-0.213098423394823,-0.0557887772213372,0.005,worse (supported)
+4 Calibration,Recalibration versus raw probabilities,"buzz: XGB, set B3 | shift_all","brier (negated, higher is better)",-4.049204749650981e-05,-0.0011169469217146,0.0010289196958276,0.9794871794871792,no clear difference
+4 Calibration,Recalibration versus raw probabilities,"buzz: XGB, set B3 | shift_all","log-loss (negated, higher is better)",-0.0002633483929085,-0.0026333999497451,0.0021304215742645,0.974054054054054,no clear difference
+4 Calibration,Recalibration versus raw probabilities,"buzz: XGB, set B3 | shift_recent","brier (negated, higher is better)",-0.0001379532912564,-0.0021341304149625,0.0018598043650672,0.974054054054054,no clear difference
+4 Calibration,Recalibration versus raw probabilities,"buzz: XGB, set B3 | shift_recent","log-loss (negated, higher is better)",-0.0004546394790635,-0.0048473030695298,0.0039572666520895,0.974054054054054,no clear difference
+4 Calibration,Recalibration versus raw probabilities,"earlier headline: XGB, set D | platt_all","brier (negated, higher is better)",0.0002670756557398,-0.0048725803335732,0.0054881658748468,0.9794871794871792,no clear difference
+4 Calibration,Recalibration versus raw probabilities,"earlier headline: XGB, set D | platt_all","log-loss (negated, higher is better)",0.0037252169538041,-0.0109257140394511,0.01973129705091,0.974054054054054,no clear difference
+4 Calibration,Recalibration versus raw probabilities,"earlier headline: XGB, set D | platt_recent","brier (negated, higher is better)",0.0006542345592913,-0.0053479791243924,0.0065988192831561,0.974054054054054,no clear difference
+4 Calibration,Recalibration versus raw probabilities,"earlier headline: XGB, set D | platt_recent","log-loss (negated, higher is better)",0.0043574559293836,-0.0120573110696932,0.0213926814472967,0.974054054054054,no clear difference
+4 Calibration,Recalibration versus raw probabilities,"earlier headline: XGB, set D | isotonic_all","brier (negated, higher is better)",-0.0059360726786834,-0.0145395577697213,0.0024797561381804,0.4533333333333333,no clear difference
+4 Calibration,Recalibration versus raw probabilities,"earlier headline: XGB, set D | isotonic_all","log-loss (negated, higher is better)",-0.1466350846182093,-0.2362075504109402,-0.0647224678272091,0.005,worse (supported)
+4 Calibration,Recalibration versus raw probabilities,"earlier headline: XGB, set D | shift_all","brier (negated, higher is better)",0.002019979194574,0.0004685768298767,0.003467950338754,0.0457142857142857,better (supported)
+4 Calibration,Recalibration versus raw probabilities,"earlier headline: XGB, set D | shift_all","log-loss (negated, higher is better)",0.0041419962470131,0.0008328034067423,0.0072696364648501,0.0549999999999999,no clear difference
+4 Calibration,Recalibration versus raw probabilities,"earlier headline: XGB, set D | shift_recent","brier (negated, higher is better)",0.0031990914105938,0.0003434039772502,0.0060319443759181,0.0866666666666666,no clear difference
+4 Calibration,Recalibration versus raw probabilities,"earlier headline: XGB, set D | shift_recent","log-loss (negated, higher is better)",0.0068393238187355,0.0006263963952605,0.0129687868561902,0.0866666666666666,no clear difference
+4 Calibration,Warning flags versus prediction quality,"reference: LR, set A | mahalanobis_high",accuracy,,,,,too few flagged films to test
+4 Calibration,Warning flags versus prediction quality,"reference: LR, set A | mahalanobis_high","brier (negated, higher is better)",,,,,too few flagged films to test
+4 Calibration,Warning flags versus prediction quality,"reference: LR, set A | input_shift",accuracy,,,,,too few flagged films to test
+4 Calibration,Warning flags versus prediction quality,"reference: LR, set A | input_shift","brier (negated, higher is better)",,,,,too few flagged films to test
+4 Calibration,Warning flags versus prediction quality,"reference: LR, set A | language_few_films",accuracy,-0.0433636235227647,-0.1687522105361131,0.0835784904750421,0.8601081081081081,no clear difference
+4 Calibration,Warning flags versus prediction quality,"reference: LR, set A | language_few_films","brier (negated, higher is better)",-0.0052395552741673,-0.0470088094047709,0.0375571502930231,0.9287441860465117,no clear difference
+4 Calibration,Warning flags versus prediction quality,"reference: LR, set A | budget_or_runtime_unusual",accuracy,0.0615799295044577,-0.2189986523506538,0.3154732096523091,0.8601081081081081,no clear difference
+4 Calibration,Warning flags versus prediction quality,"reference: LR, set A | budget_or_runtime_unusual","brier (negated, higher is better)",0.0199844166765823,-0.0985311234170743,0.1268158130871785,0.8775384615384615,no clear difference
+4 Calibration,Warning flags versus prediction quality,"reference: LR, set A | any_input_flag",accuracy,-0.0057817998994469,-0.1260430133393031,0.1134546895810131,0.935,no clear difference
+4 Calibration,Warning flags versus prediction quality,"reference: LR, set A | any_input_flag","brier (negated, higher is better)",0.0091385266868375,-0.0309604385405922,0.0484686443290116,0.8601081081081081,no clear difference
+4 Calibration,Warning flags versus prediction quality,"reference: LR, set A | close_call",accuracy,-0.1231831997789445,-0.2640572771794631,0.0108855306452827,0.464,no clear difference
+4 Calibration,Warning flags versus prediction quality,"reference: LR, set A | close_call","brier (negated, higher is better)",-0.0352268148661649,-0.0617849842326382,-0.0101295216793115,0.0576,no clear difference
+4 Calibration,Warning flags versus prediction quality,"reference: LR, set A | any_warning",accuracy,-0.0612356147789218,-0.1661470314576871,0.0393070520368854,0.6663529411764706,no clear difference
+4 Calibration,Warning flags versus prediction quality,"reference: LR, set A | any_warning","brier (negated, higher is better)",-0.0128153869283801,-0.0425621896062997,0.0175373833602941,0.8326956521739131,no clear difference
+4 Calibration,Warning flags versus prediction quality,"basic: HGB, set A | mahalanobis_high",accuracy,,,,,too few flagged films to test
+4 Calibration,Warning flags versus prediction quality,"basic: HGB, set A | mahalanobis_high","brier (negated, higher is better)",,,,,too few flagged films to test
+4 Calibration,Warning flags versus prediction quality,"basic: HGB, set A | input_shift",accuracy,,,,,too few flagged films to test
+4 Calibration,Warning flags versus prediction quality,"basic: HGB, set A | input_shift","brier (negated, higher is better)",,,,,too few flagged films to test
+4 Calibration,Warning flags versus prediction quality,"basic: HGB, set A | language_few_films",accuracy,-0.0442111210508969,-0.1808087213904018,0.0838530895780282,0.8502857142857143,no clear difference
+4 Calibration,Warning flags versus prediction quality,"basic: HGB, set A | language_few_films","brier (negated, higher is better)",0.0069546573984045,-0.0413660487460473,0.0538018579208933,0.879219512195122,no clear difference
+4 Calibration,Warning flags versus prediction quality,"basic: HGB, set A | budget_or_runtime_unusual",accuracy,0.1250259174787477,-0.132733775658304,0.3527890466531439,0.8160000000000001,no clear difference
+4 Calibration,Warning flags versus prediction quality,"basic: HGB, set A | budget_or_runtime_unusual","brier (negated, higher is better)",0.0246485120931469,-0.1159681297371155,0.1386963320801695,0.8601081081081081,no clear difference
+4 Calibration,Warning flags versus prediction quality,"basic: HGB, set A | any_input_flag",accuracy,-0.0093011563599798,-0.1323045352908192,0.1084404823645632,0.935,no clear difference
+4 Calibration,Warning flags versus prediction quality,"basic: HGB, set A | any_input_flag","brier (negated, higher is better)",0.0212389682687951,-0.0236500783426711,0.0639579568449076,0.8160000000000001,no clear difference
+4 Calibration,Warning flags versus prediction quality,"basic: HGB, set A | close_call",accuracy,-0.2733524355300859,-0.4395572202336607,-0.1040303274359046,0.048,flagged films do worse (supported)
+4 Calibration,Warning flags versus prediction quality,"basic: HGB, set A | close_call","brier (negated, higher is better)",-0.0369818134793238,-0.0822143068587518,0.0064362298062694,0.4959999999999999,no clear difference
+4 Calibration,Warning flags versus prediction quality,"basic: HGB, set A | any_warning",accuracy,-0.0737851170276038,-0.1867502191186401,0.0390107575244586,0.5820000000000001,no clear difference
+4 Calibration,Warning flags versus prediction quality,"basic: HGB, set A | any_warning","brier (negated, higher is better)",0.0155335635764222,-0.0228448026437541,0.0533302210029028,0.8502857142857143,no clear difference
+4 Calibration,Warning flags versus prediction quality,"buzz: XGB, set B3 | mahalanobis_high",accuracy,0.132359260850881,-0.0501711039580542,0.2980916949785129,0.4959999999999999,no clear difference
+4 Calibration,Warning flags versus prediction quality,"buzz: XGB, set B3 | mahalanobis_high","brier (negated, higher is better)",0.0166228237486065,-0.0672162781239274,0.0902937457109983,0.8601081081081081,no clear difference
+4 Calibration,Warning flags versus prediction quality,"buzz: XGB, set B3 | input_shift",accuracy,0.132359260850881,-0.0501711039580542,0.2980916949785129,0.4959999999999999,no clear difference
+4 Calibration,Warning flags versus prediction quality,"buzz: XGB, set B3 | input_shift","brier (negated, higher is better)",0.0166228237486065,-0.0672162781239274,0.0902937457109983,0.8601081081081081,no clear difference
+4 Calibration,Warning flags versus prediction quality,"buzz: XGB, set B3 | language_few_films",accuracy,0.0131832948820566,-0.1137065342545112,0.140625,0.9349090909090908,no clear difference
+4 Calibration,Warning flags versus prediction quality,"buzz: XGB, set B3 | language_few_films","brier (negated, higher is better)",0.0080404264774412,-0.0423090878819762,0.0586351332773129,0.879219512195122,no clear difference
+4 Calibration,Warning flags versus prediction quality,"buzz: XGB, set B3 | budget_or_runtime_unusual",accuracy,0.2073398299813393,-0.0477187829602718,0.385042026965525,0.464,no clear difference
+4 Calibration,Warning flags versus prediction quality,"buzz: XGB, set B3 | budget_or_runtime_unusual","brier (negated, higher is better)",0.0585656827867996,-0.0820818224867227,0.1667154779409111,0.8160000000000001,no clear difference
+4 Calibration,Warning flags versus prediction quality,"buzz: XGB, set B3 | any_input_flag",accuracy,0.082509303561935,-0.0265201928694713,0.1900214133015509,0.4959999999999999,no clear difference
+4 Calibration,Warning flags versus prediction quality,"buzz: XGB, set B3 | any_input_flag","brier (negated, higher is better)",0.0157756526987058,-0.0273941538134836,0.0587151601958492,0.8502857142857143,no clear difference
+4 Calibration,Warning flags versus prediction quality,"buzz: XGB, set B3 | close_call",accuracy,-0.3192202254035942,-0.458024239834928,-0.1770171386773317,0.024,flagged films do worse (supported)
+4 Calibration,Warning flags versus prediction quality,"buzz: XGB, set B3 | close_call","brier (negated, higher is better)",-0.0335235067984383,-0.0667691396694278,0.000796217887756,0.3771428571428571,no clear difference
+4 Calibration,Warning flags versus prediction quality,"buzz: XGB, set B3 | any_warning",accuracy,-0.0417584406963762,-0.137713631450918,0.0636711575401941,0.8502857142857143,no clear difference
+4 Calibration,Warning flags versus prediction quality,"buzz: XGB, set B3 | any_warning","brier (negated, higher is better)",0.0018354815843831,-0.0349812114124997,0.0398276787379937,0.935,no clear difference
+4 Calibration,Warning flags versus prediction quality,"earlier headline: XGB, set D | mahalanobis_high",accuracy,0.217017619252256,0.0695962217726762,0.3342620340521423,0.048,flagged films do better (supported)
+4 Calibration,Warning flags versus prediction quality,"earlier headline: XGB, set D | mahalanobis_high","brier (negated, higher is better)",0.0221006269981378,-0.0660308519931161,0.0976668864958811,0.8601081081081081,no clear difference
+4 Calibration,Warning flags versus prediction quality,"earlier headline: XGB, set D | input_shift",accuracy,0.217017619252256,0.0695962217726762,0.3342620340521423,0.048,flagged films do better (supported)
+4 Calibration,Warning flags versus prediction quality,"earlier headline: XGB, set D | input_shift","brier (negated, higher is better)",0.0221006269981378,-0.0660308519931161,0.0976668864958811,0.8601081081081081,no clear difference
+4 Calibration,Warning flags versus prediction quality,"earlier headline: XGB, set D | language_few_films",accuracy,0.0232590988276284,-0.1011522175836164,0.1444565217391304,0.8775384615384615,no clear difference
+4 Calibration,Warning flags versus prediction quality,"earlier headline: XGB, set D | language_few_films","brier (negated, higher is better)",0.0174286809575909,-0.0331974179480458,0.0667121740645908,0.8502857142857143,no clear difference
+4 Calibration,Warning flags versus prediction quality,"earlier headline: XGB, set D | budget_or_runtime_unusual",accuracy,0.0103669914990669,-0.271505376344086,0.2604473886328724,0.935,no clear difference
+4 Calibration,Warning flags versus prediction quality,"earlier headline: XGB, set D | budget_or_runtime_unusual","brier (negated, higher is better)",0.0267231554648352,-0.1153299839015506,0.1451416199004898,0.8601081081081081,no clear difference
+4 Calibration,Warning flags versus prediction quality,"earlier headline: XGB, set D | any_input_flag",accuracy,0.0742158426368952,-0.0283014194129413,0.1719180388401215,0.4959999999999999,no clear difference
+4 Calibration,Warning flags versus prediction quality,"earlier headline: XGB, set D | any_input_flag","brier (negated, higher is better)",0.0182543609347211,-0.0247851338898329,0.06022558248534,0.8326956521739131,no clear difference
+4 Calibration,Warning flags versus prediction quality,"earlier headline: XGB, set D | close_call",accuracy,-0.1404528150671208,-0.280872389546113,-0.0074156118638159,0.32,no clear difference
+4 Calibration,Warning flags versus prediction quality,"earlier headline: XGB, set D | close_call","brier (negated, higher is better)",-0.0284205508456228,-0.0628273987330941,0.0060799319466784,0.4959999999999999,no clear difference
+4 Calibration,Warning flags versus prediction quality,"earlier headline: XGB, set D | any_warning",accuracy,-0.0435723560813735,-0.1431972031236736,0.0502799356662818,0.8326956521739131,no clear difference
+4 Calibration,Warning flags versus prediction quality,"earlier headline: XGB, set D | any_warning","brier (negated, higher is better)",-0.003050030809652,-0.0393153294292691,0.0338834111374805,0.9287441860465117,no clear difference
+5 Feature ablation,Feature groups removed or added,LR | minus budget,auc,-0.0241620792976099,-0.0385437647778786,-0.009688146984054,0.0152727272727272,worse (supported)
+5 Feature ablation,Feature groups removed or added,LR | minus budget,"brier (negated, higher is better)",-0.0085064009744153,-0.0140969893827202,-0.0026816762265694,0.028,worse (supported)
+5 Feature ablation,Feature groups removed or added,LR | minus runtime,auc,-0.0081179011915546,-0.021184369142862,0.0040799785521882,0.3469565217391304,no clear difference
+5 Feature ablation,Feature groups removed or added,LR | minus runtime,"brier (negated, higher is better)",-0.0011334756924488,-0.0061279047366095,0.0038336544841951,0.7332972972972973,no clear difference
+5 Feature ablation,Feature groups removed or added,LR | minus release_year,auc,6.968155529230025e-05,-0.0049033986708058,0.0053693189792972,0.999,no clear difference
+5 Feature ablation,Feature groups removed or added,LR | minus release_year,"brier (negated, higher is better)",-0.0012840991033801,-0.0037689112306502,0.0010387660626957,0.4322181818181818,no clear difference
+5 Feature ablation,Feature groups removed or added,LR | minus release_timing,auc,0.010678698348547,-0.0037369890386315,0.0259110302769444,0.3320930232558139,no clear difference
+5 Feature ablation,Feature groups removed or added,LR | minus release_timing,"brier (negated, higher is better)",0.0142453826022056,0.007577406367016,0.0214044686106157,0.0046666666666666,better (supported)
+5 Feature ablation,Feature groups removed or added,LR | minus language,auc,0.0061842380321928,-0.0035255375508097,0.0160897707773634,0.4022307692307692,no clear difference
+5 Feature ablation,Feature groups removed or added,LR | minus language,"brier (negated, higher is better)",0.0021221682644525,-0.0017282901379091,0.0061182825119571,0.4391578947368421,no clear difference
+5 Feature ablation,Feature groups removed or added,LR | minus genres,auc,0.0007839174970385,-0.0113954712663829,0.0134491861530407,0.9624578313253012,no clear difference
+5 Feature ablation,Feature groups removed or added,LR | minus genres,"brier (negated, higher is better)",0.0043140817572992,-0.001187259782507,0.0100099255305484,0.2717647058823529,no clear difference
+5 Feature ablation,Feature groups removed or added,LR | minus buzz_wikipedia,auc,0.0225071423594174,0.0049686753963313,0.0393472956675803,0.0419999999999999,better (supported)
+5 Feature ablation,Feature groups removed or added,LR | minus buzz_wikipedia,"brier (negated, higher is better)",0.0141112282675623,0.0072726935917085,0.021083659509359,0.0046666666666666,better (supported)
+5 Feature ablation,Feature groups removed or added,LR | minus cast_crew_studio_history,auc,0.0587241307225977,0.0112540129766919,0.1054109188903966,0.076,no clear difference
+5 Feature ablation,Feature groups removed or added,LR | minus cast_crew_studio_history,"brier (negated, higher is better)",0.0312409811624493,0.0138807765745106,0.0494036978419345,0.0084,better (supported)
+5 Feature ablation,Feature groups removed or added,LR | minus festival_calendar,auc,0.0061319768657236,-0.0062654770807683,0.018152849180127,0.4570169491525424,no clear difference
+5 Feature ablation,Feature groups removed or added,LR | minus festival_calendar,"brier (negated, higher is better)",0.0041278623675317,-0.000439836912805,0.00860301753339,0.2352,no clear difference
+5 Feature ablation,Feature groups removed or added,LR | minus competing_releases,auc,-0.011532297400878,-0.0315310225786355,0.0081425040343408,0.4089056603773585,no clear difference
+5 Feature ablation,Feature groups removed or added,LR | minus competing_releases,"brier (negated, higher is better)",-0.0097866956976963,-0.0192434330621639,-0.0002880014259756,0.126,no clear difference
+5 Feature ablation,Feature groups removed or added,LR | base plus buzz_wikipedia,auc,-0.023761410354679,-0.0408551371020225,-0.0081623770978752,0.0046666666666666,worse (supported)
+5 Feature ablation,Feature groups removed or added,LR | base plus buzz_wikipedia,"brier (negated, higher is better)",-0.0070010927953815,-0.0121872943717495,-0.0020717414974483,0.0046666666666666,worse (supported)
+5 Feature ablation,Feature groups removed or added,LR | base plus cast_crew_studio_history,auc,-0.0515469305274893,-0.0963362851627085,-0.0062143211008967,0.112,no clear difference
+5 Feature ablation,Feature groups removed or added,LR | base plus cast_crew_studio_history,"brier (negated, higher is better)",-0.0187368459793602,-0.0325072819675974,-0.0045444364948871,0.0419999999999999,worse (supported)
+5 Feature ablation,Feature groups removed or added,LR | base plus festival_calendar,auc,-0.0074733468051007,-0.0318136957047018,0.0183982816951565,0.66,no clear difference
+5 Feature ablation,Feature groups removed or added,LR | base plus festival_calendar,"brier (negated, higher is better)",-0.0038921150475164,-0.0097739458062471,0.0026659568625101,0.38472,no clear difference
+5 Feature ablation,Feature groups removed or added,LR | base plus competing_releases,auc,-0.0089366594662392,-0.0274475698757764,0.0090123490201076,0.478258064516129,no clear difference
+5 Feature ablation,Feature groups removed or added,LR | base plus competing_releases,"brier (negated, higher is better)",-0.0043337735329815,-0.0101953747855896,0.0012911134334928,0.2996756756756757,no clear difference
+5 Feature ablation,Feature groups removed or added,HGB | minus budget,auc,-0.0436467841962232,-0.0693605083271848,-0.0161977168591067,0.0046666666666666,worse (supported)
+5 Feature ablation,Feature groups removed or added,HGB | minus budget,"brier (negated, higher is better)",-0.0181180691126968,-0.0272724586160322,-0.0081267848687665,0.0046666666666666,worse (supported)
+5 Feature ablation,Feature groups removed or added,HGB | minus runtime,auc,-0.0029266253222772,-0.0175526682144329,0.0121993586803236,0.79968,no clear difference
+5 Feature ablation,Feature groups removed or added,HGB | minus runtime,"brier (negated, higher is better)",-0.0026545614855199,-0.0078113967276073,0.0026401373107942,0.4570169491525424,no clear difference
+5 Feature ablation,Feature groups removed or added,HGB | minus release_year,auc,-0.0010278029405617,-0.0030632469253321,0.0008763484153921,0.4599344262295082,no clear difference
+5 Feature ablation,Feature groups removed or added,HGB | minus release_year,"brier (negated, higher is better)",-0.0003624547697645,-0.0008728232878909,0.0001201415272307,0.3320930232558139,no clear difference
+5 Feature ablation,Feature groups removed or added,HGB | minus release_timing,auc,0.0159135251898822,-0.0065195681577908,0.0382422139226061,0.3359999999999999,no clear difference
+5 Feature ablation,Feature groups removed or added,HGB | minus release_timing,"brier (negated, higher is better)",0.0038356211200371,-0.0033940631454798,0.0109859980064538,0.435,no clear difference
+5 Feature ablation,Feature groups removed or added,HGB | minus language,auc,-0.0033185840707965,-0.0310706240498631,0.0246910079928742,0.9338181818181818,no clear difference
+5 Feature ablation,Feature groups removed or added,HGB | minus language,"brier (negated, higher is better)",-0.0090331290398888,-0.0197427649491311,0.0014388233249293,0.2469090909090909,no clear difference
+5 Feature ablation,Feature groups removed or added,HGB | minus genres,auc,-0.005104173925162,-0.0123629714524463,0.0020124286984039,0.3320930232558139,no clear difference
+5 Feature ablation,Feature groups removed or added,HGB | minus genres,"brier (negated, higher is better)",-0.002223626208188,-0.0043984409202977,-0.0001527038241661,0.1243199999999999,no clear difference
+5 Feature ablation,Feature groups removed or added,HGB | minus buzz_wikipedia,auc,-0.0165493693819246,-0.040726066644297,0.0076924083275826,0.3469565217391304,no clear difference
+5 Feature ablation,Feature groups removed or added,HGB | minus buzz_wikipedia,"brier (negated, higher is better)",-0.0056544980488958,-0.0133381840106515,0.0017988808626821,0.3072631578947369,no clear difference
+5 Feature ablation,Feature groups removed or added,HGB | minus cast_crew_studio_history,auc,0.0266967458713678,-0.0102675539059738,0.0651987495197023,0.3320930232558139,no clear difference
+5 Feature ablation,Feature groups removed or added,HGB | minus cast_crew_studio_history,"brier (negated, higher is better)",0.005030915421357,-0.0077705199657191,0.0182095239431741,0.5591641791044776,no clear difference
+5 Feature ablation,Feature groups removed or added,HGB | minus festival_calendar,auc,0.016105149466936,-0.0037228164315843,0.0360347616792929,0.2469090909090909,no clear difference
+5 Feature ablation,Feature groups removed or added,HGB | minus festival_calendar,"brier (negated, higher is better)",0.0022924698685891,-0.0042465248078881,0.00867732828607,0.6208695652173913,no clear difference
+5 Feature ablation,Feature groups removed or added,HGB | minus competing_releases,auc,0.0200857083130094,0.0033642302066828,0.0368561195114786,0.0714,no clear difference
+5 Feature ablation,Feature groups removed or added,HGB | minus competing_releases,"brier (negated, higher is better)",0.0038617698553398,-0.001823398939545,0.0094210222900747,0.3556595744680851,no clear difference
+5 Feature ablation,Feature groups removed or added,HGB | base plus buzz_wikipedia,auc,0.0100341439620932,-0.0222492052478718,0.0445174893425474,0.6601690140845071,no clear difference
+5 Feature ablation,Feature groups removed or added,HGB | base plus buzz_wikipedia,"brier (negated, higher is better)",0.0002406069545381,-0.0108208476985713,0.0117970634432414,0.9624578313253012,no clear difference
+5 Feature ablation,Feature groups removed or added,HGB | base plus cast_crew_studio_history,auc,-0.0233694516061598,-0.0586328620333417,0.0137709983291957,0.37625,no clear difference
+5 Feature ablation,Feature groups removed or added,HGB | base plus cast_crew_studio_history,"brier (negated, higher is better)",-0.0104581050331135,-0.0225618819454731,0.0017185325982576,0.2469090909090909,no clear difference
+5 Feature ablation,Feature groups removed or added,HGB | base plus festival_calendar,auc,0.0001219427217614,-0.0216903122683403,0.0242162791410213,0.9624578313253012,no clear difference
+5 Feature ablation,Feature groups removed or added,HGB | base plus festival_calendar,"brier (negated, higher is better)",-0.0032179228274951,-0.0102681708977482,0.0041913171120757,0.532875,no clear difference
+5 Feature ablation,Feature groups removed or added,HGB | base plus competing_releases,auc,-0.0171329524074977,-0.0383182678191863,0.0048342928368449,0.2996756756756757,no clear difference
+5 Feature ablation,Feature groups removed or added,HGB | base plus competing_releases,"brier (negated, higher is better)",-0.0045155426769346,-0.0114508267475941,0.0027204058611215,0.3822857142857143,no clear difference
+5 Feature ablation,Feature groups removed or added,XGB | minus budget,auc,-0.0012020068287924,-0.0254390409528797,0.0220919485631079,0.9624578313253012,no clear difference
+5 Feature ablation,Feature groups removed or added,XGB | minus budget,"brier (negated, higher is better)",0.0039219294268942,-0.0051706504330022,0.0129376137051691,0.5173333333333333,no clear difference
+5 Feature ablation,Feature groups removed or added,XGB | minus runtime,auc,0.0086230924674238,-0.0112721476438637,0.0283894289718884,0.5421818181818182,no clear difference
+5 Feature ablation,Feature groups removed or added,XGB | minus runtime,"brier (negated, higher is better)",0.0079551968234923,0.0003667269929739,0.0157354771501742,0.126,no clear difference
+5 Feature ablation,Feature groups removed or added,XGB | minus release_year,auc,0.0105219148491394,-0.0062984315959885,0.0281681292147402,0.3870588235294117,no clear difference
+5 Feature ablation,Feature groups removed or added,XGB | minus release_year,"brier (negated, higher is better)",0.007944021311647,0.0010120977478634,0.0151049871877666,0.0949565217391304,no clear difference
+5 Feature ablation,Feature groups removed or added,XGB | minus release_timing,auc,0.0255034492369868,0.0079259460785947,0.044674047302006,0.0046666666666666,better (supported)
+5 Feature ablation,Feature groups removed or added,XGB | minus release_timing,"brier (negated, higher is better)",0.0125717418556701,0.0054305270475631,0.019943660824686,0.0046666666666666,better (supported)
+5 Feature ablation,Feature groups removed or added,XGB | minus language,auc,-0.0045989826492928,-0.0221300813279536,0.0124830233134919,0.6801666666666666,no clear difference
+5 Feature ablation,Feature groups removed or added,XGB | minus language,"brier (negated, higher is better)",0.0006270967720798,-0.0056923877277894,0.006639988550165,0.9338181818181818,no clear difference
+5 Feature ablation,Feature groups removed or added,XGB | minus genres,auc,0.0094418507421085,-0.0085487155388471,0.0281249360150299,0.4293333333333333,no clear difference
+5 Feature ablation,Feature groups removed or added,XGB | minus genres,"brier (negated, higher is better)",0.0074890584735385,0.0003405332510197,0.0149463044708683,0.1274482758620689,no clear difference
+5 Feature ablation,Feature groups removed or added,XGB | minus buzz_wikipedia,auc,0.0012891087729077,-0.0264034291059989,0.0297037539168425,0.9624578313253012,no clear difference
+5 Feature ablation,Feature groups removed or added,XGB | minus buzz_wikipedia,"brier (negated, higher is better)",0.0050059957017634,-0.0049047215761887,0.0157870026217396,0.4599344262295082,no clear difference
+5 Feature ablation,Feature groups removed or added,XGB | minus cast_crew_studio_history,auc,0.0502404013657584,0.0171512631201719,0.0836546368073142,0.028,better (supported)
+5 Feature ablation,Feature groups removed or added,XGB | minus cast_crew_studio_history,"brier (negated, higher is better)",0.0200703575129485,0.0072847068144454,0.0324991448367247,0.0258461538461538,better (supported)
+5 Feature ablation,Feature groups removed or added,XGB | minus festival_calendar,auc,0.0203818549230018,0.0025919486215538,0.0386773037871365,0.0878181818181818,no clear difference
+5 Feature ablation,Feature groups removed or added,XGB | minus festival_calendar,"brier (negated, higher is better)",0.0108739783658338,0.0039216303040298,0.0183571853014394,0.021,better (supported)
+5 Feature ablation,Feature groups removed or added,XGB | minus competing_releases,auc,0.0255557104034561,0.0061171328671327,0.0450841947382429,0.0419999999999999,better (supported)
+5 Feature ablation,Feature groups removed or added,XGB | minus competing_releases,"brier (negated, higher is better)",0.012702951057036,0.0053400394139646,0.0206240354660525,0.0046666666666666,better (supported)
+5 Feature ablation,Feature groups removed or added,XGB | base plus buzz_wikipedia,auc,0.0368615427496341,0.0068216739518088,0.0684644643168949,0.0714,no clear difference
+5 Feature ablation,Feature groups removed or added,XGB | base plus buzz_wikipedia,"brier (negated, higher is better)",0.0107559168102064,0.0004955502763926,0.021467245832403,0.126,no clear difference
+5 Feature ablation,Feature groups removed or added,XGB | base plus cast_crew_studio_history,auc,-0.0102431886279702,-0.0482887594505478,0.0276158030140942,0.7134246575342466,no clear difference
+5 Feature ablation,Feature groups removed or added,XGB | base plus cast_crew_studio_history,"brier (negated, higher is better)",-0.0048543737278008,-0.0171953653397908,0.0081031596506008,0.5917058823529411,no clear difference
+5 Feature ablation,Feature groups removed or added,XGB | base plus festival_calendar,auc,0.0096683157968086,-0.0140343703817875,0.0336159102228519,0.5414769230769231,no clear difference
+5 Feature ablation,Feature groups removed or added,XGB | base plus festival_calendar,"brier (negated, higher is better)",0.0003915437473589,-0.0069948862490882,0.0080691839570911,0.9584615384615384,no clear difference
+5 Feature ablation,Feature groups removed or added,XGB | base plus competing_releases,auc,-0.018639816040694,-0.042740533728111,0.0062163520856581,0.3320930232558139,no clear difference
+5 Feature ablation,Feature groups removed or added,XGB | base plus competing_releases,"brier (negated, higher is better)",-0.0066542091349239,-0.0150090862731849,0.0016506768307378,0.2996756756756757,no clear difference
+6 Language,Never-seen language versus the normal model,LR | set A | Hindi,auc,0.0776041666666665,-0.0077131691435955,0.1626618073135521,0.7020000000000001,no clear difference
+6 Language,Never-seen language versus the normal model,LR | set A | Telugu,auc,0.0041407867494824,-0.0387232212232212,0.0446163144469825,0.8930000000000001,no clear difference
+6 Language,Never-seen language versus the normal model,LR | set A | Malayalam,auc,0.0559006211180124,-0.0726810875512996,0.1847955486542442,0.8930000000000001,no clear difference
+6 Language,Never-seen language versus the normal model,LR | set A | Tamil,auc,-0.0054545454545454,-0.1159738811912725,0.0981818181818181,0.8930000000000001,no clear difference
+6 Language,Never-seen language versus the normal model,HGB | set A | Hindi,auc,-0.0341145833333333,-0.1484082031249999,0.0769846371796107,0.8930000000000001,no clear difference
+6 Language,Never-seen language versus the normal model,HGB | set A | Telugu,auc,-0.050207039337474,-0.1413597697473616,0.0349174586740807,0.8930000000000001,no clear difference
+6 Language,Never-seen language versus the normal model,HGB | set A | Malayalam,auc,-0.0108695652173913,-0.1152474590626764,0.0797449989302524,0.8930000000000001,no clear difference
+6 Language,Never-seen language versus the normal model,HGB | set A | Tamil,auc,-0.02,-0.1141408102766799,0.0797173913043477,0.8930000000000001,no clear difference
+6 Language,Never-seen language versus the normal model,XGB | set B3 | Hindi,auc,-0.0989583333333333,-0.2206563620071684,0.0221404423790338,0.7020000000000001,no clear difference
+6 Language,Never-seen language versus the normal model,XGB | set B3 | Telugu,auc,-0.0196687370600414,-0.0795786155876631,0.0320564516129031,0.8930000000000001,no clear difference
+6 Language,Never-seen language versus the normal model,XGB | set B3 | Malayalam,auc,-0.0124223602484471,-0.1133467908902692,0.0712301587301586,0.8930000000000001,no clear difference
+6 Language,Never-seen language versus the normal model,XGB | set B3 | Tamil,auc,-0.029090909090909,-0.1373706004140786,0.0670295060802931,0.8930000000000001,no clear difference

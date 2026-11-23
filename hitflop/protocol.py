@@ -14,7 +14,8 @@ import pandas as pd
 import sklearn
 
 from . import config as C
-from . import metrics as M, thresholds as TH
+from . import metrics as M
+from . import thresholds as TH
 from .experiment_log import log_experiment
 from .world import build_world
 
@@ -90,7 +91,7 @@ def correct_family(table):
 def run_config(**extra):
     """The configuration block stored with every logged experiment."""
     cfg = {"seed": C.SEED, "split_date": C.SPLIT_DATE, "hit_threshold_roi": C.HIT_THRESHOLD, "n_outer_folds": C.N_OUTER, "n_inner_folds": C.N_INNER,
-           "validation": "expanding-window chronological, development data only", "comparator": "%s / set %s" % BASELINE,
+           "validation": "expanding-window chronological, development data only", "comparator": "{} / set {}".format(*BASELINE),
            "claim_rule": "paired bootstrap 95% CI excludes 0 and Benjamini-Hochberg q < 0.05",
            "versions": {"python": platform.python_version(), "scikit-learn": sklearn.__version__, "numpy": np.__version__, "pandas": pd.__version__}}
     cfg.update(extra)

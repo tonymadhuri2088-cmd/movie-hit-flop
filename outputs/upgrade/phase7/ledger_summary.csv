@@ -1,0 +1,12 @@
+phase,experiment,comparisons,supported_better,supported_worse,no_clear_difference
+1 Evaluation,"Models versus logistic regression, development folds",8,0,2,6
+2 Minority class,Imbalance methods versus the plain model,36,0,0,36
+2 Minority class,Imbalance-method models versus logistic regression,50,0,1,49
+2 Minority class,Threshold rules versus Youden,30,0,5,25
+2 Minority class,"Simulated 30% minority, per seed",180,0,4,176
+3 Drift,Training windows versus expanding window,40,0,17,23
+3 Drift,Windowed models versus logistic regression,23,0,0,23
+4 Calibration,Recalibration versus raw probabilities,40,1,6,33
+4 Calibration,Warning flags versus prediction quality,56,2,2,52
+5 Feature ablation,Feature groups removed or added,84,11,7,66
+6 Language,Never-seen language versus the normal model,12,0,0,12

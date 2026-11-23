@@ -1,7 +1,9 @@
 """Phase 1 runner: data-quality audit and selection-bias analysis. Writes CSVs to outputs/phase1 and one entry to the experiment log."""
 import pandas as pd
 
-from . import config as C, data, history, data_audit, selection_bias as sb
+from . import config as C
+from . import data, data_audit, history
+from . import selection_bias as sb
 from .experiment_log import log_experiment
 
 

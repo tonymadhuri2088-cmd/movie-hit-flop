@@ -14,13 +14,14 @@ A plain status page: what was built, what it showed, and what was not done.
 | Validation | Expanding-window chronological cross-validation, nested inner split for tuning | `hitflop/validation.py` |
 | Statistics | Paired bootstrap on identical films and Benjamini-Hochberg correction; "convincing" = interval above 0 and q < 0.05 | `outputs/` tables |
 | Tuning and ensembles | Nested Optuna tuning, stacking, average ensemble | `hitflop/tuning.py`, `hitflop/ensembles.py` |
-| Calibration | Tested; fitted calibrators made things worse because the Hit rate drifts, so they are not used | `docs/course_notebook_results/12_calibration.png` |
+| Calibration | Platt, isotonic and intercept-shift recalibration tested on development folds; none supported as better for the deployed models, isotonic clearly worse, so none is used | `outputs/upgrade/phase4/`, `docs/UPGRADE_LOG.md` |
 | Explanation | SHAP and permutation importance | `13_shap_summary.png`, `hitflop/explain.py` |
 | Frozen test | Scored once; lock file refuses a second scoring | `outputs/final/TEST_SCORED.lock` |
 | Robustness | ROI thresholds 1.5 and 2.5, missing-buzz subset, language and year shifts, complete-case analysis, learning curve, YouTube timing check | `outputs/`, notebook |
-| App | Streamlit app with Predict, Model comparison, Research dashboard and About & limits | `app/streamlit_app.py` |
-| App polish | Quick example films, colour-coded verdict, threshold gauge, CSV download, model-comparison and 19-model leaderboard charts | `app/streamlit_app.py` |
-| Tests and CI | 121 tests pass locally; GitHub Actions runs them on every push | `tests/`, `.github/workflows/ci.yml` |
+| App | Dark Streamlit dashboard: Predict, What-if, Compare films, Leaderboard, Research lab, About & limits | `app/streamlit_app.py`, `hitflop/dashboard/` |
+| App polish | Quick example films, colour-coded verdict, threshold gauge, per-input explanation, uncertainty warnings, CSV download | `hitflop/dashboard/panels.py` |
+| Research upgrade | Phases 0 to 9: advanced metrics, minority-class methods, drift, calibration and warnings, feature ablation, language robustness, a claims ledger and audit | `docs/UPGRADE_LOG.md`, `outputs/upgrade/` |
+| Tests and CI | 151 tests; GitHub Actions runs lint, tests with coverage on Python 3.11 to 3.13, and a Docker build with an app health check on every push | `tests/`, `.github/workflows/ci.yml` |
 | Course notebook | One notebook, all 19 models, run end to end in Colab: "All checks passed", total runtime 1881 s | `notebooks/01_course_notebook_19_models.ipynb` |
 
 ## What it showed
@@ -28,7 +29,8 @@ A plain status page: what was built, what it showed, and what was not done.
 2. **No model is convincingly better than logistic regression.** The top six families are tied on the test period.
 3. **Extra buzz features, tuning, ensembles and neural networks did not help** (the neural networks were lower on validation and no better on test).
 4. Probabilities run too high on the 2023+ films (Hit rate fell from 47% to 30%), so use the model for **ranking**, not for exact probabilities.
-5. Hindi films are the weak spot.
+5. Hindi films are the weak spot: inside Hindi the models are not clearly better than guessing.
+6. The research upgrade (imbalance methods, rolling windows, recalibration, extra feature blocks) did **not** produce a better model. 559 comparisons were audited against one claim rule; the evidence-backed additions are a close-call warning and a clear statement of where the models are weak.
 
 ## Not done (be honest about these)
 - No poster, trailer-frame or plot-text features (needs data that is not in the files).
@@ -36,4 +38,5 @@ A plain status page: what was built, what it showed, and what was not done.
 - No causal claims: SHAP describes the model, not why films succeed.
 - The labelled films are not a random sample of all films.
 - The live app is on the free Streamlit Community Cloud tier, which sleeps when idle.
-- Not tested on every operating system; the Dockerfile has not been build-tested yet.
+- Not tested on every operating system. Linux (GitHub Actions, Python 3.11 to 3.13) is covered, including a Docker build and app health check.
+- The frozen test set was scored once before the upgrade, so it cannot be a clean selection arena; every upgrade decision was made on development folds.

@@ -1,7 +1,10 @@
 import numpy as np
 import pytest
 
-from hitflop import imbalance as IM, metrics as M, models as MD, protocol as P, thresholds as TH
+from hitflop import imbalance as IM
+from hitflop import models as MD
+from hitflop import protocol as P
+from hitflop import thresholds as TH
 from hitflop import upgrade_phase2 as U2
 
 

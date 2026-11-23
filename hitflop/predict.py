@@ -7,7 +7,10 @@ Two modes:
 import numpy as np
 import pandas as pd
 
-from . import config as C, data, features as F, history as H, models as MD
+from . import config as C
+from . import data
+from . import features as F
+from . import history as H
 
 REQUIRED = ["language", "release_date", "budget", "runtime"]
 MODE_WIKI_FIELDS = ["pv_90_31", "pv_30_8", "pv_7_1"]

@@ -113,7 +113,7 @@ def brute_force_track_record(movie_row, role, lab_df, all_df, maturity_days=C.MA
     prior = lab_before.hit.mean() if len(lab_before) else C.PRIOR_NO_HISTORY
     rates, n_prev, revs = [], [], []
     for n in people(movie_row[col] if not hasattr(movie_row, col) else getattr(movie_row, col), top):
-        has = lambda v: n in people(v, top)
+        has = lambda v, n=n: n in people(v, top)
         n_prev.append(int(sum(has(v) for v, d in zip(all_df[col], all_df.release_date) if d < t)))
         past = lab_before[np.array([has(v) for v in lab_before[col]], dtype=bool)]
         rates.append((past.hit.sum() + C.SMOOTH_M * prior) / (len(past) + C.SMOOTH_M))

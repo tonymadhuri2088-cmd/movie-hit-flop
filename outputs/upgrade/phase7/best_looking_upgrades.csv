@@ -1,0 +1,10 @@
+phase,experiment,what,metric,diff,ci_low,ci_high,q_bh,verdict
+5 Feature ablation,Feature groups removed or added,LR | minus cast_crew_studio_history,auc,0.0587241307225977,0.0112540129766919,0.1054109188903966,0.076,no clear difference
+5 Feature ablation,Feature groups removed or added,XGB | minus cast_crew_studio_history,auc,0.0502404013657584,0.0171512631201719,0.0836546368073142,0.028,better (supported)
+2 Minority class,Imbalance-method models versus logistic regression,RF | set B3 | balanced_rf,auc,0.0414779457877499,0.002782900820375,0.080498078972356,0.175,no clear difference
+5 Feature ablation,Feature groups removed or added,XGB | base plus buzz_wikipedia,auc,0.0368615427496341,0.0068216739518088,0.0684644643168949,0.0714,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,XGB | set B3 | class_weight,auc,0.0318793115462338,-0.0038223786564807,0.0699626151062792,0.3214285714285714,no clear difference
+3 Drift,Windowed models versus logistic regression,XGB | set B3 | expanding,auc,0.031722528046826,-0.0053530388692668,0.0691948824408897,0.575,no clear difference
+2 Minority class,Imbalance-method models versus logistic regression,XGB | set B3 | base,auc,0.031722528046826,-0.0053530388692668,0.0691948824408897,0.3266666666666667,no clear difference
+3 Drift,Windowed models versus logistic regression,XGB | set B3 | decay-4y,auc,0.0295798202215873,-0.0072472122318931,0.0686988187891604,0.575,no clear difference
+3 Drift,Windowed models versus logistic regression,RF | set B3 | expanding,auc,0.0290920493345412,-0.008688150253566,0.0696654981701163,0.575,no clear difference

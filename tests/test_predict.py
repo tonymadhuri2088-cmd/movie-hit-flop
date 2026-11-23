@@ -1,9 +1,11 @@
 """The app's featurizer must reproduce the research pipeline's features exactly for a film that is in the data."""
-import numpy as np
 import pandas as pd
 import pytest
 
-from hitflop import features as F, models as MD, predict as P, world as W
+from hitflop import features as F
+from hitflop import models as MD
+from hitflop import predict as P
+from hitflop import world as W
 
 
 @pytest.fixture(scope="module")

@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this project, please cite it as below."
+title: "Hit or Flop: pre-release prediction of Indian film success with honest chronological evaluation"
+type: software
+version: 2.0.0
+license: MIT
+repository-code: "https://github.com/tonymadhuri2088-cmd/movie-hit-flop"
+keywords:
+  - machine learning
+  - film
+  - binary classification
+  - temporal validation
+  - calibration
+abstract: >-
+  Predicts whether an Indian film will be a Hit (revenue at least twice its budget) using only information available before release.
+  Every claim is checked with chronological validation, a frozen test set and paired-bootstrap intervals.

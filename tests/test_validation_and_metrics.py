@@ -1,10 +1,13 @@
 import numpy as np
-import pandas as pd
 import pytest
 from sklearn.metrics import roc_auc_score
 
-from hitflop import calibration as CAL, metrics as M, models as MD, validation as V
-from hitflop import features as F, history as H
+from hitflop import calibration as CAL
+from hitflop import features as F
+from hitflop import history as H
+from hitflop import metrics as M
+from hitflop import models as MD
+from hitflop import validation as V
 
 
 @pytest.fixture(scope="module")

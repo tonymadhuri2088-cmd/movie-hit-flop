@@ -1,13 +1,13 @@
 """Build the model artifact used by the app. The evaluation numbers stored in it come from the dev-only fit scored once on the frozen test set;
 the deployed models are then REFIT on all 854 labelled movies (development + 2023+), so the app uses every labelled film. This is disclosed in the app."""
 import joblib
-import numpy as np
 import pandas as pd
 
-from . import config as C, models as MD, metrics as M
-from .world import build_world
-from .predict import SPEC
+from . import config as C
+from . import models as MD
 from . import uncertainty as U
+from .predict import SPEC
+from .world import build_world
 
 PATH = C.ROOT / "artifacts" / "hitflop_models.joblib"
 

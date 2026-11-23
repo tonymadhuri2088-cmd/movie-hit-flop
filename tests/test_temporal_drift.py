@@ -1,8 +1,8 @@
 import numpy as np
 import pandas as pd
-import pytest
 
-from hitflop import drift as D, models as MD, temporal as T
+from hitflop import drift as D
+from hitflop import temporal as T
 
 
 def test_decay_weights_halve_at_the_half_life_and_ignore_labels():

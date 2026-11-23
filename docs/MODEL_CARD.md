@@ -36,14 +36,32 @@ Computed from the stored predictions of the one-time test scoring, at the thresh
 
 Reading: the models find about a third of Hits and are correct about 94% of the time when they say Flop. Accuracy of 76% should be read against the 70.3% obtained by always answering Flop. The three real models are not clearly different from each other on any of these metrics.
 
+### Performance inside each language (development folds, out-of-fold)
+AUC with a 95% bootstrap interval; "above chance" means the interval excludes 0.50. Source: `outputs/upgrade/phase6/per_language_performance.csv`.
+
+| Language | Validated films | Hit rate | Basic (HGB) | Buzz (XGBoost) | Above chance? |
+|---|---|---|---|---|---|
+| Hindi | 237 | 35% | 0.56 (0.49 to 0.64) | 0.58 (0.50 to 0.66) | no |
+| Telugu | 109 | 58% | 0.71 (0.61 to 0.80) | 0.76 (0.67 to 0.85) | yes |
+| Malayalam | 67 | 69% | 0.65 (0.51 to 0.78) | 0.70 (0.55 to 0.82) | yes (narrowly) |
+| Tamil | 47 | 47% | 0.68 (0.52 to 0.84) | 0.79 (0.65 to 0.91) | yes |
+| Kannada | 20 | 65% | not judged (too few films) | not judged | not judged |
+
+A model trained without a language and scored on it was not clearly worse than the normal model for any language, but the intervals are wide (about 0.2), so this does not show that the models generalise to a new language.
+
+### What carries the prediction (development folds)
+Removing budget is the only change that clearly lowers AUC (logistic regression -0.024, gradient boosting -0.044). Language alone reaches AUC about 0.61 and budget alone 0.58 to 0.62; release timing, festival calendar, release year and cast/crew history alone are not clearly above chance. The optional extra feature groups are not shown to help (`docs/UPGRADE_LOG.md`, Phase 5).
+
 ## Known limitations
 - **Selection bias:** only films with public budget and revenue are labelled, and they are not a random sample.
 - **Drift:** the Hit rate fell from 47% (before 2023) to 30% (2023 onward). Predicted probabilities run high for recent films, so use the model to rank films, not to read exact probabilities.
 - **Uncertainty warnings (app):** a verdict within 5 points of the Hit line is a toss-up (right about 40% of the time on development films). A budget or runtime outside everything in the training films is flagged as extrapolation. Other "unusual input" notes are information only: on past films such inputs were not predicted worse. Probabilities were not recalibrated because no recalibration was supported as better.
-- **Hindi films:** validation AUC about 0.56, close to guessing.
+- **Hindi films:** inside Hindi the AUC is about 0.56 and its interval includes 0.50, so the models are not shown to rank Hindi films better than chance, even though Hindi is the largest group (237 validated films).
+- **Kannada films:** only 25 labelled development films; no per-language claim is made.
 - **Money values:** US dollars as stored; gross versus net is not documented.
 - **YouTube features:** collection dates are missing, so they cannot be proven to be pre-release.
 - **Predictive, not causal:** explanations describe the model, not how to make a film succeed.
+- **Imbalance, windows, recalibration:** class weights, Balanced Random Forest, SMOTE-NC, rolling windows, time-decay weights and recalibration were all tested and none was supported as better than the original design (559 comparisons audited in `docs/UPGRADE_LOG.md`). The deployed models are therefore the original ones.
 - **Small data:** 854 films means wide confidence intervals; differences of a few AUC points are noise.
 
 ## Ethical considerations

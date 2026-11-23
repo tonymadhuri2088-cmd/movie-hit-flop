@@ -14,7 +14,12 @@ import time
 import numpy as np
 import pandas as pd
 
-from . import config as C, data, drift as D, metrics as M, protocol as P, temporal as T
+from . import config as C
+from . import data
+from . import drift as D
+from . import metrics as M
+from . import protocol as P
+from . import temporal as T
 
 OUT = C.OUT_DIR / "upgrade" / "phase3"
 SPECS = [("LR", "A"), ("HGB", "A"), ("XGB", "B3"), ("RF", "B3")]

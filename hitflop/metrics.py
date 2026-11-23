@@ -1,7 +1,7 @@
 """Metrics, bootstrap intervals and paired comparisons. Everything works on plain numpy arrays and is deterministic given a seed."""
 import numpy as np
 from scipy import stats
-from sklearn.metrics import (average_precision_score, brier_score_loss, f1_score, log_loss, matthews_corrcoef, precision_score, recall_score, roc_auc_score, roc_curve)
+from sklearn.metrics import average_precision_score, brier_score_loss, f1_score, log_loss, matthews_corrcoef, precision_score, recall_score, roc_curve
 
 from . import config as C
 

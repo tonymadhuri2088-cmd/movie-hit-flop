@@ -1,8 +1,8 @@
-import numpy as np
 import pandas as pd
 import pytest
 
-from hitflop import data_audit, selection_bias as sb
+from hitflop import data_audit
+from hitflop import selection_bias as sb
 
 
 def test_audit_tables_exist_and_consistent(world):

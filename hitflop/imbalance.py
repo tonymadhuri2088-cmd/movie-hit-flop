@@ -11,12 +11,11 @@ Resampling lives inside an imbalanced-learn Pipeline, so it runs only on the row
 it never touches validation rows, and inside the inner grid search it runs on the inner training part only.
 """
 import numpy as np
-import pandas as pd
 from imblearn.ensemble import BalancedRandomForestClassifier
 from imblearn.over_sampling import SMOTE, SMOTENC
 from imblearn.pipeline import Pipeline as ImbPipeline
 from joblib import Parallel, delayed
-from sklearn.base import BaseEstimator, clone
+from sklearn.base import BaseEstimator
 from sklearn.model_selection import GridSearchCV, TimeSeriesSplit
 
 from . import config as C

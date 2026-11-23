@@ -5,7 +5,9 @@ import optuna
 from joblib import Parallel, delayed
 from sklearn.model_selection import TimeSeriesSplit
 
-from . import config as C, metrics as M, models as MD
+from . import config as C
+from . import metrics as M
+from . import models as MD
 
 optuna.logging.set_verbosity(optuna.logging.WARNING)
 

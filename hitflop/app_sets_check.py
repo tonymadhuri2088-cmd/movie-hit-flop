@@ -1,8 +1,13 @@
 """Small dev-only check of the app-friendly Wikipedia sets (B3 etc.) against B and A, so the app's 'buzz' mode is justified by evidence."""
-import numpy as np, pandas as pd
-from . import config as C, metrics as M, validation as V
-from .world import build_world
+import numpy as np
+import pandas as pd
+
+from . import config as C
+from . import metrics as M
+from . import validation as V
 from .experiment_log import log_experiment
+from .world import build_world
+
 
 def main():
     _, lab, dev, _ = build_world()
