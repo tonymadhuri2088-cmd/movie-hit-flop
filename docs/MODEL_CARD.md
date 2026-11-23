@@ -24,6 +24,18 @@ Teaching and research: explore what public pre-release information says about wh
 
 The three real models are statistically indistinguishable. In the 19-model course notebook, test AUC ranges from 0.66 to 0.79 and no model is convincingly better than logistic regression.
 
+### Extended metrics on the frozen test set (reporting only)
+Computed from the stored predictions of the one-time test scoring, at the threshold chosen on development data only. Nothing was refitted or selected. Brackets are bootstrap 95% intervals. Confusion cells are true Flop correctly called Flop / true Flop called Hit / true Hit called Flop / true Hit correctly called Hit.
+
+| Model | Threshold | Balanced accuracy | Macro-F1 | MCC | Hit recall | Flop recall | PR-AUC | Brier | TN / FP / FN / TP |
+|---|---|---|---|---|---|---|---|---|---|
+| Basic (HGB) | 0.572 | 0.64 (0.59 to 0.70) | 0.65 (0.59 to 0.72) | 0.36 (0.24 to 0.48) | 0.34 (0.24 to 0.45) | 0.94 (0.90 to 0.97) | 0.56 (0.46 to 0.68) | 0.19 (0.17 to 0.21) | 182 / 12 / 54 / 28 |
+| Buzz (XGBoost) | 0.621 | 0.64 (0.58 to 0.70) | 0.65 (0.58 to 0.72) | 0.36 (0.23 to 0.49) | 0.33 (0.22 to 0.44) | 0.94 (0.91 to 0.97) | 0.57 (0.47 to 0.69) | 0.17 (0.15 to 0.20) | 183 / 11 / 55 / 27 |
+| Logistic regression | 0.517 | 0.63 (0.57 to 0.68) | 0.64 (0.57 to 0.70) | 0.31 (0.19 to 0.44) | 0.34 (0.24 to 0.44) | 0.91 (0.87 to 0.95) | 0.60 (0.50 to 0.71) | 0.18 (0.16 to 0.19) | 177 / 17 / 54 / 28 |
+| Always the development Hit rate | 0.500 | 0.50 | 0.41 | 0.00 | 0.00 | 1.00 | 0.30 | 0.24 | 194 / 0 / 82 / 0 |
+
+Reading: the models find about a third of Hits and are correct about 94% of the time when they say Flop. Accuracy of 76% should be read against the 70.3% obtained by always answering Flop. The three real models are not clearly different from each other on any of these metrics.
+
 ## Known limitations
 - **Selection bias:** only films with public budget and revenue are labelled, and they are not a random sample.
 - **Drift:** the Hit rate fell from 47% (before 2023) to 30% (2023 onward). Predicted probabilities run high for recent films, so use the model to rank films, not to read exact probabilities.

@@ -1,0 +1,6 @@
+model,threshold,true_flop_pred_flop,true_flop_pred_hit,true_hit_pred_flop,true_hit_pred_hit
+"reference: LR, set A",0.5140608612785496,131,77,64,112
+"basic: HGB, set A",0.6237409156009864,181,27,108,68
+"buzz: XGB, set B3",0.5918620973825455,165,43,93,83
+"earlier headline: XGB, set D",0.5680628567934036,159,49,73,103
+no skill: earlier Hit rate,0.5,108,100,84,92
