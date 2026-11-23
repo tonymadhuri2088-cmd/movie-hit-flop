@@ -14,7 +14,7 @@ import pandas as pd
 import sklearn
 
 from . import config as C
-from . import metrics as M
+from . import metrics as M, thresholds as TH
 from .experiment_log import log_experiment
 from .world import build_world
 
@@ -37,13 +37,14 @@ def dev_only_world():
 
 def expanding_threshold(y, oof, folds_va, rule="youden"):
     """Threshold for each validation block chosen from the out-of-fold predictions of EARLIER blocks only.
+    `rule` is a name in `thresholds.RULES`, a fixed number, or a callable (y, p) -> threshold.
     Returns (threshold per row, NaN where none exists; boolean mask of rows that can be scored). The first block has no earlier data and is not scored."""
     y, oof = np.asarray(y), np.asarray(oof, float)
     thr = np.full(len(oof), np.nan)
     for k in range(1, len(folds_va)):
         past = np.concatenate(folds_va[:k])
-        t = M.youden_threshold(y[past], oof[past]) if rule == "youden" else float(rule)
-        thr[folds_va[k]] = t if np.isfinite(t) else 0.5        # a constant predictor has no meaningful Youden point; fall back to 0.5
+        t = TH.choose(rule, y[past], oof[past])
+        thr[folds_va[k]] = t if np.isfinite(t) else 0.5        # a constant predictor has no meaningful operating point; fall back to 0.5
     return thr, ~np.isnan(thr)
 
 

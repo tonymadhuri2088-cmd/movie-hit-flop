@@ -23,7 +23,7 @@ A leak-free, chronologically validated machine-learning study of 854 films, with
 - **Honest evaluation.** Hit = revenue / budget >= 2. Every split is chronological (never shuffled): 578 development films before 2023, and **276 frozen test films from 2023 onward, scored once**.
 - **19 model families** (logistic regression to gradient boosting, stacking and neural networks) compared with paired bootstrap and Benjamini-Hochberg correction.
 - **Leak-free features.** Cast, crew and studio track records use only earlier films. Tests flip future labels and prove earlier features do not move.
-- **A real, tested product.** 81 automated tests, GitHub Actions CI, a Streamlit app with per-prediction SHAP explanations, and a Dockerfile.
+- **A real, tested product.** 95 automated tests, GitHub Actions CI, a Streamlit app with per-prediction SHAP explanations, and a Dockerfile.
 
 ## Results
 Test AUC on the 276 frozen 2023+ films (0.50 = chance), with 95% bootstrap intervals:
@@ -32,7 +32,7 @@ Test AUC on the 276 frozen 2023+ films (0.50 = chance), with 95% bootstrap inter
 |---|---|---|---|
 | XGBoost (best on validation) | base + Wikipedia + YouTube | 0.730 | 0.774 (0.714 to 0.833) |
 | HistGradientBoosting (cross-validation choice) | base + Wikipedia | 0.714 | 0.761 (0.696 to 0.830) |
-| Random forest | base + Wikipedia + YouTube | 0.706 | 0.756 (0.687 to 0.818) |
+| Random forest | base + Wikipedia + YouTube | 0.706 | 0.756 (0.687 to 0.958) |
 | Logistic regression (simple baseline) | base | 0.690 | 0.759 (0.692 to 0.822) |
 | MLP / 1D-CNN / GRU | various | 0.61 to 0.68 | 0.71 / 0.74 / 0.75 |
 
@@ -69,9 +69,10 @@ More detail: [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
 The two parts use different feature sets and validation set-ups, so exact numbers differ slightly (for example HistGradientBoosting test AUC 0.761 in A and 0.735 in B). The conclusions agree.
 
 ## Research upgrade
-The project is being upgraded phase by phase into a research-grade study without touching the original split, test lock or results. Rules, findings and status are in [`docs/UPGRADE_LOG.md`](docs/UPGRADE_LOG.md). Phase 0 (protocol) and Phase 1 (advanced evaluation) are done:
+The project is being upgraded phase by phase into a research-grade study without touching the original split, test lock or results. Rules, findings and status are in [`docs/UPGRADE_LOG.md`](docs/UPGRADE_LOG.md). Phase 0 (protocol), Phase 1 (advanced evaluation) and Phase 2 (minority-class methods, honest result: no clear gain) are done:
 ```bash
 python -m hitflop.upgrade_phase1 outputs/upgrade/part_a_test_predictions.pkl   # all metrics, intervals and confusion matrices
+python -m hitflop.upgrade_phase2   # class weights, Balanced RF, SMOTE, threshold rules (about 5 minutes)
 ```
 
 ## Tech stack
@@ -83,9 +84,10 @@ python -m hitflop.upgrade_phase1 outputs/upgrade/part_a_test_predictions.pkl   #
 | Neural networks (Part A) | PyTorch (MLP, GRU, 1D-CNN) |
 | Tuning and explanation | Optuna (nested chronological tuning), SHAP, permutation importance |
 | Features | `holidays` package for festival and holiday calendars |
+| Imbalance | imbalanced-learn (Balanced Random Forest, SMOTE-NC inside training folds) |
 | Statistics | paired bootstrap, Benjamini-Hochberg correction |
 | App | Streamlit, Altair |
-| Quality | pytest (81 tests), GitHub Actions CI, Docker |
+| Quality | pytest (95 tests), GitHub Actions CI, Docker |
 | Notebook | Google Colab / Jupyter, matplotlib, seaborn |
 
 ## Data and split
@@ -106,7 +108,7 @@ Five tabs: **Predict** (film details in; chance of a Hit, a colour-coded verdict
 git clone https://github.com/tonymadhuri2088-cmd/movie-hit-flop.git
 cd movie-hit-flop
 pip install -r requirements.txt
-python -m pytest -q tests          # 81 tests: cohort, leakage, folds, metrics, protocol, calibration, app
+python -m pytest -q tests          # 95 tests: cohort, leakage, folds, metrics, protocol, calibration, app
 streamlit run app/streamlit_app.py
 ```
 **Part A (notebook):** open `notebooks/01_course_notebook_19_models.ipynb` in Google Colab and choose Runtime > Run all (about 30 minutes). The first cell downloads the two data files automatically; if that fails, Colab shows an upload button, so upload `data/movies_full.csv` and `data/yt_features.csv` from this repo. Locally, also run `pip install -r requirements-notebook.txt`.
@@ -128,7 +130,7 @@ python -m hitflop.artifacts; python -m hitflop.phase6
 ```
 hitflop/        package: data, features, history (leak-free records), models, validation, metrics,
                 calibration, tuning (nested Optuna), ensembles, explain (SHAP), predict, final
-tests/          81 tests, including leakage tests that flip future labels and check earlier features do not move
+tests/          95 tests, including leakage tests that flip future labels and check earlier features do not move
 app/            Streamlit app (.streamlit/ holds the theme)
 notebooks/      01 = 19-model course notebook, 02 = upgrade experiments
 experiments/    append-only experiment log (every experiment, settings and result)
