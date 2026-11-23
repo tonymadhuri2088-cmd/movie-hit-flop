@@ -69,10 +69,11 @@ More detail: [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
 The two parts use different feature sets and validation set-ups, so exact numbers differ slightly (for example HistGradientBoosting test AUC 0.761 in A and 0.735 in B). The conclusions agree.
 
 ## Research upgrade
-The project is being upgraded phase by phase into a research-grade study without touching the original split, test lock or results. Rules, findings and status are in [`docs/UPGRADE_LOG.md`](docs/UPGRADE_LOG.md). Phase 0 (protocol), Phase 1 (advanced evaluation) and Phase 2 (minority-class methods, honest result: no clear gain) are done:
+The project is being upgraded phase by phase into a research-grade study without touching the original split, test lock or results. Rules, findings and status are in [`docs/UPGRADE_LOG.md`](docs/UPGRADE_LOG.md). Phase 0 (protocol), Phase 1 (advanced evaluation) and Phase 2 (minority-class methods, honest result: no clear gain) and Phase 3 (temporal drift) are done:
 ```bash
 python -m hitflop.upgrade_phase1 outputs/upgrade/part_a_test_predictions.pkl   # all metrics, intervals and confusion matrices
 python -m hitflop.upgrade_phase2   # class weights, Balanced RF, SMOTE, threshold rules (about 5 minutes)
+python -m hitflop.upgrade_phase3   # Hit-rate and input drift, rolling windows, time-decay weights (about 3 minutes)
 ```
 
 ## Tech stack
@@ -87,7 +88,7 @@ python -m hitflop.upgrade_phase2   # class weights, Balanced RF, SMOTE, threshol
 | Imbalance | imbalanced-learn (Balanced Random Forest, SMOTE-NC inside training folds) |
 | Statistics | paired bootstrap, Benjamini-Hochberg correction |
 | App | Streamlit, Altair |
-| Quality | pytest (95 tests), GitHub Actions CI, Docker |
+| Quality | pytest (105 tests), GitHub Actions CI, Docker |
 | Notebook | Google Colab / Jupyter, matplotlib, seaborn |
 
 ## Data and split
@@ -108,7 +109,7 @@ Five tabs: **Predict** (film details in; chance of a Hit, a colour-coded verdict
 git clone https://github.com/tonymadhuri2088-cmd/movie-hit-flop.git
 cd movie-hit-flop
 pip install -r requirements.txt
-python -m pytest -q tests          # 95 tests: cohort, leakage, folds, metrics, protocol, calibration, app
+python -m pytest -q tests          # 105 tests: cohort, leakage, folds, metrics, protocol, calibration, app
 streamlit run app/streamlit_app.py
 ```
 **Part A (notebook):** open `notebooks/01_course_notebook_19_models.ipynb` in Google Colab and choose Runtime > Run all (about 30 minutes). The first cell downloads the two data files automatically; if that fails, Colab shows an upload button, so upload `data/movies_full.csv` and `data/yt_features.csv` from this repo. Locally, also run `pip install -r requirements-notebook.txt`.
@@ -130,7 +131,7 @@ python -m hitflop.artifacts; python -m hitflop.phase6
 ```
 hitflop/        package: data, features, history (leak-free records), models, validation, metrics,
                 calibration, tuning (nested Optuna), ensembles, explain (SHAP), predict, final
-tests/          95 tests, including leakage tests that flip future labels and check earlier features do not move
+tests/          105 tests, including leakage tests that flip future labels and check earlier features do not move
 app/            Streamlit app (.streamlit/ holds the theme)
 notebooks/      01 = 19-model course notebook, 02 = upgrade experiments
 experiments/    append-only experiment log (every experiment, settings and result)

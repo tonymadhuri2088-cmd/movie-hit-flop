@@ -1,0 +1,23 @@
+comparison,feature,kind,n_ref,n_cur,psi,psi_band,ks,ks_p,std_mean_shift
+development: earlier half vs later half,log_budget,numeric,289,289,0.13290473973967526,moderate,0.15570934256055363,0.001781841377792399,0.2867939179229301
+development: earlier half vs later half,runtime,numeric,289,289,0.08249573050981662,small,0.11418685121107269,0.046110847481021004,0.25830065048790946
+development: earlier half vs later half,month_sin,numeric,289,289,0.05549451408224487,small,0.05190311418685123,0.8320251935524534,-0.017441443948456144
+development: earlier half vs later half,month_cos,numeric,289,289,0.09935297951095268,small,0.10034602076124566,0.10894752305425918,0.15394275250203515
+development: earlier half vs later half,l_pv_90_31,numeric,208,257,0.11781052437657291,moderate,0.08543475007482781,0.3456187425596219,-0.1693478716760662
+development: earlier half vs later half,l_pv_30_8,numeric,208,257,0.10367713188282321,moderate,0.07606255612092191,0.48841691849135926,-0.09589623409965568
+development: earlier half vs later half,l_pv_7_1,numeric,208,257,0.16040606569140894,moderate,0.12919036216701585,0.038489396092240294,0.012010626071278714
+development: earlier half vs later half,buzz_per_budget,numeric,208,257,0.1905791569252392,moderate,0.14731741993415148,0.011873028839962189,-0.27666781346533703
+development: earlier half vs later half,language,categorical,289,289,0.07106823390602267,small,,,
+development: earlier half vs later half,season,categorical,289,289,0.013898310232708112,small,,,
+development: earlier half vs later half,genres,categorical,289,289,0.04585755788988457,small,,,
+"development vs frozen test (features only, no labels)",log_budget,numeric,578,276,0.27191409460417476,large,0.1985356802567575,6.256285574867957e-07,0.4224854140185376
+"development vs frozen test (features only, no labels)",runtime,numeric,578,275,0.1312880198871131,moderate,0.1514564328405159,0.0003331225074780835,0.40068978077572837
+"development vs frozen test (features only, no labels)",month_sin,numeric,578,276,0.042495947400411856,small,0.06759941828393767,0.3410909030142278,0.09574565374369079
+"development vs frozen test (features only, no labels)",month_cos,numeric,578,276,0.025216760695840723,small,0.052003410059676014,0.6680275554683749,0.0582423926874018
+"development vs frozen test (features only, no labels)",l_pv_90_31,numeric,465,235,0.21432651454630824,moderate,0.17638984214138642,0.0001000280296522276,-0.4121478902155016
+"development vs frozen test (features only, no labels)",l_pv_30_8,numeric,465,235,0.05878429810695579,small,0.08917867764813545,0.1547536882586486,-0.16588625762753642
+"development vs frozen test (features only, no labels)",l_pv_7_1,numeric,465,235,0.07732358175927116,small,0.0609013955616563,0.5811364479355259,-0.023025426979642778
+"development vs frozen test (features only, no labels)",buzz_per_budget,numeric,465,235,0.40528234651535033,large,0.25788149164950813,1.2395086362610031e-09,-0.3787164213944215
+"development vs frozen test (features only, no labels)",language,categorical,578,276,0.046365126453295706,small,,,
+"development vs frozen test (features only, no labels)",season,categorical,578,276,0.016227206630999212,small,,,
+"development vs frozen test (features only, no labels)",genres,categorical,578,276,0.07160863633260053,small,,,

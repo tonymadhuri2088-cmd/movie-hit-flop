@@ -20,7 +20,7 @@ A plain status page: what was built, what it showed, and what was not done.
 | Robustness | ROI thresholds 1.5 and 2.5, missing-buzz subset, language and year shifts, complete-case analysis, learning curve, YouTube timing check | `outputs/`, notebook |
 | App | Streamlit app with Predict, Model comparison, Research dashboard and About & limits | `app/streamlit_app.py` |
 | App polish | Quick example films, colour-coded verdict, threshold gauge, CSV download, model-comparison and 19-model leaderboard charts | `app/streamlit_app.py` |
-| Tests and CI | 95 tests pass locally; GitHub Actions runs them on every push | `tests/`, `.github/workflows/ci.yml` |
+| Tests and CI | 105 tests pass locally; GitHub Actions runs them on every push | `tests/`, `.github/workflows/ci.yml` |
 | Course notebook | One notebook, all 19 models, run end to end in Colab: "All checks passed", total runtime 1881 s | `notebooks/01_course_notebook_19_models.ipynb` |
 
 ## What it showed
