@@ -1,0 +1,29 @@
+model,flag,n_flagged,share_flagged
+"basic: HGB, set A",mahalanobis_high,12,0.043478260869565216
+"basic: HGB, set A",input_shift,12,0.043478260869565216
+"basic: HGB, set A",language_few_films,10,0.036231884057971016
+"basic: HGB, set A",budget_or_runtime_unusual,22,0.07971014492753623
+"basic: HGB, set A",any_input_flag,32,0.11594202898550725
+"basic: HGB, set A",close_call,18,0.06521739130434782
+"basic: HGB, set A",any_warning,46,0.16666666666666666
+"buzz: XGB, set B3",mahalanobis_high,23,0.08333333333333333
+"buzz: XGB, set B3",input_shift,28,0.10144927536231885
+"buzz: XGB, set B3",language_few_films,10,0.036231884057971016
+"buzz: XGB, set B3",budget_or_runtime_unusual,22,0.07971014492753623
+"buzz: XGB, set B3",any_input_flag,53,0.19202898550724637
+"buzz: XGB, set B3",close_call,23,0.08333333333333333
+"buzz: XGB, set B3",any_warning,73,0.2644927536231884
+"reference: LR, set A",mahalanobis_high,12,0.043478260869565216
+"reference: LR, set A",input_shift,12,0.043478260869565216
+"reference: LR, set A",language_few_films,10,0.036231884057971016
+"reference: LR, set A",budget_or_runtime_unusual,22,0.07971014492753623
+"reference: LR, set A",any_input_flag,32,0.11594202898550725
+"reference: LR, set A",close_call,40,0.14492753623188406
+"reference: LR, set A",any_warning,67,0.2427536231884058
+"earlier headline: XGB, set D",mahalanobis_high,23,0.08333333333333333
+"earlier headline: XGB, set D",input_shift,28,0.10144927536231885
+"earlier headline: XGB, set D",language_few_films,10,0.036231884057971016
+"earlier headline: XGB, set D",budget_or_runtime_unusual,22,0.07971014492753623
+"earlier headline: XGB, set D",any_input_flag,53,0.19202898550724637
+"earlier headline: XGB, set D",close_call,16,0.057971014492753624
+"earlier headline: XGB, set D",any_warning,63,0.22826086956521738

@@ -39,6 +39,7 @@ Reading: the models find about a third of Hits and are correct about 94% of the 
 ## Known limitations
 - **Selection bias:** only films with public budget and revenue are labelled, and they are not a random sample.
 - **Drift:** the Hit rate fell from 47% (before 2023) to 30% (2023 onward). Predicted probabilities run high for recent films, so use the model to rank films, not to read exact probabilities.
+- **Uncertainty warnings (app):** a verdict within 5 points of the Hit line is a toss-up (right about 40% of the time on development films). A budget or runtime outside everything in the training films is flagged as extrapolation. Other "unusual input" notes are information only: on past films such inputs were not predicted worse. Probabilities were not recalibrated because no recalibration was supported as better.
 - **Hindi films:** validation AUC about 0.56, close to guessing.
 - **Money values:** US dollars as stored; gross versus net is not documented.
 - **YouTube features:** collection dates are missing, so they cannot be proven to be pre-release.

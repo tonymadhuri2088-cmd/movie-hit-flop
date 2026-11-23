@@ -106,7 +106,7 @@ def feature_drift(ref, cur):
 def unlabelled_test_features():
     """FEATURES of the frozen-test films with every label-bearing column removed. For measuring input shift only."""
     _, _, _, test = build_world()
-    cols = sorted(set(MD.feature_columns("B3") + NUMERIC_FOR_DRIFT + CATEGORICAL_FOR_DRIFT + ["release_date", "year"]))
+    cols = sorted(set(MD.feature_columns("B3") + NUMERIC_FOR_DRIFT + CATEGORICAL_FOR_DRIFT + ["release_date", "year", "tmdb_id"]))
     out = test[cols].copy()
     assert not (set(out.columns) & LABEL_COLUMNS)
     return out

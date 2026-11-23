@@ -1,0 +1,41 @@
+model,method,metric,n,diff,ci_low,ci_high,p,q_bh,verdict
+"reference: LR, set A",platt_all,"brier (negated, higher is better)",384,-0.006176444621824123,-0.011958431858510865,-0.0012286425077494524,0.013,0.05777777777777778,no clear difference
+"reference: LR, set A",platt_all,"log-loss (negated, higher is better)",384,-0.017107831950559538,-0.03319095643849282,-0.0028963530925753688,0.015,0.06,no clear difference
+"reference: LR, set A",platt_recent,"brier (negated, higher is better)",384,-0.005734580570654818,-0.012186576721354585,2.897416787997193e-05,0.051,0.1457142857142857,no clear difference
+"reference: LR, set A",platt_recent,"log-loss (negated, higher is better)",384,-0.016513936694847242,-0.03451417118463203,-0.0007973108541626668,0.038,0.11692307692307692,no clear difference
+"reference: LR, set A",isotonic_all,"brier (negated, higher is better)",384,-0.014566819009522197,-0.025032145375549965,-0.005083725553114517,0.006,0.045714285714285714,worse (supported)
+"reference: LR, set A",isotonic_all,"log-loss (negated, higher is better)",384,-0.1118666930374691,-0.19493204027331978,-0.043206892708990606,0.0005,0.005,worse (supported)
+"reference: LR, set A",shift_all,"brier (negated, higher is better)",384,-0.0011096495967861941,-0.0038599586239911896,0.0016040489247558553,0.395,0.8777777777777778,no clear difference
+"reference: LR, set A",shift_all,"log-loss (negated, higher is better)",384,-0.002176064788973253,-0.008120225953708687,0.0036879120711811038,0.447,0.9410526315789474,no clear difference
+"reference: LR, set A",shift_recent,"brier (negated, higher is better)",384,0.0006382808021424269,-0.002627660200292041,0.003807739311164983,0.685,0.974054054054054,no clear difference
+"reference: LR, set A",shift_recent,"log-loss (negated, higher is better)",384,0.0015247325309640791,-0.005750910631061801,0.008587533009935366,0.666,0.974054054054054,no clear difference
+"basic: HGB, set A",platt_all,"brier (negated, higher is better)",384,-0.0010784366188604233,-0.006643378255202675,0.00461068103794029,0.716,0.974054054054054,no clear difference
+"basic: HGB, set A",platt_all,"log-loss (negated, higher is better)",384,-4.632168096097011e-06,-0.015056365969776697,0.01597368558003182,0.983,0.983,no clear difference
+"basic: HGB, set A",platt_recent,"brier (negated, higher is better)",384,-0.0004302579018279906,-0.005961663184938569,0.00542119083924993,0.868,0.974054054054054,no clear difference
+"basic: HGB, set A",platt_recent,"log-loss (negated, higher is better)",384,0.0013786802631253758,-0.014168142040270778,0.01755050994835477,0.884,0.974054054054054,no clear difference
+"basic: HGB, set A",isotonic_all,"brier (negated, higher is better)",384,-0.003303714856930373,-0.009711873537903596,0.0027829095225127064,0.312,0.78,no clear difference
+"basic: HGB, set A",isotonic_all,"log-loss (negated, higher is better)",384,-0.05763830473951226,-0.11105157742069731,-0.011532343532753255,0.008,0.045714285714285714,worse (supported)
+"basic: HGB, set A",shift_all,"brier (negated, higher is better)",384,-0.0005719478103639597,-0.0020274429446444906,0.0008024175418599855,0.384,0.8777777777777778,no clear difference
+"basic: HGB, set A",shift_all,"log-loss (negated, higher is better)",384,-0.0006066231330905669,-0.0038837739619755366,0.002553610819128171,0.719,0.974054054054054,no clear difference
+"basic: HGB, set A",shift_recent,"brier (negated, higher is better)",384,0.00017309714041269242,-0.001573149462679322,0.001824372523518011,0.831,0.974054054054054,no clear difference
+"basic: HGB, set A",shift_recent,"log-loss (negated, higher is better)",384,0.0009851256207477066,-0.0030325313542796327,0.0047519243348271975,0.605,0.974054054054054,no clear difference
+"buzz: XGB, set B3",platt_all,"brier (negated, higher is better)",384,-0.0005850037088234727,-0.004914649474658238,0.0038352195729780235,0.769,0.974054054054054,no clear difference
+"buzz: XGB, set B3",platt_all,"log-loss (negated, higher is better)",384,-0.0018351065516635234,-0.013210459968315255,0.010223354979136342,0.732,0.974054054054054,no clear difference
+"buzz: XGB, set B3",platt_recent,"brier (negated, higher is better)",384,-0.0005584922387993907,-0.00538471474950933,0.004294242797893231,0.795,0.974054054054054,no clear difference
+"buzz: XGB, set B3",platt_recent,"log-loss (negated, higher is better)",384,-0.0019744781814848844,-0.014453738730774185,0.011297373372049389,0.739,0.974054054054054,no clear difference
+"buzz: XGB, set B3",isotonic_all,"brier (negated, higher is better)",384,-0.013640764776894548,-0.02162485098402288,-0.005894835880292298,0.0005,0.005,worse (supported)
+"buzz: XGB, set B3",isotonic_all,"log-loss (negated, higher is better)",384,-0.12910337679058415,-0.213098423394823,-0.05578877722133728,0.0005,0.005,worse (supported)
+"buzz: XGB, set B3",shift_all,"brier (negated, higher is better)",384,-4.049204749650981e-05,-0.0011169469217146462,0.0010289196958276755,0.955,0.9794871794871793,no clear difference
+"buzz: XGB, set B3",shift_all,"log-loss (negated, higher is better)",384,-0.0002633483929085356,-0.0026333999497451547,0.0021304215742645404,0.852,0.974054054054054,no clear difference
+"buzz: XGB, set B3",shift_recent,"brier (negated, higher is better)",384,-0.0001379532912564041,-0.002134130414962525,0.0018598043650672436,0.901,0.974054054054054,no clear difference
+"buzz: XGB, set B3",shift_recent,"log-loss (negated, higher is better)",384,-0.0004546394790635455,-0.004847303069529849,0.003957266652089509,0.86,0.974054054054054,no clear difference
+"earlier headline: XGB, set D",platt_all,"brier (negated, higher is better)",384,0.00026707565573982905,-0.004872580333573274,0.005488165874846804,0.946,0.9794871794871793,no clear difference
+"earlier headline: XGB, set D",platt_all,"log-loss (negated, higher is better)",384,0.0037252169538041224,-0.010925714039451157,0.01973129705091007,0.667,0.974054054054054,no clear difference
+"earlier headline: XGB, set D",platt_recent,"brier (negated, higher is better)",384,0.000654234559291339,-0.005347979124392432,0.006598819283156141,0.847,0.974054054054054,no clear difference
+"earlier headline: XGB, set D",platt_recent,"log-loss (negated, higher is better)",384,0.004357455929383636,-0.012057311069693247,0.021392681447296717,0.64,0.974054054054054,no clear difference
+"earlier headline: XGB, set D",isotonic_all,"brier (negated, higher is better)",384,-0.005936072678683457,-0.01453955776972135,0.002479756138180423,0.17,0.45333333333333337,no clear difference
+"earlier headline: XGB, set D",isotonic_all,"log-loss (negated, higher is better)",384,-0.1466350846182093,-0.2362075504109402,-0.06472246782720914,0.0005,0.005,worse (supported)
+"earlier headline: XGB, set D",shift_all,"brier (negated, higher is better)",384,0.002019979194574084,0.0004685768298767233,0.0034679503387540305,0.007,0.045714285714285714,better (supported)
+"earlier headline: XGB, set D",shift_all,"log-loss (negated, higher is better)",384,0.004141996247013169,0.0008328034067423135,0.007269636464850172,0.011,0.05499999999999999,no clear difference
+"earlier headline: XGB, set D",shift_recent,"brier (negated, higher is better)",384,0.003199091410593824,0.0003434039772502458,0.006031944375918149,0.025,0.08666666666666667,no clear difference
+"earlier headline: XGB, set D",shift_recent,"log-loss (negated, higher is better)",384,0.006839323818735532,0.0006263963952605563,0.012968786856190219,0.026,0.08666666666666667,no clear difference

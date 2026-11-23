@@ -92,3 +92,20 @@ def test_leaderboard_tab_shows_19_models():
     at = _run()
     assert not at.exception
     assert any(m.label == "Models compared" and m.value == "19" for m in at.metric)
+
+
+def test_extreme_budget_shows_an_extrapolation_warning():
+    at = _run()
+    at.number_input(key="budget").set_value(900.0).run()
+    at.button(key="go").click().run()
+    assert not at.exception
+    assert any("outside every budget" in w.value for w in at.warning)
+
+
+def test_unusual_inputs_show_a_note_not_a_warning():
+    at = _run()
+    at.number_input(key="budget").set_value(0.15).run()      # inside the seen range, below the 1st percentile
+    at.button(key="go").click().run()
+    assert not at.exception
+    assert any("extreme end" in i.value for i in at.info)
+    assert not any("extreme end" in w.value for w in at.warning)
